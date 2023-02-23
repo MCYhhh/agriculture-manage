@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Test1 from "../devviews/Test1";
-import Test2 from "../devviews/Test2";
+import Test1 from "../views/devviews/Test1";
+import Test2 from "../views/devviews/Test2";
 
 Vue.use(Router)
 
@@ -10,21 +9,26 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
-      children:[
-        {
-          path: '/test1',
-          name: 'Test1',
-          component: Test1
-        },
-        {
-          path: '/test2',
-          name: 'Test2',
-          component: Test2
-        }
-      ]
+      name: 'Login',
+      component:()=>import ('@/views/Login'),
     },
+    {
+      path: '/register',
+      name: 'Register',
+      component:()=>import ('@/views/Register'),
+    },
+    // {
+    //   path: '/',
+    //   name: 'Login',
+    //   component: HelloWorld,
+    //   children:[
+    //     {
+    //       path: '/test1',
+    //       name: 'Test1',
+    //       component: Test1
+    //     },
+    //   ]
+    // },
   ]
 })
 
