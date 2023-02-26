@@ -1,8 +1,12 @@
 package com.agriculture.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,7 +16,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author MCY
- * @since 2023-02-19
+ * @since 2023-02-25
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -31,9 +35,26 @@ public class Menu implements Serializable {
 
     private String mrouter;
 
+    private Integer mvisible;
+
+    private Integer state;
+
+    private Integer updateBy;
+
+    private Integer createBy;
+
+    private LocalDateTime createTime;
+
+    private LocalDateTime updateTime;
+
+    private Integer del;
+
     private Integer mpid;
 
     private String micon;
+
+    @TableField(exist = false)
+    private List<Menu> children;
 
 
 }

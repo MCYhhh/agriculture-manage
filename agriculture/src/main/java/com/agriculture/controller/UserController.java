@@ -8,10 +8,11 @@ import com.agriculture.common.Result;
 import com.agriculture.entity.User;
 import com.agriculture.service.IUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+
 
 /**
  * <p>
@@ -26,6 +27,7 @@ import javax.annotation.Resource;
 public class UserController {
     @Resource
     private IUserService iUserService;
+
 
     //根据id查询
     @GetMapping("/{uid}")
@@ -72,17 +74,33 @@ public class UserController {
         iUserService.removeById(uid);
         return Result.success(HttpCode.SUCCESS.code(),HttpCode.SUCCESS.message());
     }
+    @GetMapping("/hello")
+    //spring security自带的
+//    @PreAuthorize("hasAuthority('系统管理111')")   //用户有test这个权限才能访问   boolean类型，为true，则有权限（所有的权限用一个字符串表示)
+   //自定义权限校验
+    @PreAuthorize("@self.hasAuthority('系统管理')")  //在expression包自定义校验方法
+    //读取注解中的属性值，之后会将该字符串作为一个表达式进行执行
+    public String hello(){
+        return "hello";
+    }
 
     //登录
     @PostMapping("/login")
-    public Result login(@RequestBody UserDao userDao) {
-        String uname =userDao.getUname();
+    public Result login(@RequestBody UserDao userDao) {   //@RequestBody 从请求体中获取的数据
+        String uaccount =userDao.getUaccount();
         String upwd = userDao.getUpwd();
-        if (StrUtil.isBlank(uname) || StrUtil.isBlank(upwd)) {
+        if (StrUtil.isBlank(uaccount) || StrUtil.isBlank(upwd)) {
             return Result.error(HttpCode.LOGIN_ERROR.code(), HttpCode.LOGIN_ERROR.message());
         }
-        UserDao dto = iUserService.login(userDao);
-        return Result.success(dto);
+        UserDao dao = iUserService.login(userDao);
+        return Result.success("登录成功",dao);
+    }
+
+    //注销
+    @GetMapping("/logout")
+    public Result logout(){
+        iUserService.logout();
+        return Result.success(HttpCode.SUCCESS.code(),"注销成功");
     }
 
 }

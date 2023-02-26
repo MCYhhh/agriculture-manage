@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author MCY
- * @since 2023-02-19
+ * @since 2023-02-25
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -44,7 +44,7 @@ public class User implements Serializable {
 
     private String udesp;
 
-    private Integer ustate;
+    private Integer state;
 
     private LocalDateTime createTime;
 

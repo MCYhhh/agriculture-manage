@@ -2,7 +2,6 @@ package com.agriculture.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author MCY
- * @since 2023-02-19
+ * @since 2023-02-25
  */
 @RestController
 @RequestMapping("/chargegoods")

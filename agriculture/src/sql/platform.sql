@@ -22,7 +22,7 @@ create table user(
                          uaddress varchar(100) character set utf8mb4 collate utf8mb4_da_0900_ai_ci,  #地址
                          uimg varchar(100) character set utf8mb4 collate utf8mb4_da_0900_ai_ci,    #头像
                          udesp varchar(100) character set utf8mb4 collate utf8mb4_da_0900_ai_ci,  #个人简介
-                         ustate int not null default 0,#状态（0---正常，1---禁用）
+                         state int not null default 0,#状态（0---正常，1---禁用）
                          create_time datetime not null default current_timestamp,  #不填默认当前时间
                          update_time datetime not null default current_timestamp on update  current_timestamp, #当前修改的时间
                          unique index index_name(uaccount) using btree   #在用户账号上创建唯一索引（注册中要求用户账号唯一）
@@ -38,7 +38,8 @@ create table goods(
                           gsate int not null default 0,   #商品状态（0--未购买，1---购物车中，2----购买待支付，3----已支付）
                               gimg varchar(100) character set utf8mb4 collate utf8mb4_da_0900_ai_ci,#商品图片
                           gdesp varchar(100) character set utf8mb4 collate utf8mb4_da_0900_ai_ci, #商品描述
-                          create_time datetime not null default current_timestamp,  #不填默认当前时间
+                          state int not null default 0,#状态（0---正常，1---禁用）
+                              create_time datetime not null default current_timestamp,  #不填默认当前时间
                           update_time datetime not null default current_timestamp on update current_timestamp #当前修改的时间
 )engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
     comment '商品表'
@@ -53,6 +54,7 @@ create table chargegoods (
                                  cdate datetime not null default current_timestamp, #商品的添加时间，精确到秒，不填表示当前时间
                                  index index_gid(gid) using btree ,  #在外键上创建索引
                                  index index_uid(uid) using btree ,  #在外键上创建索引
+                                 state int not null default 0,#状态（0---正常，1---禁用）
                                  foreign key (gid) references goods(gid) on delete cascade on update restrict,  #商品id作为外键(级联操作，删除商品管理表中对应的数据，不存在外键删除问题）
                                  foreign key (uid) references user(uid) on delete cascade on update restrict,  #用户id作为外键(级联操作，删除用户表中对应的数据，不存在外键删除问题）
                                  update_time datetime not null default current_timestamp on update  current_timestamp #当前修改的时间
@@ -165,7 +167,14 @@ create table menu(
                          mdesp varchar(100) character set utf8mb4 collate utf8mb4_da_0900_ai_ci,  #菜单描述
                          mpath varchar(100) character set utf8mb4 collate utf8mb4_da_0900_ai_ci,  #菜单功能url
                          mrouter varchar(100) character set utf8mb4 collate utf8mb4_da_0900_ai_ci,  #对应的前端路由
-                         mpid int,  #父级菜单id（可为空）
+                         mvisible int default 0,   #菜单状态（0--显示，1隐藏）
+                        state int default 0,  #菜单状态（0--正常，1---停用）
+                        update_by int,
+                     create_by int,
+                     create_time datetime not null default current_timestamp,  #不填默认当前时间
+                         update_time datetime not null default current_timestamp on update  current_timestamp,  #当前修改的时间
+                         del int default 0,  #是否删除（0---未删除，1--已删除）
+                             mpid int,  #父级菜单id（可为空）
                          micon varchar(100) character set utf8mb4 collate utf8mb4_da_0900_ai_ci  #菜单图标
 )engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
     comment '菜单表'
@@ -173,11 +182,33 @@ create table menu(
 
 drop table if exists administrate;
 create table administrate(
-                             aid int auto_increment primary key , #菜单id（主键上自动建立索引）
-        utype int not null ,#用户角色类型（0----顾客，1-----农户或商家，2------后台管理员）
-                                     mid int not null, #菜单id
-                                 index index_gid(mid) using btree ,  #在外键上创建索引
-                                 foreign key (mid) references menu(mid) on delete cascade on update restrict  #用户id作为外键(级联操作，删除用户菜单表中对应的数据，不存在外键删除问题）
+                             rid int not null , #角色id
+                                 mid int not null, #菜单id
+                                 primary key (rid,mid),
+                             foreign key (mid) references menu(mid) on delete cascade on update restrict  #用户id作为外键(级联操作，删除用户菜单表中对应的数据，不存在外键删除问题）
                                  )engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
                                  comment '用户菜单表'
+;
+
+drop table if exists role;
+create table role(
+                     rid int auto_increment primary key , #用户id
+                     rtype int not null ,#用户角色类型（0----顾客，1-----农户或商家，2------后台管理员）
+                    update_by int,
+                    state int default 0 not null ,#角色状态（0---正常，1---停用）
+                    create_by int,
+                    create_time datetime not null default current_timestamp,  #不填默认当前时间
+                    update_time datetime not null default current_timestamp on update  current_timestamp,  #当前修改的时间
+                    del int default 0,  #是否删除（0---未删除，1--已删除）
+                    )engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
+                    comment '角色表'
+;
+
+drop table if exists user_role;
+create table user_role(
+                          rid int not null , #用户id
+                         uid int not null ,
+                          primary key (rid,uid),
+                    )engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
+                              comment '用户角色表'
 ;

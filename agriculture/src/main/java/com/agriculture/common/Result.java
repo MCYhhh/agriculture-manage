@@ -22,9 +22,10 @@ public class Result {
      * @param msg
      * @return
      * */
-    public static Result success(UserDTO msg){
+    public static Result success(String msg){
         return new Result(HttpCode.SUCCESS.code(),msg,null);
     }
+
 
     public static Result success(Object data){
         return new Result(HttpCode.SUCCESS.code(),HttpCode.SUCCESS.message(), data);

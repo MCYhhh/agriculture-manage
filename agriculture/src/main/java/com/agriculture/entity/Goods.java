@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author MCY
- * @since 2023-02-19
+ * @since 2023-02-25
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -34,6 +34,8 @@ public class Goods implements Serializable {
     private String gimg;
 
     private String gdesp;
+
+    private Integer state;
 
     private LocalDateTime createTime;
 

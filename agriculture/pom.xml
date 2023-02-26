@@ -26,6 +26,11 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
+<!--        导入spring security的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 <!--&lt;!&ndash;        swagger2 依赖&ndash;&gt;-->
 <!--        <dependency>-->
 <!--            <groupId>io.springfox</groupId>-->
@@ -44,6 +49,11 @@
             <artifactId>hutool-all</artifactId>
             <version>5.7.7</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.alipay.sdk</groupId>-->
+<!--            <artifactId>alipay-easysdk</artifactId>-->
+<!--            <version>2.2.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -54,17 +64,26 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.5.1</version>
         </dependency>
-<!--&lt;!&ndash;        security 依赖&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
-<!--        JWT依赖-->
-<!--        <dependency>-->
-<!--            <groupId>io.jsonwebtoken</groupId>-->
-<!--            <artifactId>jjwt</artifactId>-->
-<!--            <version>0.9.1</version>-->
-<!--        </dependency>-->
+        <!--        redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!--        json-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.79</version>
+        </dependency>
+
+        <!--        jwt-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
