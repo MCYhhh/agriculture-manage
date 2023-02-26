@@ -33,9 +33,5 @@ public class MapperTest {
         List<User> users = userMapper.selectList(null);
         System.out.println(users);
     }
-    @Test
-    public void testMenus(){
-        List<String> list=menuMapper.selectMtitleByUid(4);
-        System.out.println(list);
-    }
+
 }
