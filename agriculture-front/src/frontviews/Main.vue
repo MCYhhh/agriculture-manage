@@ -1,28 +1,69 @@
 <template>
-    <el-table :data="tableData">
-        <el-table-column prop="date" label="日期" width="140"></el-table-column>
-        <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-        <el-table-column prop="address" label="地址"></el-table-column>
-    </el-table>
+    <div class="Maindiv">
+        <MainHeader></MainHeader>
+        <MainMain></MainMain>
+        <div>
+            <p></p>
+        </div>
+    </div>
+    
 </template>
 
 <script>
-    export default {
-        name:"Main",
-        data() {
-            const item = {
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            };
-            return {
-                tableData: Array(20).fill(item)
-            }
-        }
+    import MainHeader from "./MainHeader.vue"
+    import MainMain from "./MainMain.vue"
+    export default{
+        name:"Mainb",
+        data(){
+            return{
         
+            }
+        },
+        methods:{ },
+        components:{
+            MainHeader,MainMain
+        },
     }
 </script>
 
-<style>
+<style scoped>
+    .Maindiv{
+        background-image: url("../assets/images/background.jpg");
+        height:800px;
+    }
+    .direct{
+        margin-top: 1px;
+    }
+    .directentity{
+        margin-left:100px;
+        margin-right:100px;
+        background:rgba(237, 240, 218, 0.768);
+        line-height: 50px;
+    }
+    .directbutton{
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    .el-button{
+        margin-left:60px; 
+        font-size: large;
+    }
+    .block{
+        margin-top:30px;
+        margin-left: 350px;
+        margin-right: 350px;
+        background-color: aliceblue;
+    }
+    .el-carousel_item h3{
+        color:bisque;
+        font-size: 14px;
+        opacity:0.75;
+        line-height:300px;
+        margin:0;
+    }
 
+
+    .carousel{
+        color:aqua;
+    }
 </style>
