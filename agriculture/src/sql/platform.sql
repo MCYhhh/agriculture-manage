@@ -69,10 +69,12 @@ create table orders(
                            ototal decimal(10,2),   #顾客总消费
                            odate datetime default current_timestamp on update current_timestamp, #商品订单更新时间，精确到秒，不填表示当前时间
                            uid int not null ,#农户或商家id
+                           foreign key (cid) references user(uid) on delete cascade on update restrict,  #订单id作为外键(级联操作，删除订单表中对应的数据，不存在外键删除问题）
+                           foreign key (uid) references user(uid) on delete cascade on update restrict,  #订单id作为外键(级联操作，删除订单表中对应的数据，不存在外键删除问题）
                            osate int not null default 0,   #订单状态（0----未支付，1---已支付，2----退货未退款，3---退货并收到退款）
-                               create_time datetime not null default current_timestamp  #商品订单生成时间,不填默认当前时间
-)engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
-    comment '订单表'
+                           create_time datetime not null default current_timestamp  #商品订单生成时间,不填默认当前时间
+                           )engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
+                           comment '订单表'
 ;
 
 drop table if exists detailorder;
@@ -168,8 +170,8 @@ create table menu(
                          mpath varchar(100) character set utf8mb4 collate utf8mb4_da_0900_ai_ci,  #菜单功能url
                          mrouter varchar(100) character set utf8mb4 collate utf8mb4_da_0900_ai_ci,  #对应的前端路由
                          mvisible int default 0,   #菜单状态（0--显示，1隐藏）
-                        state int default 0,  #菜单状态（0--正常，1---停用）
-                        update_by int,
+                             state int default 0,  #菜单状态（0--正常，1---停用）
+                             update_by int,
                      create_by int,
                      create_time datetime not null default current_timestamp,  #不填默认当前时间
                          update_time datetime not null default current_timestamp on update  current_timestamp,  #当前修改的时间
@@ -193,22 +195,39 @@ create table administrate(
 drop table if exists role;
 create table role(
                      rid int auto_increment primary key , #用户id
-                     rtype int not null ,#用户角色类型（0----顾客，1-----农户或商家，2------后台管理员）
-                    update_by int,
-                    state int default 0 not null ,#角色状态（0---正常，1---停用）
-                    create_by int,
-                    create_time datetime not null default current_timestamp,  #不填默认当前时间
-                    update_time datetime not null default current_timestamp on update  current_timestamp,  #当前修改的时间
-                    del int default 0,  #是否删除（0---未删除，1--已删除）
-                    )engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
-                    comment '角色表'
+                         rtype int not null ,#用户角色类型（0----顾客，1-----农户或商家，2------后台管理员）
+                             update_by int,
+                     state int default 0 not null ,#角色状态（0---正常，1---停用）
+                             create_by int,
+                     create_time datetime not null default current_timestamp,  #不填默认当前时间
+                         update_time datetime not null default current_timestamp on update  current_timestamp,  #当前修改的时间
+                         del int default 0  #是否删除（0---未删除，1--已删除）
+)engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
+    comment '角色表'
 ;
 
 drop table if exists user_role;
 create table user_role(
                           rid int not null , #用户id
-                         uid int not null ,
-                          primary key (rid,uid),
-                    )engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
-                              comment '用户角色表'
+                              uid int not null ,
+                          primary key (rid,uid)
+)engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
+    comment '用户角色表'
 ;
+
+drop table if exists trolley;
+create table trolley(
+                        tid int auto_increment primary key , #购物车管理id（主键上自动建立索引）
+        gid int not null ,   #商品id
+                            tnum int not null ,  #购物车中该商品的数量
+                            ttotal decimal(10,2) not null , #该样产品总消费
+                            cid int not null ,  #顾客id
+                            uid int not null ,#农户或商家id
+                            tstate int not null default 0,   #商品状态（0----未被勾选上，1---勾选上，2----，3---）
+                                create_time datetime not null default current_timestamp ,#购物车生成时间,不填默认当前时间
+                            update_time datetime not null default current_timestamp on update  current_timestamp ,#当前修改的时间
+                            foreign key (gid) references goods(gid) on delete cascade on update restrict,  #商品id作为外键(级联操作，删除商品管理表中对应的数据，不存在外键删除问题）
+                            foreign key (cid) references user(uid) on delete cascade on update restrict  ,#订单id作为外键(级联操作，删除订单表中对应的数据，不存在外键删除问题）
+                            foreign key (uid) references user(uid) on delete cascade on update restrict  #订单id作为外键(级联操作，删除订单表中对应的数据，不存在外键删除问题）
+                            ) engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
+                            comment '购物车';
