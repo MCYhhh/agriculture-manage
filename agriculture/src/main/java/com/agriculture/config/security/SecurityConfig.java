@@ -3,11 +3,9 @@ package com.agriculture.config.security;
 //import com.agriculture.config.filter.JwtAuthenticationTokenFilter;
 import com.agriculture.config.filter.JwtAuthenticationTokenFilter;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -55,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
               .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
               .and()
               .authorizeRequests()
-              //对于登录接口  允许匿名访问（未登录状态下访问可以成功，登录状态下不可以）
+              //对于登录接口  允许匿名访问（未登录状态下也可以访问，登录状态下不可以）
                 //permitAll 表示登录状态下和未登录状态下都可以访问
               .antMatchers("/user/login").anonymous()
               //除上面外的所有请求全部需要鉴权认证

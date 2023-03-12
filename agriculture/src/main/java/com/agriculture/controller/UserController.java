@@ -1,7 +1,6 @@
 package com.agriculture.controller;
 
 
-import cn.hutool.core.util.StrUtil;
 import com.agriculture.common.HttpCode;
 import com.agriculture.controller.dao.UserDao;
 import com.agriculture.common.Result;
@@ -87,11 +86,12 @@ public class UserController {
     //登录
     @PostMapping("/login")
     public Result login(@RequestBody UserDao userDao) {   //@RequestBody 从请求体中获取的数据
-        String uaccount =userDao.getUaccount();
-        String upwd = userDao.getUpwd();
-        if (StrUtil.isBlank(uaccount) || StrUtil.isBlank(upwd)) {
-            return Result.error(HttpCode.LOGIN_ERROR.code(), HttpCode.LOGIN_ERROR.message());
-        }
+        //不需要在登录接口这里判断，登录认证过滤器会进行判断
+//        String uaccount =userDao.getUaccount();
+//        String upwd = userDao.getUpwd();
+//        if (StrUtil.isBlank(uaccount) || StrUtil.isBlank(upwd)) {
+//            return Result.error(HttpCode.LOGIN_ERROR.code(), HttpCode.LOGIN_ERROR.message());
+//        }
         UserDao dao = iUserService.login(userDao);
         return Result.success("登录成功",dao);
     }

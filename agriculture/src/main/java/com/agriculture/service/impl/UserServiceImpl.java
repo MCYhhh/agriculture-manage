@@ -12,7 +12,6 @@ import com.agriculture.mapper.UserMapper;
 import com.agriculture.service.IMenuService;
 import com.agriculture.service.IUserService;
 import com.agriculture.utils.JwtToken;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -61,7 +60,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         //如果认证没有通过，给出对应的提示
         if (Objects.isNull(authentication)) {
             System.out.println("登录失败");
-//            throw new RuntimeException("登录失败");
+            throw new RuntimeException("登录失败");
         }
 
         //如果认证通过，使用uid生成jwt ，jwt存入userDao返回
@@ -87,8 +86,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         userDao.setToken(jwt);
         userDao.setUpwd(null);   //将加密后的密码设置为空，再返回给前端
         System.out.println("生成生成jwt");
-        System.out.println(jwt);
-        System.out.println(loginUser);
+//        System.out.println(jwt);
+//        System.out.println(loginUser);
         return userDao;
     }
 
