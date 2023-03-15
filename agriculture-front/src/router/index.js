@@ -17,6 +17,11 @@ export default new Router({
       name: 'Register',
       component:()=>import ('@/views/Register'),
     },
+    {
+      path:'/index',
+      name:'Index',
+      component:()=>import ('@/frontviews/Index'),
+    },
     // {
     //   path: '/',
     //   name: 'Login',
