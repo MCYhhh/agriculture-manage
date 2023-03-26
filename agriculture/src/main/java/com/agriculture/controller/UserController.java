@@ -1,6 +1,7 @@
 package com.agriculture.controller;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.agriculture.common.HttpCode;
 import com.agriculture.controller.dao.UserDao;
 import com.agriculture.common.Result;
@@ -101,6 +102,17 @@ public class UserController {
     public Result logout(){
         iUserService.logout();
         return Result.success(HttpCode.SUCCESS.code(),"注销成功");
+    }
+
+    //注册
+    @PostMapping("/register")
+    public Result register(@RequestBody UserDao userDao) {
+        String uaccount = userDao.getUaccount();
+        String upwd= userDao.getUpwd();
+        if (StrUtil.isBlank(uaccount) || StrUtil.isBlank(upwd)) {
+            return Result.error(HttpCode.USER_System.code(), "参数错误");
+        }
+        return Result.success(iUserService.register(userDao));
     }
 
 }
