@@ -1,6 +1,7 @@
 package com.agriculture.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.agriculture.common.HttpCode;
 import com.agriculture.config.redis.RedisCache;
 import com.agriculture.controller.dao.UserDao;
 import com.agriculture.entity.LoginUser;
@@ -12,11 +13,13 @@ import com.agriculture.mapper.UserMapper;
 import com.agriculture.service.IMenuService;
 import com.agriculture.service.IUserService;
 import com.agriculture.utils.JwtToken;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -92,6 +95,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
+    public User register(UserDao userDao) {
+        User one = getUserInfo(userDao);
+        if (one == null) {
+            one = new User();
+            BeanUtil.copyProperties(userDao, one, true);
+            BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+            String upwd= passwordEncoder.encode(userDao.getUpwd());
+//            String password = MD5Utils.code(userDTO.getPassword());
+            one.setUpwd(upwd);
+//            one.setPassword(password);
+            // 默认一个普通用户的角色
+//            one.setRole(RoleEnum.ROLE_USER.toString());
+            one.setState(0);
+            save(one);  // 把 copy完之后的用户对象存储到数据库
+        } else {
+            throw new RuntimeException("用户已经存在");
+        }
+        return one;
+    }
+
+
+    @Override
     public void logout() {
         //从SecurityContextHolder中获取uid
         UsernamePasswordAuthenticationToken authenticationToken=
@@ -101,6 +126,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         //根据uid找到redis对应值进行删除
         redisCache.deleteObject("login:"+uid);
+    }
+
+    private User getUserInfo(UserDao userDao) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+        String upwd= passwordEncoder.encode(userDao.getUpwd());
+//        System.out.println(passwordEncoder.matches("123","$2a$10$h.YIjvPZUOdMKZMHmuq8J.VXShs9TODvu/EbELwDYpSqGRjImUFnK"));
+//        String encode1=passwordEncoder.encode("123");
+//        System.out.println(encode);
+//        System.out.println(encode1);
+//        String password = MD5Utils.code(userDTO.getPassword());
+        queryWrapper.eq("uaccount", userDao.getUaccount());
+        queryWrapper.eq("upwd", upwd);
+        User one;
+        try {
+            one = getOne(queryWrapper); // 从数据库查询用户信息
+        } catch (Exception e) {
+//            LOG.error(e);
+            throw new RuntimeException(HttpCode.USER_System.message());
+        }
+        return one;
     }
 
 //    /**

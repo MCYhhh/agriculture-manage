@@ -21,6 +21,7 @@ public enum HttpCode {
     USER_DISABLE("20009", "该账号也被禁用,请联系管理员!"),
     USER_INFOERROR("20010", "用户信息获取异常!"),
     USER_NOAUTHON("20011", "用户没有权限访问"),
+    USER_System("20012", "系统错误"),
 
     ;
 

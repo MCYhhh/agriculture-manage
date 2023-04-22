@@ -1,6 +1,7 @@
 package com.agriculture.controller;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.agriculture.common.HttpCode;
 import com.agriculture.controller.dao.UserDao;
 import com.agriculture.common.Result;
@@ -8,8 +9,8 @@ import com.agriculture.entity.User;
 import com.agriculture.service.IUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 
 
@@ -29,7 +30,7 @@ public class UserController {
 
 
     //根据id查询
-    @GetMapping("/{uid}")
+    @GetMapping("/findOne/{uid}")
     public Result findOne(@PathVariable Integer uid){
         return Result.success(iUserService.getById(uid));
     }
@@ -51,10 +52,14 @@ public class UserController {
     //新增
     @PostMapping("/save")
     public Result save(@RequestBody User user){
+        //TY添加
+        BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+        String upwd= passwordEncoder.encode(user.getUpwd());
+        user.setUpwd(upwd);
         return Result.success(iUserService.save(user));
     }
 
-    //修改
+    //修改·
     @PostMapping("/modify")
     public Result modify(@RequestBody User user){
         //iUserService.updateById(user);
@@ -68,8 +73,8 @@ public class UserController {
     }
 
     //删除
-    @DeleteMapping("/delete")
-    public Result delete(Integer uid){
+    @DeleteMapping("/delete/{uid}")
+    public Result delete(@PathVariable Integer uid){
         iUserService.removeById(uid);
         return Result.success(HttpCode.SUCCESS.code(),HttpCode.SUCCESS.message());
     }
@@ -101,6 +106,17 @@ public class UserController {
     public Result logout(){
         iUserService.logout();
         return Result.success(HttpCode.SUCCESS.code(),"注销成功");
+    }
+
+    //注册
+    @PostMapping("/register")
+    public Result register(@RequestBody UserDao userDao) {
+        String uaccount = userDao.getUaccount();
+        String upwd= userDao.getUpwd();
+        if (StrUtil.isBlank(uaccount) || StrUtil.isBlank(upwd)) {
+            return Result.error(HttpCode.USER_System.code(), "参数错误");
+        }
+        return Result.success(iUserService.register(userDao));
     }
 
 }

@@ -1,7 +1,10 @@
 package com.agriculture.service;
 
 import com.agriculture.entity.Scenery;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISceneryService extends IService<Scenery> {
 
+    List<Scenery> selectList(QueryWrapper<Scenery> queryWrapper);
 }
