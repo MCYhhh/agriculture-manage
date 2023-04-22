@@ -6,13 +6,20 @@
         <el-input v-model="RegisterForm.uaccount" placeholder="账号" prefix-icon="el-icon-user-solid" auto-complete="off" type="text"></el-input>
       </el-form-item>
       <el-form-item label="">
-        <el-input v-model="RegisterForm.uname" placeholder="用户名" prefix-icon="el-icon-user-solid" auto-complete="off" type="text"></el-input>
+        <el-input v-model="RegisterForm.uname" placeholder="用户名" prefix-icon="el-icon-help" auto-complete="off" type="text"></el-input>
       </el-form-item>
       <el-form-item label="">
         <el-input v-model="RegisterForm.upwd" placeholder="密码" prefix-icon="el-icon-lock" auto-complete="off" type="password"></el-input>
       </el-form-item>
       <el-form-item label="">
         <el-input v-model="RegisterForm.checkupwd" placeholder="确认密码" prefix-icon="el-icon-lock" auto-complete="off" type="password"></el-input>
+      </el-form-item>
+      <el-form-item label="">
+<!--        <span style="color: darkgray;letter-spacing: 2px">性别</span>-->
+        <el-radio-group v-model="RegisterForm.usex">
+          <el-radio label="男"></el-radio>
+          <el-radio label="女"></el-radio>
+        </el-radio-group>
       </el-form-item>
       <el-form-item size="large" >
         <el-button  @click="onSubmit" style="width: 30%;background-color: #cee3c1;border: none">注册</el-button>
@@ -33,6 +40,7 @@ export default {
         uname: '',
         upwd: '',
         checkupwd:'',
+        usex:'',
       }
     };
   },
