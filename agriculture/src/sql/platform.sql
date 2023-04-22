@@ -242,6 +242,7 @@ create table article(
                         uid int not null ,#作者id
                         create_time datetime not null default current_timestamp ,#购物车生成时间,不填默认当前时间
                         update_time datetime not null default current_timestamp on update  current_timestamp ,#当前修改的时间
+                        img varchar(200) not null ,#图片 ,
                         foreign key (uid) references user(uid) on delete cascade on update restrict  #订单id作为外键(级联操作，删除订单表中对应的数据，不存在外键删除问题）
 ) engine =InnoDB auto_increment=0 character set utf8mb4 collate utf8mb4_da_0900_ai_ci row_format =dynamic
     comment '文章';
