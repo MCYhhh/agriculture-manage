@@ -1,14 +1,19 @@
 package com.agriculture.controller;
 
 
+import com.agriculture.common.HttpCode;
 import com.agriculture.common.Result;
+import com.agriculture.config.mybatis.OrdersPage;
 import com.agriculture.entity.Orders;
 import com.agriculture.service.IOrdersService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * <p>
@@ -28,28 +33,25 @@ public class OrdersController {
     public Result findOne(@PathVariable Integer oid){
         return Result.success(iOrdersService.getById(oid));
     }
-    @GetMapping("/{ostate}")
+    @GetMapping("/findOstate")
     //根据状态
-    public Result findstate(@PathVariable Integer ostate){
+    public Result findstate(@RequestBody OrdersPage ordersPage){
         QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
-//        queryWrapper.eq("uid",articlePage.getUid());
-//        int page=articlePage.getPage();
-//        int size=articlePage.getSize();
-//        Page<Article> spage = new Page<>(page,size);
-//        IPage<Article> articleIPage = iArticleService.selectPage(spage, queryWrapper);
-//        System.out.print("total---"+articleIPage.getTotal());
-//        System.out.print("pages---"+articleIPage.getPages());
-//        System.out.print("record---"+articleIPage.getRecords());
-//        articleIPage.getRecords().forEach(System.out::println);
-//        List row = articleIPage.getRecords();
-//        //判断查询结果是否为空
-//        if(row== null || row.size() ==0){
-//            return Result.error(HttpCode.USER_System.code(),"暂无此作者的文章");
-//        }
-//        return Result.success(articleIPage);
-//
-
-        return Result.success(iOrdersService.findstate(ostate));
+        queryWrapper.eq("osate",ordersPage.getOsate());
+        int page=ordersPage.getPage();
+        int size=ordersPage.getSize();
+        Page<Orders> spage = new Page<>(page,size);
+        IPage<Orders> ordersIPage = iOrdersService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+ordersIPage.getTotal());
+        System.out.print("pages---"+ordersIPage.getPages());
+        System.out.print("record---"+ordersIPage.getRecords());
+        ordersIPage.getRecords().forEach(System.out::println);
+        List row = ordersIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            return Result.error(HttpCode.USER_System.code(),"暂无此状态的订单");
+        }
+        return Result.success(ordersIPage);
     }
     //根据cid
     @GetMapping("/{cid}")

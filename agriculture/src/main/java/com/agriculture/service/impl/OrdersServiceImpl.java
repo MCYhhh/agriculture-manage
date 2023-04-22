@@ -4,6 +4,8 @@ import com.agriculture.entity.Orders;
 import com.agriculture.mapper.OrdersMapper;
 import com.agriculture.service.IOrdersService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +58,11 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
         wrapper.ge("ototal", ototal);
         List<Orders> orders = mapper.selectList(wrapper);
         return orders;
+    }
+
+    @Override
+    public IPage<Orders> selectPage(Page<Orders> page, QueryWrapper<Orders> queryWrapper) {
+        return mapper.selectPage(page,queryWrapper);
     }
 
 }

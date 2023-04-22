@@ -1,12 +1,13 @@
 package com.agriculture.entity;
 
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -36,11 +37,5 @@ public class Orders implements Serializable {
     private Integer osate;
 
     private LocalDateTime createTime;
-
-
-    public static Object getCid(Orders orders) {
-        return orders.cid;
-    }
-
 
 }

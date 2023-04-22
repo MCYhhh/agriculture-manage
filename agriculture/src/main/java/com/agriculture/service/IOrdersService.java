@@ -2,6 +2,8 @@ package com.agriculture.service;
 
 import com.agriculture.entity.Orders;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.math.BigDecimal;
@@ -25,4 +27,6 @@ public interface IOrdersService extends IService<Orders> {
     List<Orders> finduid(Integer uid) ;
 
     List<Orders>findototal(BigDecimal ototal);
+
+    IPage<Orders> selectPage(Page<Orders> spage, QueryWrapper<Orders> queryWrapper);
 }
