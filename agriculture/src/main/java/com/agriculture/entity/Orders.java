@@ -38,4 +38,9 @@ public class Orders implements Serializable {
     private LocalDateTime createTime;
 
 
+    public static Object getCid(Orders orders) {
+        return orders.cid;
+    }
+
+
 }
