@@ -2,13 +2,15 @@ package com.agriculture.controller;
 
 import com.agriculture.common.HttpCode;
 import com.agriculture.common.Result;
+import com.agriculture.config.mybatis.SceneryPage;
 import com.agriculture.entity.Scenery;
 import com.agriculture.service.ISceneryService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -52,60 +54,174 @@ public class SceneryController {
     }
 
     //通过景点编号sid查询景点
-    @GetMapping("/findBySid/{sid}")
-    public Result findBySid(@PathVariable("sid") Integer sid){
-        return Result.success(iSceneryService.getById(sid));
+    @PostMapping("/findBySid")
+    public Result findBySid(@RequestBody SceneryPage sceneryPage){
+        QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("sid",sceneryPage.getId());
+        int page=sceneryPage.getPage();
+        int size=sceneryPage.getSize();
+        Page<Scenery> spage = new Page<>(page,size);
+        IPage<Scenery> sceneryIPage = iSceneryService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+sceneryIPage.getTotal());
+        System.out.print("pages---"+sceneryIPage.getPages());
+        System.out.print("record---"+sceneryIPage.getRecords());
+        sceneryIPage.getRecords().forEach(System.out::println);
+        List row = sceneryIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的景区");
+        }
+        return Result.success(sceneryIPage);
     }
 
     //通过景点名称sname查询景点
-    @GetMapping("/findBySname/{sname}")
-    public Result findBySname(@PathVariable("sname") String sname){
-        QueryWrapper<Scenery> queryWrapper=new QueryWrapper<>();
-        queryWrapper.eq("sname",sname);
-        return Result.success(iSceneryService.getOne(queryWrapper));
+    @PostMapping("/findBySname")
+    public Result findBySname(@RequestBody SceneryPage sceneryPage){
+        QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("sname",sceneryPage.getName());
+        int page=sceneryPage.getPage();
+        int size=sceneryPage.getSize();
+        Page<Scenery> spage = new Page<>(page,size);
+        IPage<Scenery> sceneryIPage = iSceneryService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+sceneryIPage.getTotal());
+        System.out.print("pages---"+sceneryIPage.getPages());
+        System.out.print("record---"+sceneryIPage.getRecords());
+        sceneryIPage.getRecords().forEach(System.out::println);
+        List row = sceneryIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的景区");
+        }
+        return Result.success(sceneryIPage);
     }
 
     //查询所有景点
-    @GetMapping("/findAll")
-    public Result listall(){
-        return Result.success(iSceneryService.list());
+    @PostMapping("/findAll")
+    public Result listall(@RequestBody SceneryPage sceneryPage){
+        QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.isNull("sid");
+        int page=sceneryPage.getPage();
+        int size=sceneryPage.getSize();
+        Page<Scenery> spage = new Page<>(page,size);
+        IPage<Scenery> sceneryIPage = iSceneryService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+sceneryIPage.getTotal());
+        System.out.print("pages---"+sceneryIPage.getPages());
+        System.out.print("record---"+sceneryIPage.getRecords());
+        sceneryIPage.getRecords().forEach(System.out::println);
+        List row = sceneryIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            return Result.error(HttpCode.USER_System.code(),"暂无景区");
+        }
+        return Result.success(sceneryIPage);
     }
 
     //筛选大于等于该门票的景点
-    @GetMapping("/selectLe/{sprice}")
-    public List<Scenery> selectLe(@PathVariable("sprice") BigDecimal sprice){
+    @PostMapping("/selectLe")
+    public Result selectLe(@RequestBody SceneryPage sceneryPage){
         QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
-        queryWrapper.le("sprice",sprice);
-        return iSceneryService.selectList(queryWrapper);
+        queryWrapper.le("sprice",sceneryPage.getPrice());
+        int page=sceneryPage.getPage();
+        int size=sceneryPage.getSize();
+        Page<Scenery> spage = new Page<>(page,size);
+        IPage<Scenery> sceneryIPage = iSceneryService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+sceneryIPage.getTotal());
+        System.out.print("pages---"+sceneryIPage.getPages());
+        System.out.print("record---"+sceneryIPage.getRecords());
+        sceneryIPage.getRecords().forEach(System.out::println);
+        List row = sceneryIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的景区");
+        }
+        return Result.success(sceneryIPage);
     }
 
     //筛选小于等于该门票的景点
-    @GetMapping("/selectGe/{sprice}")
-    public List<Scenery>selectGe(@PathVariable("sprice") BigDecimal sprice){
+    @PostMapping("/selectGe")
+    public Result selectGe(@RequestBody SceneryPage sceneryPage){
         QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
-        queryWrapper.ge("sprice",sprice);
-        return iSceneryService.selectList(queryWrapper);
+        queryWrapper.ge("sprice",sceneryPage.getPrice());
+        int page=sceneryPage.getPage();
+        int size=sceneryPage.getSize();
+        Page<Scenery> spage = new Page<>(page,size);
+        IPage<Scenery> sceneryIPage = iSceneryService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+sceneryIPage.getTotal());
+        System.out.print("pages---"+sceneryIPage.getPages());
+        System.out.print("record---"+sceneryIPage.getRecords());
+        sceneryIPage.getRecords().forEach(System.out::println);
+        List row = sceneryIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的景区");
+        }
+        return Result.success(sceneryIPage);
     }
 
     //通过状态查询sstate，0或1
-    @GetMapping("/selectSstate/{n}")
-    public List<Scenery>selectSstate(@PathVariable("n") int n){
+    @PostMapping("/selectSstate")
+    public Result selectSstate(@RequestBody SceneryPage sceneryPage){
         QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("sstate",n);
-        return iSceneryService.selectList(queryWrapper);
+        queryWrapper.eq("sstate",sceneryPage.getN());
+        int page=sceneryPage.getPage();
+        int size=sceneryPage.getSize();
+        Page<Scenery> spage = new Page<>(page,size);
+        IPage<Scenery> sceneryIPage = iSceneryService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+sceneryIPage.getTotal());
+        System.out.print("pages---"+sceneryIPage.getPages());
+        System.out.print("record---"+sceneryIPage.getRecords());
+        sceneryIPage.getRecords().forEach(System.out::println);
+        List row = sceneryIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            if (sceneryPage.getN()==0){
+                return Result.error(HttpCode.USER_System.code(),"参数错误，没有开放的景区");
+            }else{
+                return Result.error(HttpCode.USER_System.code(),"参数错误，没有关闭的景区");
+            }
+        }
+        return Result.success(sceneryIPage);
     }
 
     //通过管理员uid查询
-    @GetMapping("/selectUid/{n}")
-    public List<Scenery>selectUid(@PathVariable("n") int n){
+    @PostMapping("/selectUid")
+    public Result selectUid(@RequestBody SceneryPage sceneryPage){
         QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("uid",n);
-        return iSceneryService.selectList(queryWrapper);
+        queryWrapper.eq("uid",sceneryPage.getUid());
+        int page=sceneryPage.getPage();
+        int size=sceneryPage.getSize();
+        Page<Scenery> spage = new Page<>(page,size);
+        IPage<Scenery> sceneryIPage = iSceneryService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+sceneryIPage.getTotal());
+        System.out.print("pages---"+sceneryIPage.getPages());
+        System.out.print("record---"+sceneryIPage.getRecords());
+        sceneryIPage.getRecords().forEach(System.out::println);
+        List row = sceneryIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的景区");
+        }
+        return Result.success(sceneryIPage);
     }
 
     //新增或修改景点
     @PostMapping("/saveOrmodify")
     public Result saveOrmodify(@RequestBody Scenery scenery){
         return Result.success(iSceneryService.saveOrUpdate(scenery));
+    }
+
+    @GetMapping("/test")
+    public Result test() {
+        int page=1;
+        int sizen=2;
+        Page<Scenery> spage = new Page<>(page,sizen);
+        QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("sstate", 0);
+        IPage<Scenery> sceneryIPage = iSceneryService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+sceneryIPage.getTotal());
+        System.out.print("pages---"+sceneryIPage.getPages());
+        System.out.print("record---"+sceneryIPage.getRecords());
+        sceneryIPage.getRecords().forEach(System.out::println);
+        return Result.success(sceneryIPage);
     }
 }
