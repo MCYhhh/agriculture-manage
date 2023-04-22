@@ -115,7 +115,7 @@ public class GoodsController {
         return Result.success(goodsIPage);
     }
 
-    //筛选大于等于该门票的商品
+    //筛选大于等于该价格的商品
     @PostMapping("/selectLe")
     public Result selectLe(@RequestBody GoodsPage goodsPage){
         QueryWrapper<Goods> queryWrapper = new QueryWrapper<>();
@@ -136,7 +136,7 @@ public class GoodsController {
         return Result.success(goodsIPage);
     }
 
-    //筛选小于等于该门票的商品
+    //筛选小于等于该价格的商品
     @PostMapping("/selectGe")
     public Result selectGe(@RequestBody GoodsPage goodsPage){
         QueryWrapper<Goods> queryWrapper = new QueryWrapper<>();
@@ -157,7 +157,7 @@ public class GoodsController {
         return Result.success(goodsIPage);
     }
 
-    //通过状态查询sstate，0或1
+    //通过状态查询sstate，0或1或2或3，
     @PostMapping("/selectGsate")
     public Result selectSstate(@RequestBody GoodsPage goodsPage){
         QueryWrapper<Goods> queryWrapper = new QueryWrapper<>();
