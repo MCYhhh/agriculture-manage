@@ -22,18 +22,26 @@ export default new Router({
       name:'Index',
       component:()=>import ('@/frontviews/Index'),
     },
-    // {
-    //   path: '/',
-    //   name: 'Login',
-    //   component: HelloWorld,
-    //   children:[
-    //     {
-    //       path: '/test1',
-    //       name: 'Test1',
-    //       component: Test1
-    //     },
-    //   ]
-    // },
+    {
+      path:'/cart',
+      name:'Cart',
+      component:()=>import ('@/views/devviews/Cart'),
+    },
+    {
+      path:'/home',
+      name:'Home',
+      component:()=>import ('@/views/frontviews/home/Home'),
+    },
+    {
+      path:'/travel',
+      name:'Travel',
+      component:()=>import ('@/views/frontviews/travel/Travel'),
+    },
+    {
+      path:'/test',
+      name:'Test',
+      component:()=>import ('@/views/frontviews/Test'),
+    },
   ]
 })
 

@@ -1,0 +1,98 @@
+<template>
+  <div class="nav-container">
+    <el-row :gutter="15" class="nav-row">
+      <el-col :span="3" class="first-nav-col">
+        <el-popover
+          placement="top-start"
+          width="200"
+          title="一站式解决旅游攻略"
+          trigger="hover"
+          content="将根据您的需求为您设计出最合适的旅游路线！">
+          <el-button type="success" plain slot="reference">首页</el-button>
+        </el-popover>
+      </el-col>
+
+      <el-col :span="3">
+        <el-popover
+          placement="top-start"
+          width="200"
+          title="原产地美食等你"
+          trigger="hover"
+          content="包含种类丰富的当地农产品，快来看看都有什么吧！">
+          <el-button type="success" plain slot="reference">旅游规划</el-button>
+        </el-popover>
+      </el-col>
+
+      <el-col :span="3">
+        <el-popover
+          placement="top-start"
+          width="200"
+          title="购物一览表"
+          trigger="hover"
+          content="包含您在本平台消费的所有的产品订单">
+          <el-button  type="success" plain slot="reference">惠农惠物</el-button>
+        </el-popover>
+      </el-col>
+
+      <el-col :span="3">
+        <el-popover
+          placement="top-start"
+          width="200"
+          title="共赏美景，共品佳肴"
+          trigger="hover"
+          content="请一起为我们美丽的叉叉宣传助力吧！">
+          <el-button type="success" plain slot="reference">游戏小乐</el-button>
+        </el-popover>
+      </el-col>
+
+      <el-col :span="3">
+        <el-popover
+          placement="top-start"
+          width="200"
+          title="看看别人说了啥"
+          trigger="hover"
+          content="发布帖子和大家一起分享你的见闻吧！">
+          <el-button type="success" plain slot="reference">宣传助力</el-button>
+        </el-popover>
+      </el-col>
+
+      <el-col :span="3">
+        <el-popover
+          placement="top-start"
+          width="200"
+          title="个人主界面"
+          trigger="hover"
+          content="查看你的个人信息等内容可以来这里哦！">
+          <el-button type="success" plain slot="reference">个人中心</el-button>
+        </el-popover>
+      </el-col>
+    </el-row>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Nav"
+}
+</script>
+
+<style scoped>
+  .nav-container{
+    background-image: linear-gradient(120deg, #7fb2ec, #a79cf1);
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .nav-row{
+    margin: 0 auto;
+  }
+  .el-col{
+    margin-left: 25px;
+  }
+  .el-button{
+    font-size: 18px;
+    box-shadow:5px 5px 10px rgba(0,0,0,0.1) ;
+  }
+  .first-nav-col{
+    margin-left: 210px;
+  }
+</style>

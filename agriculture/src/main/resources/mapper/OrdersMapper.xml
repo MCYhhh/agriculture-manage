@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.agriculture.mapper.OrdersMapper">
-
+    <select id="findstate" resultType="com.agriculture.entity.Orders">
+         select * from platform.orders where ostate=#{ostate};
+    </select>
+    <select id="blurcname" resultType="com.agriculture.entity.Orders">
+         select * from platform.orders where cid in (select user.uid from platform.user where utype=0 and uname like '%#{cname}%');
+    </select>
+    <select id="bluruname" resultType="com.agriculture.entity.Orders">
+         select * from platform.orders where uid in (select user.uid from platform.user where utype=1 and uname like '%#{uname}%');
+    </select>
 </mapper>

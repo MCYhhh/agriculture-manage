@@ -30,7 +30,7 @@ public class UserController {
 
 
     //根据id查询
-    @GetMapping("/{uid}")
+    @GetMapping("/findOne/{uid}")
     public Result findOne(@PathVariable Integer uid){
         return Result.success(iUserService.getById(uid));
     }
@@ -73,8 +73,8 @@ public class UserController {
     }
 
     //删除
-    @DeleteMapping("/delete")
-    public Result delete(Integer uid){
+    @DeleteMapping("/delete/{uid}")
+    public Result delete(@PathVariable Integer uid){
         iUserService.removeById(uid);
         return Result.success(HttpCode.SUCCESS.code(),HttpCode.SUCCESS.message());
     }
