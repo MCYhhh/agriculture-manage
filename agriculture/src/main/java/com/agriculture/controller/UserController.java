@@ -9,8 +9,8 @@ import com.agriculture.entity.User;
 import com.agriculture.service.IUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 
 
@@ -52,10 +52,14 @@ public class UserController {
     //新增
     @PostMapping("/save")
     public Result save(@RequestBody User user){
+        //TY添加
+        BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+        String upwd= passwordEncoder.encode(user.getUpwd());
+        user.setUpwd(upwd);
         return Result.success(iUserService.save(user));
     }
 
-    //修改
+    //修改·
     @PostMapping("/modify")
     public Result modify(@RequestBody User user){
         //iUserService.updateById(user);
