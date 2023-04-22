@@ -2,10 +2,13 @@ package com.agriculture.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -16,6 +19,8 @@ import lombok.EqualsAndHashCode;
  * @since 2023-02-25
  */
 @Data
+@Setter
+@Getter
 @EqualsAndHashCode(callSuper = false)
 public class User implements Serializable {
 

@@ -40,4 +40,13 @@ public class UserDao {
     private String token;
 
     private List<Menu> menus;
+
+
+    public String getUaccount() {
+        return uaccount;
+    }
+
+    public String getUpwd() {
+        return upwd;
+    }
 }
