@@ -1,6 +1,9 @@
 package com.agriculture.service;
 
 import com.agriculture.entity.Reserve;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IReserveService extends IService<Reserve> {
 
+    IPage<Reserve> selectPage(Page<Reserve> spage, QueryWrapper<Reserve> queryWrapper);
 }
