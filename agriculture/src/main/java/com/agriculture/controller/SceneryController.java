@@ -57,7 +57,7 @@ public class SceneryController {
     @PostMapping("/findBySid")
     public Result findBySid(@RequestBody SceneryPage sceneryPage){
         QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("sid",sceneryPage.getId());
+        queryWrapper.like("sid",sceneryPage.getSid());
         int page=sceneryPage.getPage();
         int size=sceneryPage.getSize();
         Page<Scenery> spage = new Page<>(page,size);
@@ -66,7 +66,7 @@ public class SceneryController {
         System.out.print("pages---"+sceneryIPage.getPages());
         System.out.print("record---"+sceneryIPage.getRecords());
         sceneryIPage.getRecords().forEach(System.out::println);
-        List row = sceneryIPage.getRecords();
+        List<Scenery> row = sceneryIPage.getRecords();
         //判断查询结果是否为空
         if(row== null || row.size() ==0){
             return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的景区");
@@ -78,7 +78,7 @@ public class SceneryController {
     @PostMapping("/findBySname")
     public Result findBySname(@RequestBody SceneryPage sceneryPage){
         QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("sname",sceneryPage.getName());
+        queryWrapper.like("sname",sceneryPage.getSname());
         int page=sceneryPage.getPage();
         int size=sceneryPage.getSize();
         Page<Scenery> spage = new Page<>(page,size);
@@ -87,7 +87,7 @@ public class SceneryController {
         System.out.print("pages---"+sceneryIPage.getPages());
         System.out.print("record---"+sceneryIPage.getRecords());
         sceneryIPage.getRecords().forEach(System.out::println);
-        List row = sceneryIPage.getRecords();
+        List<Scenery> row = sceneryIPage.getRecords();
         //判断查询结果是否为空
         if(row== null || row.size() ==0){
             return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的景区");
@@ -108,7 +108,7 @@ public class SceneryController {
         System.out.print("pages---"+sceneryIPage.getPages());
         System.out.print("record---"+sceneryIPage.getRecords());
         sceneryIPage.getRecords().forEach(System.out::println);
-        List row = sceneryIPage.getRecords();
+        List<Scenery> row = sceneryIPage.getRecords();
         //判断查询结果是否为空
         if(row== null || row.size() ==0){
             return Result.error(HttpCode.USER_System.code(),"暂无景区");
@@ -120,7 +120,7 @@ public class SceneryController {
     @PostMapping("/selectLe")
     public Result selectLe(@RequestBody SceneryPage sceneryPage){
         QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
-        queryWrapper.le("sprice",sceneryPage.getPrice());
+        queryWrapper.le("sprice",sceneryPage.getSprice());
         int page=sceneryPage.getPage();
         int size=sceneryPage.getSize();
         Page<Scenery> spage = new Page<>(page,size);
@@ -129,7 +129,7 @@ public class SceneryController {
         System.out.print("pages---"+sceneryIPage.getPages());
         System.out.print("record---"+sceneryIPage.getRecords());
         sceneryIPage.getRecords().forEach(System.out::println);
-        List row = sceneryIPage.getRecords();
+        List<Scenery> row = sceneryIPage.getRecords();
         //判断查询结果是否为空
         if(row== null || row.size() ==0){
             return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的景区");
@@ -141,7 +141,7 @@ public class SceneryController {
     @PostMapping("/selectGe")
     public Result selectGe(@RequestBody SceneryPage sceneryPage){
         QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
-        queryWrapper.ge("sprice",sceneryPage.getPrice());
+        queryWrapper.ge("sprice",sceneryPage.getSprice());
         int page=sceneryPage.getPage();
         int size=sceneryPage.getSize();
         Page<Scenery> spage = new Page<>(page,size);
@@ -150,7 +150,7 @@ public class SceneryController {
         System.out.print("pages---"+sceneryIPage.getPages());
         System.out.print("record---"+sceneryIPage.getRecords());
         sceneryIPage.getRecords().forEach(System.out::println);
-        List row = sceneryIPage.getRecords();
+        List<Scenery> row = sceneryIPage.getRecords();
         //判断查询结果是否为空
         if(row== null || row.size() ==0){
             return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的景区");
@@ -162,7 +162,7 @@ public class SceneryController {
     @PostMapping("/selectSstate")
     public Result selectSstate(@RequestBody SceneryPage sceneryPage){
         QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("sstate",sceneryPage.getN());
+        queryWrapper.eq("sstate",sceneryPage.getSstate());
         int page=sceneryPage.getPage();
         int size=sceneryPage.getSize();
         Page<Scenery> spage = new Page<>(page,size);
@@ -171,13 +171,15 @@ public class SceneryController {
         System.out.print("pages---"+sceneryIPage.getPages());
         System.out.print("record---"+sceneryIPage.getRecords());
         sceneryIPage.getRecords().forEach(System.out::println);
-        List row = sceneryIPage.getRecords();
+        List<Scenery> row = sceneryIPage.getRecords();
         //判断查询结果是否为空
         if(row== null || row.size() ==0){
-            if (sceneryPage.getN()==0){
+            if (sceneryPage.getSstate()==0){
                 return Result.error(HttpCode.USER_System.code(),"参数错误，没有开放的景区");
-            }else{
+            }else if(sceneryPage.getSstate()==1){
                 return Result.error(HttpCode.USER_System.code(),"参数错误，没有关闭的景区");
+            }else{
+                return Result.error(HttpCode.USER_System.code(),"参数错误，请修改");
             }
         }
         return Result.success(sceneryIPage);
@@ -196,7 +198,7 @@ public class SceneryController {
         System.out.print("pages---"+sceneryIPage.getPages());
         System.out.print("record---"+sceneryIPage.getRecords());
         sceneryIPage.getRecords().forEach(System.out::println);
-        List row = sceneryIPage.getRecords();
+        List<Scenery> row = sceneryIPage.getRecords();
         //判断查询结果是否为空
         if(row== null || row.size() ==0){
             return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的景区");
