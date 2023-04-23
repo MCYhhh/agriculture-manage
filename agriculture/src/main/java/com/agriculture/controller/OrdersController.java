@@ -41,6 +41,8 @@ public class OrdersController {
         int size=ordersPage.getSize();
         Page<Orders> spage = new Page<>(page,size);
         IPage<Orders> ordersIPage = iOrdersService.selectPage(spage, queryWrapper);
+//        System.out.println("11111111:"+ordersIPage);
+//        System.out.println("222222222:"+queryWrapper);;
         System.out.print("total---"+ordersIPage.getTotal());
         System.out.print("pages---"+ordersIPage.getPages());
         System.out.print("record---"+ordersIPage.getRecords());
