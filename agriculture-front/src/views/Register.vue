@@ -112,8 +112,8 @@ export default {
           }
           const json = JSON.stringify(this.RegisterForm)
 
-          const {data: res} = await loginAPI(json);
-          console.log("resrers"+res)
+          const {data: res} = await registerAPI(json);
+
           if (res.code === '00000') {
             this.$message.success("注册成功")
             // this.$router.push("/")

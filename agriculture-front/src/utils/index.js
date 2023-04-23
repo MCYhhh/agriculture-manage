@@ -8,7 +8,7 @@ import axios from 'axios'
 axios.defaults.headers["Content-Type"] = "application/json ; charset=utf-8"
 
 const myAxios = axios.create({
-  baseURL: 'http://localhost:8082'
+  baseURL: 'http://localhost:8083'
 })
 
 // request 拦截器
@@ -17,7 +17,6 @@ const myAxios = axios.create({
 myAxios.interceptors.request.use(config => {
   config.headers['Content-Type'] = 'application/json;charset=utf-8';
   let user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null
-  console.log(user.token)
   if (user) {
     config.headers['token'] = user.token;  // 设置请求头
   }
