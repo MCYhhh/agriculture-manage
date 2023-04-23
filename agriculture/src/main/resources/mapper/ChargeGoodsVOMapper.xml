@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agriculture.mapper.OrderDetailVOMapper">
+    <select id="myorder" resultType="com.agriculture.entity.vo.OrderDetailVO">
+        select did, oid,detailorder.gid,dnum,dtotal,gname,gprice,gimg,gdesp from platform.detailorder join goods on detailorder.gid=goods.gid where oid=#{id};
+    </select>
+</mapper>
+
