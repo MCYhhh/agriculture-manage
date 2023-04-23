@@ -5,9 +5,12 @@ import com.agriculture.entity.Menu;
 import com.agriculture.mapper.MenuMapper;
 import com.agriculture.service.IMenuService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +24,9 @@ import java.util.stream.Collectors;
  */
 @Service
 public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
+
+    @Resource
+    MenuMapper menuMapper;
 
     @Override
     public List<Menu> findMenus(String name) {
@@ -38,5 +44,10 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
             menu.setChildren(list.stream().filter(m -> menu.getMid().equals(m.getMpid())).collect(Collectors.toList()));
         }
         return parentNodes;
+    }
+
+    @Override
+    public IPage<Menu> selectPage(Page<Menu> spage, QueryWrapper<Menu> queryWrapper) {
+        return menuMapper.selectPage(spage, queryWrapper);
     }
 }
