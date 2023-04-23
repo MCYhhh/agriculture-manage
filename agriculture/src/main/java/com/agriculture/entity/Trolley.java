@@ -16,22 +16,12 @@ public class Trolley implements Serializable {
 
     @TableId(value = "tid", type = IdType.AUTO)
     private Integer tid;
-
     private Integer gid;
-
     private Integer tnum;
-
     private BigDecimal ttotal;
-
     private Integer cid;
-
     private Integer uid;
-
-
     private Integer tstate;
-
     private LocalDateTime createTime;
-
     private LocalDateTime updateTime;
-
 }

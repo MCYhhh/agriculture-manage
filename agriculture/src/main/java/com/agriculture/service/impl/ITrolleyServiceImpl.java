@@ -1,7 +1,6 @@
 package com.agriculture.service.impl;
-
-
 import com.agriculture.entity.Trolley;
+import com.agriculture.entity.vo.TrolleyGoodsVo;
 import com.agriculture.mapper.TrolleyMapper;
 import com.agriculture.service.ITrolleyService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -19,5 +18,10 @@ public class ITrolleyServiceImpl extends ServiceImpl<TrolleyMapper, Trolley> imp
     @Override
     public IPage<Trolley> selectPage(Page<Trolley> spage, QueryWrapper<Trolley> queryWrapper) {
         return trolleyMapper.selectPage(spage, queryWrapper);
+    }
+
+    @Override
+    public Page<TrolleyGoodsVo> getTrolleyGoodsPageVo(Page<TrolleyGoodsVo> iPage) {
+        return trolleyMapper.getTrolleyGoodsPageVo(iPage);
     }
 }
