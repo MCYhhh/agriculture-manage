@@ -25,22 +25,12 @@ public class Scenery implements Serializable {
 
     @TableId(value = "sid", type = IdType.AUTO)
     private Integer sid;
-
     private String sname;
-
     private String saddress;
-
     private BigDecimal sprice;
-
     private String sdesp;
-
     private String surl;
-
     private Integer sstate;
-
     private LocalDateTime sdate;
-
     private Integer uid;
-
-
 }

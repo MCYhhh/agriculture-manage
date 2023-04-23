@@ -1,6 +1,7 @@
 package com.agriculture.service.impl;
 
 import com.agriculture.entity.Reserve;
+import com.agriculture.entity.vo.ReserveSceneryVo;
 import com.agriculture.mapper.ReserveMapper;
 import com.agriculture.service.IReserveService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -26,5 +27,20 @@ public class ReserveServiceImpl extends ServiceImpl<ReserveMapper, Reserve> impl
     @Override
     public IPage<Reserve> selectPage(Page<Reserve> page, QueryWrapper<Reserve> queryWrapper) {
         return mapper.selectPage(page,queryWrapper);
+    }
+
+    @Override
+    public IPage<ReserveSceneryVo> getReserveSceneryPageVo(Page<ReserveSceneryVo> iPage) {
+        return mapper.getReserveSceneryPageVo(iPage);
+    }
+
+    @Override
+    public IPage<ReserveSceneryVo> getReserveSceneryPageVoByCid(Page<ReserveSceneryVo> iPage, Integer id) {
+        return mapper.getReserveSceneryPageVoByCid(iPage,id);
+    }
+
+    @Override
+    public IPage<ReserveSceneryVo> getReserveSceneryPageVoByUid(Page<ReserveSceneryVo> iPage, Integer id) {
+        return mapper.getReserveSceneryPageVoByUid(iPage,id);
     }
 }
