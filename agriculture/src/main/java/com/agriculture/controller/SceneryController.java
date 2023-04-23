@@ -211,19 +211,4 @@ public class SceneryController {
     public Result saveOrmodify(@RequestBody Scenery scenery){
         return Result.success(iSceneryService.saveOrUpdate(scenery));
     }
-
-    @GetMapping("/test")
-    public Result test() {
-        int page=1;
-        int sizen=2;
-        Page<Scenery> spage = new Page<>(page,sizen);
-        QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("sstate", 0);
-        IPage<Scenery> sceneryIPage = iSceneryService.selectPage(spage, queryWrapper);
-        System.out.print("total---"+sceneryIPage.getTotal());
-        System.out.print("pages---"+sceneryIPage.getPages());
-        System.out.print("record---"+sceneryIPage.getRecords());
-        sceneryIPage.getRecords().forEach(System.out::println);
-        return Result.success(sceneryIPage);
-    }
 }
