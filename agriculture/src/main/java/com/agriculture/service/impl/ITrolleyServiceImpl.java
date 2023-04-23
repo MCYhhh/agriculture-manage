@@ -24,4 +24,14 @@ public class ITrolleyServiceImpl extends ServiceImpl<TrolleyMapper, Trolley> imp
     public Page<TrolleyGoodsVo> getTrolleyGoodsPageVo(Page<TrolleyGoodsVo> iPage) {
         return trolleyMapper.getTrolleyGoodsPageVo(iPage);
     }
+
+    @Override
+    public IPage<TrolleyGoodsVo> getTrolleyGoodsPageVoByUid(Page<TrolleyGoodsVo> iPage,Integer id) {
+        return trolleyMapper.getTrolleyGoodsPageVoByUid(iPage,id);
+    }
+
+    @Override
+    public IPage<TrolleyGoodsVo> getTrolleyGoodsPageVoByCid(Page<TrolleyGoodsVo> iPage,Integer id) {
+        return trolleyMapper.getTrolleyGoodsPageVoByCid(iPage,id);
+    }
 }

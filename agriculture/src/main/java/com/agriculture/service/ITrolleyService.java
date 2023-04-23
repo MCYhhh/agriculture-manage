@@ -12,4 +12,8 @@ public interface ITrolleyService extends IService<Trolley> {
     IPage<Trolley> selectPage(Page<Trolley> spage, QueryWrapper<Trolley> queryWrapper);
 
     Page<TrolleyGoodsVo> getTrolleyGoodsPageVo(Page<TrolleyGoodsVo> iPage);
+
+    IPage<TrolleyGoodsVo> getTrolleyGoodsPageVoByUid(Page<TrolleyGoodsVo> iPage, Integer id);
+
+    IPage<TrolleyGoodsVo> getTrolleyGoodsPageVoByCid(Page<TrolleyGoodsVo> iPage, Integer id);
 }
