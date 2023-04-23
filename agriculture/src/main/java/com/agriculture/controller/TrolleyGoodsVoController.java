@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/trolleyGoods")
-public class TrolleyGoodsController {
+public class TrolleyGoodsVoController {
     @Resource
     private ITrolleyService iTrolleyService;
 
