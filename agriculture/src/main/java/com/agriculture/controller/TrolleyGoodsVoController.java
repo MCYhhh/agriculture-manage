@@ -21,7 +21,7 @@ public class TrolleyGoodsVoController {
     @Resource
     private ITrolleyService iTrolleyService;
 
-//    查询所有购物车向前
+//    查询所有购物车详情
     @PostMapping("/findAll")
     public Result findAll(@RequestBody TrolleyGoodsPage trolleyGoodsPage){
         Page<TrolleyGoodsVo> iPage = new Page<TrolleyGoodsVo>(trolleyGoodsPage.getPage(),trolleyGoodsPage.getSize());
@@ -34,7 +34,7 @@ public class TrolleyGoodsVoController {
         List<TrolleyGoodsVo> row = tempIPage.getRecords();
         //判断查询结果是否为空
         if(row== null || row.size() ==0){
-            return Result.error(HttpCode.USER_System.code(),"参数错误，没有订单");
+            return Result.error(HttpCode.USER_System.code(),"参数错误，没有购物车");
         }
         return Result.success(tempIPage);
     }
@@ -51,7 +51,7 @@ public class TrolleyGoodsVoController {
         List<TrolleyGoodsVo> row = tempIPage.getRecords();
         //判断查询结果是否为空
         if(row== null || row.size() ==0){
-            return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的订单");
+            return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的购物车");
         }
         return Result.success(tempIPage);
     }
@@ -68,7 +68,7 @@ public class TrolleyGoodsVoController {
         List<TrolleyGoodsVo> row = tempIPage.getRecords();
         //判断查询结果是否为空
         if(row== null || row.size() ==0){
-            return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的订单");
+            return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的购物车");
         }
         return Result.success(tempIPage);
     }
