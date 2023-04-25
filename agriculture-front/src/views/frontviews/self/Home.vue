@@ -2,7 +2,7 @@
   <div class="self-container">
     <el-descriptions class="margin-top" :column="1"  border>
       <template slot="extra">
-        <el-button type="primary" size="small" @click="kl">修改信息</el-button>
+        <el-button type="primary" size="small" @click="modify">修改信息</el-button>
       </template>
       <el-descriptions-item>
         <template slot="label">
@@ -40,7 +40,14 @@
         <span>江苏省苏州市吴中区吴中大道 1188 号</span>
       </el-descriptions-item>
     </el-descriptions>
-
+    <div class="modifyinfo">
+      <el-dialog
+        title="提示"
+        :visible.sync="dialogVisible"
+        width="30%">
+          <span>kooriookami</span>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -50,11 +57,12 @@ export default {
   name: "Home",
   data() {
     return{
+      dialogVisible:false
     }
   },
   methods:{
-    kl(){
-
+    modify(){
+      this.dialogVisible=true
     }
   }
 }
