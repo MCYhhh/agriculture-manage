@@ -67,6 +67,54 @@ const routes=[
     ]
   },
   {
+    path: '/admin',
+    name: 'Admin',
+    component:()=>import ('@/views/devviews/admin/Admin'),
+    redirect: '/admin/home',
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component:()=>import ('@/views/devviews/admin/Home'),
+      },
+      {
+        path: 'order',
+        name: 'OrderManage',
+        component:()=>import ('@/views/devviews/admin/OrderManage'),
+      },
+      {
+        path: 'user',
+        name: 'UserManage',
+        component:()=>import ('@/views/devviews/admin/UserManage'),
+      },
+      {
+        path: 'system',
+        name: 'SystemManage',
+        component:()=>import ('@/views/devviews/admin/SystemManage'),
+      },
+      {
+        path: 'goods',
+        name: 'GoodsManage',
+        component:()=>import ('@/views/devviews/admin/GoodsManage'),
+      },
+      {
+        path: 'scenery',
+        name: 'SceneryManage',
+        component:()=>import ('@/views/devviews/admin/SceneryManage'),
+      },
+      {
+        path: 'auth',
+        name: 'AuthManage',
+        component:()=>import ('@/views/devviews/admin/AuthManage'),
+      },
+      {
+        path: 'role',
+        name: 'RoleManage',
+        component:()=>import ('@/views/devviews/admin/RoleManage'),
+      },
+    ]
+  },
+  {
     path:'/cart',
     name:'Cart',
     component:()=>import ('@/views/devviews/Cart'),
