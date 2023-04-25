@@ -1,52 +1,55 @@
 <template>
-  <div class="homemiddle-container" style="margin: 0 auto">
-      <van-notice-bar left-icon="volume-o" :scrollable="true"  v-for="(item,index) in topics" :key="item.id">
-      <van-swipe
-        vertical
-        class="notice-swipe"
-        :autoplay="3000"
-        :show-indicators="false"
-      >
-        <van-swipe-item>{{item.content}}</van-swipe-item>
-        <!--        <van-swipe-item>内容 2</van-swipe-item>-->
-        <!--        <van-swipe-item>内容 3</van-swipe-item>-->
-      </van-swipe>
-    </van-notice-bar>
-
-
+  <div>
+    <div id="allmap" class="allmap"></div>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: "HomeLeft",
+  name: "Test",
   data(){
     return{
-      topics:[
-        {id:1,content:"小李家桃子熟啦，快来采摘！！"},
-        {id:2,content:"小惠助农，点击详情！！"},
-        {id:3,content:"顾客有福利啦！！"},
-        {id:4,content:"花香城一天导航游玩~~~"},
-        {id:5,content:"限时领取，3折优惠购买~~~"},
-      ]
+
     }
-  }
+  },
+  mounted() {
+    //初始化
+    // 创建Map实例
+    this.map = new BMap.Map("allmap");
+    // 初始化地图,设置中心点坐标和地图级别
+    this.map.centerAndZoom("成都", this.mapZoom);
+    // 设置地图显示的城市 此项是必须设置的
+    this.map.setCurrentCity("成都");
+    // 启用滚轮放大缩小，默认禁用
+    this.map.enableScrollWheelZoom(true);
+    // 启用地图惯性拖拽，默认禁用
+    this.map.enableContinuousZoom(true);
+    // 启用地图拖拽，默认启用
+    this.map.enableDragging(true);
+
+    const cityControl = new BMap.CityListControl({
+      /*
+  	控件的停靠位置（可选，默认左上角）
+  	BMAP_ANCHOR_TOP_RIGHT 右上角
+  	BMAP_ANCHOR_BOTTOM_LEFT 左下角
+  	BMAP_ANCHOR_BOTTOM_RIGHT 右下角
+    */
+      anchor: BMAP_ANCHOR_TOP_LEFT,
+      // 控件基于停靠位置的偏移量（可选）
+      offset: new BMap.Size(10, 5),
+    });
+    // 将控件添加到地图上
+    this.map.addControl(cityControl);
+  },
+
+
 }
 </script>
 
 <style scoped>
-.notice-swipe {
-  height: 40px;
-  line-height: 40px;
-}
-.van-notice-bar{
-  margin: 5px;
-}
-.homeleft-container{
-  position: absolute;
-  top: 500px;
-  left: 20px;
-  /*float: right;*/
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+.logo{
+  border-radius: 50px;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
 }
 </style>
