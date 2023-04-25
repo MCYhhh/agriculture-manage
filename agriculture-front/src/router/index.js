@@ -82,6 +82,11 @@ const routes=[
     name:'NotFound',
     component:()=>import ('@/views/404'),
   },
+  {
+    path:'/test1',
+    name:'MAP',
+    component:()=>import('@/views/test')
+  }
 ]
 
 
