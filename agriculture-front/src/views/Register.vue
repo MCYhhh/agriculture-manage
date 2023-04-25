@@ -98,30 +98,30 @@ export default {
   },
   methods: {
   onSubmit() {
-      // console.log('submit!',this.RegisterForm);
-      // this.$message({
-      //   message: '注册成功',
-      //   type: 'success'
-      // });
-      console.log(this.RegisterForm)
-      this.$refs['form'].validate(async (valid) => {
-        if (valid) {  // 表单校验合法
-          if (this.RegisterForm.upwd !== this.RegisterForm.checkupwd) {
-            this.$message.error("两次输入的密码不一致")
-            return false
-          }
-          const json = JSON.stringify(this.RegisterForm)
-
-          const {data: res} = await registerAPI(json);
-
-          if (res.code === '00000') {
-            this.$message.success("注册成功")
-            // this.$router.push("/")
-          } else {
-            this.$message.error(res.msg)
-          }
-        }
+      console.log('submit!',this.RegisterForm);
+      this.$message({
+        message: '注册成功',
+        type: 'success'
       });
+      console.log(this.RegisterForm)
+      // this.$refs['form'].validate(async (valid) => {
+      //   if (valid) {  // 表单校验合法
+      //     if (this.RegisterForm.upwd !== this.RegisterForm.checkupwd) {
+      //       this.$message.error("两次输入的密码不一致")
+      //       return false
+      //     }
+      //     const json = JSON.stringify(this.RegisterForm)
+      //
+      //     const {data: res} = await registerAPI(json);
+      //     console.log(res)
+      //     if (res.code === '00000') {
+      //       this.$message.success("注册成功")
+      //       // this.$router.push("/")
+      //     } else {
+      //       this.$message.error(res.msg)
+      //     }
+      //   }
+      // });
 
     },
     toLogin(){

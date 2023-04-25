@@ -3,10 +3,10 @@
     <el-form ref="form" :model="LoginForm" label-width="0px" class="loginbox">
       <h3 style="padding-left:120px;font-size: 28px;color: #b5dac4;margin-top: -10px;letter-spacing:30px">登录</h3>
       <el-form-item label="">
-        <el-input v-model="LoginForm.name" placeholder="账号" prefix-icon="el-icon-user-solid" auto-complete="off" type="text"></el-input>
+        <el-input v-model="LoginForm.uaccount" placeholder="账号" prefix-icon="el-icon-user-solid" auto-complete="off" type="text"></el-input>
       </el-form-item>
       <el-form-item label="">
-        <el-input v-model="LoginForm.password" placeholder="密码" prefix-icon="el-icon-lock" auto-complete="off" type="password"></el-input>
+        <el-input v-model="LoginForm.upwd" placeholder="密码" prefix-icon="el-icon-lock" auto-complete="off" type="password"></el-input>
       </el-form-item>
       <el-form-item size="large" >
         <el-button  @click="onSubmit" style="width: 30%;background-color: #cee3c1;border: none">登录</el-button>
@@ -21,11 +21,32 @@
 export default {
   name: "Login",
   data() {
+    //，校验函数，限制输入不能为空
+    var checkuaccount = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("账号不能为空"));
+      } else {
+        callback();
+      }
+    };
+    //，校验函数，限制输入不能为空
+    var validatePass = (rule, value, callback) => {
+      if (value === "") {
+        return callback(new Error("请输入密码"));
+      } else {
+        callback();
+      }
+    };
     return {
       LoginForm: {
-        name: '',
-        password: '',
-      }
+        uaccount: '',
+        upwd: '',
+      },
+      // 校验规则对象
+      rules: {
+        upwd: [{ validator: validatePass, trigger: "blur" }],
+        uname: [{ validator: checkuaccount, trigger: "blur" }],
+      },
     };
   },
   methods: {

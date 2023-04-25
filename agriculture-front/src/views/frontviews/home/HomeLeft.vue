@@ -83,6 +83,7 @@ export default {
   name:'HomeLeft',
   data() {
     return {
+      dialogFormVisible: false,
       news:[
         {
           id:1,
