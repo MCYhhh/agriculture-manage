@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import VueAMap from 'vue-amap'
 //导入Vant组件
 import Vant from 'vant';
 import 'vant/lib/index.css';
@@ -24,3 +25,20 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+Vue.use(VueAMap);
+VueAMap.initAMapApiLoader({
+//修改下面的key值
+  key: '5ab0ce0f11ed78656df74d8a41c15a2b',
+  // plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+  plugin: ['AMap.Geolocation'],
+  // 默认高德 sdk 版本为 1.4.4
+  // v: '1.4.4'
+});
+Vue.config.productionTip = false
+
+new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#app')
