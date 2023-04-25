@@ -9,6 +9,11 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import store from "./store";
+import BaiduMap from 'vue-baidu-map'
+Vue.use(BaiduMap, {
+  ak: 'XZnOK8f5Kf9q3IDnx1i1aBUQ5RKHLSl7'  //这个地方是官方提供的ak密钥
+})
+
 
 
 Vue.use(ElementUI,{size:"small"})
