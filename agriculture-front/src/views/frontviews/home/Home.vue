@@ -1,7 +1,5 @@
 <template>
   <div class="home-container">
-    <h1>欢迎来到小惠旅游乡</h1>
-    <Nav></Nav>
     <HomeMainOver></HomeMainOver>
     <HomeLeft></HomeLeft>
     <HomeRight></HomeRight>
