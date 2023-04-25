@@ -1,13 +1,13 @@
 <template>
   <div class="homemiddle-container">
-    <h2 class="neon">好物推荐</h2>
+    <h2 class="neon">=====好物推荐====</h2>
     <div class="recgoods">
       <van-grid :border="false" :column-num="4" v-for="items in goodsList">
-        <van-grid-item v-for="item in items">
+        <van-grid-item v-for="item in items" class="goods-grid" style="padding-top: 150px;margin-top: -50px">
           <van-image :src="item.gimg"/>
-          <div class="goods">
+          <div class="goods" style="padding-top: 40px">
             <el-tag type="warning" style="position: relative;top: 15px;left: -150px;margin-bottom: 20px;font-size: 13px">{{ item.uname }}</el-tag>
-            <p class="goodsname" style="width: 200px;margin-left: -130px">
+            <p class="goodsname" style="width: 150px;margin-left: -100px">
               <el-tag type="danger">￥{{item.gprice}}</el-tag>
               <span>{{item.gdesp}}</span>
             </p>
@@ -37,11 +37,7 @@ export default {
           {gid:2,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://desk-fd.zol-img.com.cn/t_s640x530c5/g4/M0A/06/04/ChMly113EU2IT0RaACsB4KbnZOsAAXnXwE5C-kAKwH4388.jpg'},
           {gid:3,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://img01.yzcdn.cn/vant/apple-2.jpg'},
           {gid:4,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://img01.yzcdn.cn/vant/apple-2.jpg'}],
-        [{gid:1,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg:'https://img01.yzcdn.cn/vant/apple-1.jpg'},
-          {gid:2,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://img01.yzcdn.cn/vant/apple-2.jpg'},
-          {gid:3,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://img01.yzcdn.cn/vant/apple-2.jpg'},
-          {gid:4,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://img01.yzcdn.cn/vant/apple-2.jpg'}],
-      ]
+        ]
     }
   }
 }
@@ -55,7 +51,7 @@ export default {
     position: static;
   }
   h2{
-    width: 300px;
+    width: 1000px;
     height: 200px;
     position: absolute;
     left: 50%;
@@ -75,11 +71,19 @@ export default {
       background-position: -100%  0;
     }
   }
+
   .van-grid-item{
     position: static;
-    padding: 10px 20px 5px 30px;
-    box-shadow: 5px 5px 0 rgba(222, 125, 125, 0.1);
+    padding: 8px 25px 5px 30px;
+    box-shadow: 5px 5px 3px rgba(222, 125, 125, 0.1);
+    margin-bottom: 85px;
+    height: 250px;
   }
+
+  .goods-grid{
+
+  }
+
   .van-image{
     position: relative;
     left:-100px;
@@ -87,7 +91,7 @@ export default {
     height: 200px;
   }
   .recgoods{
-    top: 100px;
+    top: 180px;
     /*left:-20px;*/
     position: relative;
     left: 5%;
@@ -96,7 +100,7 @@ export default {
   .goodsdetail{
     position: relative;
     left: -90px;
-    top:-100px
+    top:-170px
   }
   .icon{
     font-size: 13px;
@@ -109,7 +113,5 @@ export default {
     top: -210px;
     left: 180px;
   }
-  .goodsname{
 
-  }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="register">
-    <el-form ref="form" :model="RegisterForm" label-width="0px" class="registerbox">
+    <el-form ref="form" :model="RegisterForm" :rules="rules" label-width="0px" class="registerbox">
       <h3 style="padding-left:120px;font-size: 28px;color: #b5dac4;margin-top: -10px;letter-spacing:30px">注册</h3>
       <el-form-item label="">
         <el-input v-model="RegisterForm.uaccount" placeholder="账号" prefix-icon="el-icon-user-solid" auto-complete="off" type="text"></el-input>
@@ -31,9 +31,53 @@
 </template>
 
 <script>
+// import router from "../router";
+import {registerAPI} from "../api";
+import {loginAPI} from "../api";
+
 export default {
   name: "Register",
   data() {
+    var checkUaccount = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("账号不能为空"));
+      }else {
+        callback();
+      }
+    };
+    var checkUname = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("昵称不能为空"));
+      }else {
+        callback();
+      }
+    };
+    var checkUsex=(rule,value,callback)=>{
+      if(!value){
+        return callback(new Error("性别不能为空"));
+      }else{
+        callback();
+      }
+    }
+    var validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入密码"));
+      } else {
+        if (this.RegisterForm.checkupwd !== "") {
+          this.$refs.form.validateField("checkupwd");
+        }
+        callback();
+      }
+    };
+    var validatePass2 = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请再次输入密码"));
+      } else if (value !== this.RegisterForm.upwd) {
+        callback(new Error("两次输入密码不一致!"));
+      } else {
+        callback();
+      }
+    };
     return {
       RegisterForm: {
         uaccount:'',
@@ -41,16 +85,43 @@ export default {
         upwd: '',
         checkupwd:'',
         usex:'',
-      }
+      },
+      rules: {
+        upwd: [{ validator: validatePass, trigger: "blur" }],
+        checkPass: [{ validator: validatePass2, trigger: "blur" }],
+        uname: [{ validator: checkUname, trigger: "blur" }],
+        uaccount: [{ validator: checkUaccount, trigger: "blur" }],
+        usex: [{ validator: checkUsex, trigger: "blur" }],
+      },
     };
+
   },
   methods: {
-    onSubmit() {
+  onSubmit() {
       console.log('submit!',this.RegisterForm);
       this.$message({
         message: '注册成功',
         type: 'success'
       });
+      console.log(this.RegisterForm)
+      // this.$refs['form'].validate(async (valid) => {
+      //   if (valid) {  // 表单校验合法
+      //     if (this.RegisterForm.upwd !== this.RegisterForm.checkupwd) {
+      //       this.$message.error("两次输入的密码不一致")
+      //       return false
+      //     }
+      //     const json = JSON.stringify(this.RegisterForm)
+      //
+      //     const {data: res} = await registerAPI(json);
+      //     console.log(res)
+      //     if (res.code === '00000') {
+      //       this.$message.success("注册成功")
+      //       // this.$router.push("/")
+      //     } else {
+      //       this.$message.error(res.msg)
+      //     }
+      //   }
+      // });
 
     },
     toLogin(){

@@ -8,6 +8,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 //导入Vant组件
 import Vant from 'vant';
 import 'vant/lib/index.css';
+import store from "./store";
+
 
 Vue.use(ElementUI,{size:"small"})
 Vue.use(Vant)
@@ -18,6 +20,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
