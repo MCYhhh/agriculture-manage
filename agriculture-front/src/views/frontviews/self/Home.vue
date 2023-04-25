@@ -2,7 +2,7 @@
   <div class="self-container">
     <el-descriptions class="margin-top" :column="1"  border>
       <template slot="extra">
-        <el-button type="primary" size="small" @click="dialogFormVisible = true">修改信息</el-button>
+        <el-button type="primary" size="small" @click="modifyinfo">修改信息</el-button>
       </template>
       <el-descriptions-item>
         <template slot="label">
@@ -48,6 +48,7 @@
       </el-descriptions-item>
       <el-descriptions-item>
         <template slot="label">
+          <i class="el-icon-picture-outline-round"></i>
           <span>照片</span>
         </template>
         <span>{{ user.uimg }}</span>
@@ -83,7 +84,7 @@
       </el-descriptions-item>
     </el-descriptions>
     <div class="modifyinfo" >
-      <el-dialog title="信息修改" :visible.sync="dialogFormVisible" width="30%" >
+      <el-dialog title="信息修改" :visible.sync="dialogFormVisible" width="30%">
         <el-form>
           <el-form-item label="用户账号" label-width="100px">
             <el-input  v-model="user1.uaccount" disabled></el-input>
@@ -98,7 +99,7 @@
             </el-radio-group>
           </el-form-item>
           <el-form-item label="邮箱" label-width="100px">
-            <el-input  v-model="user1.uemail"></el-input>
+            <el-input type="email" v-model="user1.uemail"></el-input>
           </el-form-item>
           <el-form-item label="手机号" label-width="100px">
             <el-input type="number" v-model="user1.utel"></el-input>
@@ -129,7 +130,6 @@
 </template>
 <script>
 
-
 export default {
   name: "Home",
   data() {
@@ -142,7 +142,7 @@ export default {
         upwd:'upwd',
         utype:0,
         usex:"女",
-        uemail:"tianyong@126.a",
+        uemail:"tianyong@126.com",
         utel:"15349585890",
         uaddress:"江苏省苏州市吴中区吴中大道 1188 号",
         uimg:"yfuwn",
@@ -157,23 +157,18 @@ export default {
   methods:{
     cancelinfo(){
       this.dialogFormVisible = false;
+      console.log(this.user)
+      console.log(this.user1)
     },
     confirminfo(){
       console.log(this.user.uname)
-      if (this.user1.udesp.equals("")){
-        this.user1.udesp="无";
-      }
-      this.user=this.user1;
       this.dialogFormVisible = false;
+      this.user=JSON.parse(JSON.stringify(this.user1));
+    },
+    modifyinfo(){
+      this.user1=JSON.parse(JSON.stringify(this.user));
+      this.dialogFormVisible = true
     }
-  },
-  beforeCreate() {
-    if (this.user.udesp.equal("")){
-      this.user.udesp="无";
-    }
-  },
-  created() {
-    this.user1=this.user;
   },
 }
 </script>
