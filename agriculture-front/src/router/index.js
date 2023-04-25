@@ -11,6 +11,11 @@ const routes=[
     component:()=>import ('@/views/Login'),
   },
   {
+    path: '/total',
+    name: 'Total',
+    component:()=>import ('@/components/Total'),
+  },
+  {
     path: '/register',
     name: 'Register',
     component:()=>import ('@/views/Register'),
