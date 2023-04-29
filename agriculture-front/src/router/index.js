@@ -57,7 +57,7 @@ const routes=[
       {
         path: 'game',
         name: 'Game',
-        component: () => import ('@/views/frontviews/game/Home'),
+        component: () => import ('@/views/frontviews/Game/Home'),
       },
       {
         path: 'shop',
@@ -65,6 +65,16 @@ const routes=[
         component: () => import ('@/views/frontviews/shop/Home'),
       },
     ]
+  },
+  {
+    path: '/articlelist',
+    name: 'ArticleList',
+    component: () => import ('@/views/frontviews/Game/ArticleList'),
+  },
+  {
+    path: '/articlecontent',
+    name: 'ArticleContent',
+    component: () => import ('@/views/frontviews/Game/ArticleContent'),
   },
   {
     path: '/admin',
