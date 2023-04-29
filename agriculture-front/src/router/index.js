@@ -115,6 +115,39 @@ const routes=[
     ]
   },
   {
+    path: '/shopper',
+    name: 'Shopper',
+    component:()=>import ('@/views/devviews/shopper/Shopper'),
+    redirect: '/shopper/home',
+    children:[
+      {
+        path:'home',
+        name:'Home',
+        component:()=>import ('@/views/devviews/shopper/Home'),
+      },
+      {
+        path:'order',
+        name:'OrderManage',
+        component:()=>import ('@/views/devviews/shopper/OrderManage'),
+      },
+      {
+        path:'user',
+        name:'UserManage',
+        component:()=>import ('@/views/devviews/shopper/UserManage'),
+      },
+      {
+        path:'goods',
+        name:'GoodsManage',
+        component:()=>import ('@/views/devviews/shopper/GoodsManage'),
+      },
+      {
+        path: 'scenery',
+        name: 'SceneryManage',
+        component: () => import ('@/views/devviews/shopper/SceneryManage'),
+      }
+    ]
+  },
+  {
     path:'/cart',
     name:'Cart',
     component:()=>import ('@/views/devviews/Cart'),
