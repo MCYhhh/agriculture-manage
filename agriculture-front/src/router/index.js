@@ -38,9 +38,24 @@ const routes=[
             component: () => import ('@/views/frontviews/self/Home'),
           },
           {
-            path: 'infochange',
-            name: 'Infochange',
-            component: () => import ('@/views/frontviews/self/Infochange'),
+            path: 'order',
+            name: 'OrderManage',
+            component: () => import ('@/views/frontviews/self/OrderManage'),
+          },
+          {
+            path: 'info',
+            name: 'Info',
+            component: () => import ('@/views/frontviews/self/Info'),
+          },
+          {
+            path: 'reserve',
+            name: 'Reserve',
+            component: () => import ('@/views/frontviews/self/Reserve'),
+          },
+          {
+            path: 'trolley',
+            name: 'Trolley',
+            component: () => import ('@/views/frontviews/self/Trolley'),
           }
         ]
       },

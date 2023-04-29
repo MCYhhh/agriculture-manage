@@ -40,7 +40,7 @@ export default {
     height: 100%;
   }
   .el-menu {
-    background-color: rgb(221, 241, 209)
+    background-color: rgb(235, 246, 235)
   }
   /deep/.el-menu .el-menu-item.is-active {
     /*outline: 0 !important;*/
