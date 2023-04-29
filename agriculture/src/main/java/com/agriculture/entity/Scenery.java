@@ -1,12 +1,13 @@
 package com.agriculture.entity;
 
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -24,20 +25,12 @@ public class Scenery implements Serializable {
 
     @TableId(value = "sid", type = IdType.AUTO)
     private Integer sid;
-
     private String sname;
-
     private String saddress;
-
     private BigDecimal sprice;
-
     private String sdesp;
-
+    private String surl;
     private Integer sstate;
-
     private LocalDateTime sdate;
-
     private Integer uid;
-
-
 }

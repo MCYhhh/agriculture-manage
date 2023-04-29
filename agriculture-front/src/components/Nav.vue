@@ -1,98 +1,93 @@
 <template>
   <div class="nav-container">
-    <el-row :gutter="15" class="nav-row">
-      <el-col :span="3" class="first-nav-col">
-        <el-popover
-          placement="top-start"
-          width="200"
-          title="一站式解决旅游攻略"
-          trigger="hover"
-          content="将根据您的需求为您设计出最合适的旅游路线！">
-          <el-button type="success" plain slot="reference">首页</el-button>
-        </el-popover>
-      </el-col>
+    <el-menu class="el-menu-demo" mode="horizontal"
+             :router="true"
+             text-color="#fff"
+             v-for="item in nav" :key="nav.id">
+      <el-menu-item :index='item.path' style=" font-size: 22px;">{{item.name}}</el-menu-item>
+    </el-menu>
+<!--    <el-menu :router='true'-->
+<!--             active-text-color='#ffd04b'-->
+<!--             mode="horizontal"-->
+<!--             v-for="item in nav" :key="nav.id"-->
+<!--    >-->
+<!--      <el-menu-item :index='item.path'>{{item.name}}-->
+<!--                  <el-popover-->
+<!--                    placement="top-start"-->
+<!--                    :title="item.title"-->
+<!--                    trigger="hover"-->
+<!--                    :content="item.content">-->
+<!--                  </el-popover>-->
+<!--      </el-menu-item>-->
+<!--    </el-menu>-->
+<!--    <el-row :gutter="15" class="nav-row">-->
+<!--      <el-col :span="3" class="first-nav-col">-->
+<!--        <router-link to="home" v-for="item in nav" :key="item.id" :to="item.path">-->
+<!--          <el-popover-->
+<!--            placement="top-start"-->
+<!--            width="200"-->
+<!--            :title="item.title"-->
+<!--            trigger="hover"-->
+<!--            :content="item.content">-->
+<!--&lt;!&ndash;            {{item.name}}&ndash;&gt;-->
+<!--&lt;!&ndash;            <span slot="name">{{item.name}}</span>&ndash;&gt;-->
+<!--            <el-button type="success" plain slot="reference" class="btn">{{item.name}}</el-button>-->
+<!--          </el-popover>-->
+<!--        </router-link>-->
+<!--      </el-col>-->
 
-      <el-col :span="3">
-        <el-popover
-          placement="top-start"
-          width="200"
-          title="原产地美食等你"
-          trigger="hover"
-          content="包含种类丰富的当地农产品，快来看看都有什么吧！">
-          <el-button type="success" plain slot="reference">旅游规划</el-button>
-        </el-popover>
-      </el-col>
+<!--    </el-row>-->
 
-      <el-col :span="3">
-        <el-popover
-          placement="top-start"
-          width="200"
-          title="购物一览表"
-          trigger="hover"
-          content="包含您在本平台消费的所有的产品订单">
-          <el-button  type="success" plain slot="reference">惠农惠物</el-button>
-        </el-popover>
-      </el-col>
-
-      <el-col :span="3">
-        <el-popover
-          placement="top-start"
-          width="200"
-          title="共赏美景，共品佳肴"
-          trigger="hover"
-          content="请一起为我们美丽的叉叉宣传助力吧！">
-          <el-button type="success" plain slot="reference">游戏小乐</el-button>
-        </el-popover>
-      </el-col>
-
-      <el-col :span="3">
-        <el-popover
-          placement="top-start"
-          width="200"
-          title="看看别人说了啥"
-          trigger="hover"
-          content="发布帖子和大家一起分享你的见闻吧！">
-          <el-button type="success" plain slot="reference">宣传助力</el-button>
-        </el-popover>
-      </el-col>
-
-      <el-col :span="3">
-        <el-popover
-          placement="top-start"
-          width="200"
-          title="个人主界面"
-          trigger="hover"
-          content="查看你的个人信息等内容可以来这里哦！">
-          <el-button type="success" plain slot="reference">个人中心</el-button>
-        </el-popover>
-      </el-col>
-    </el-row>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Nav"
+  name: "Nav",
+  data(){
+    return{
+      nav:[
+        {id:1,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/home',name:'首页'},
+        {id:2,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/travel',name: '旅游规划'},
+        {id:3,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/shop',name: '惠农惠物'},
+        {id:4,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/community',name: '社区中心'},
+        {id:5,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/game',name: '宣传助力'},
+        {id:6,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/self/home',name: '个人中心'},
+      ]
+    }
+  }
 }
 </script>
 
 <style scoped>
   .nav-container{
     background-image: linear-gradient(120deg, #7fb2ec, #a79cf1);
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 5px 0 0 250px;
+    margin:0 -20px;
+    height: 40px;
   }
-  .nav-row{
-    margin: 0 auto;
+
+  .el-menu{
+    width: 200px;
+    height: 40px;
+    display: inline-block;
+    padding-right: 20px;
+    background-color:rgba(0,0,0,0);
+    margin-top: -10px;
+    border-bottom: 0;
   }
-  .el-col{
-    margin-left: 25px;
+
+  /deep/.el-menu .el-menu-item:hover{
+    /*outline: 0 !important;*/
+    color: #2E95FB !important;
+    background-color:rgba(0,0,0,0)!important;
   }
-  .el-button{
-    font-size: 18px;
-    box-shadow:5px 5px 10px rgba(0,0,0,0.1) ;
+  /deep/.el-menu .el-menu-item.is-active {
+    /*outline: 0 !important;*/
+    color: #ffffff !important;
+    background-color:rgba(0,0,0,0)!important;
+    border-bottom: none;
   }
-  .first-nav-col{
-    margin-left: 210px;
-  }
+
+
 </style>

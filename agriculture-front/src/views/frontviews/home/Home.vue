@@ -1,12 +1,11 @@
 <template>
   <div class="home-container">
-    <h1>欢迎来到小惠旅游乡</h1>
-    <Nav></Nav>
     <HomeMainOver></HomeMainOver>
     <HomeLeft></HomeLeft>
     <HomeRight></HomeRight>
     <HomeMiddle></HomeMiddle>
-
+    <HomeMiddle2></HomeMiddle2>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -16,6 +15,8 @@ import HomeMainOver from "./HomeMainOver";
 import HomeLeft from "./HomeLeft";
 import HomeRight from "./HomeRight";
 import HomeMiddle from "./HomeMiddle";
+import HomeMiddle2 from "./HomeMiddle2";
+import Footer from "./Footer";
 export default {
   name: "Home",
   components: {
@@ -23,7 +24,9 @@ export default {
     HomeMainOver,
     HomeLeft,
     HomeRight,
-    HomeMiddle
+    HomeMiddle,
+    HomeMiddle2,
+    Footer
   }
 }
 </script>
@@ -37,5 +40,6 @@ export default {
     width: 100%;
     margin-top: -30px;
     padding: 10px 10px 50px 10px;
+    position: static;
   }
 </style>

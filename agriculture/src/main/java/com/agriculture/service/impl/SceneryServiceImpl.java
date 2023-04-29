@@ -4,6 +4,7 @@ import com.agriculture.entity.Scenery;
 import com.agriculture.mapper.SceneryMapper;
 import com.agriculture.service.ISceneryService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,10 @@ public class SceneryServiceImpl extends ServiceImpl<SceneryMapper, Scenery> impl
     @Override
     public List<Scenery> selectList(QueryWrapper<Scenery> queryWrapper) {
         return sceneryMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public Page<Scenery> selectPage(Page<Scenery> page,QueryWrapper<Scenery> queryWrapper) {
+        return sceneryMapper.selectPage(page,queryWrapper);
     }
 }
