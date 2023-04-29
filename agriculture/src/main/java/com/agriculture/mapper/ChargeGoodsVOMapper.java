@@ -18,7 +18,5 @@ public interface ChargeGoodsVOMapper extends BaseMapper<ChargeGoodsVO> {
     @Select("SELECT cid,uid,chargegoods.gid,cnum,cdate,chargegoods.state,chargegoods.update_time,gname,gprice,gsate,gimg,gdesp from platform.chargegoods join platform.goods on chargegoods.gid=goods.gid where gname like '%${gname}%'")
     Page<ChargeGoodsVO> findgname(Page<ChargeGoodsVO> iPage, String gname);
 
-
-
 }
 
