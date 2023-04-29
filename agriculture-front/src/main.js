@@ -6,12 +6,15 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 //引入地图
-import VueAMap from 'vue-amap'
-import BaiduMap from 'vue-baidu-map'
 //导入Vant组件
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import store from "./store";
+// import BaiduMap from 'vue-baidu-map'
+// Vue.use(BaiduMap, {
+//   ak: 'XZnOK8f5Kf9q3IDnx1i1aBUQ5RKHLSl7'  //这个地方是官方提供的ak密钥
+// })
+
 
 
 Vue.use(ElementUI,{size:"small"})
@@ -28,7 +31,7 @@ new Vue({
   template: '<App/>'
 })
 
-Vue.use(BaiduMap, { ak: 'XZnOK8f5Kf9q3IDnx1i1aBUQ5RKHLSl7' })
+// Vue.use(BaiduMap, { ak: 'XZnOK8f5Kf9q3IDnx1i1aBUQ5RKHLSl7' })
 
 // Vue.use(VueAMap);
 // VueAMap.initAMapApiLoader({

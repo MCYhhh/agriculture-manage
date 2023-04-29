@@ -57,7 +57,7 @@ const routes=[
       {
         path: 'game',
         name: 'Game',
-        component: () => import ('@/views/frontviews/game/Home'),
+        component: () => import ('@/views/frontviews/Game/Home'),
       },
       {
         path: 'shop',
@@ -65,6 +65,16 @@ const routes=[
         component: () => import ('@/views/frontviews/shop/Home'),
       },
     ]
+  },
+  {
+    path: '/articlelist',
+    name: 'ArticleList',
+    component: () => import ('@/views/frontviews/Game/ArticleList'),
+  },
+  {
+    path: '/articlecontent',
+    name: 'ArticleContent',
+    component: () => import ('@/views/frontviews/Game/ArticleContent'),
   },
   {
     path: '/admin',
@@ -115,16 +125,44 @@ const routes=[
     ]
   },
   {
+    path: '/shopper',
+    name: 'Shopper',
+    component:()=>import ('@/views/devviews/shopper/Shopper'),
+    redirect: '/shopper/home',
+    children:[
+      {
+        path:'home',
+        name:'Home',
+        component:()=>import ('@/views/devviews/shopper/Home'),
+      },
+      {
+        path:'order',
+        name:'OrderManage',
+        component:()=>import ('@/views/devviews/shopper/OrderManage'),
+      },
+      {
+        path:'user',
+        name:'UserManage',
+        component:()=>import ('@/views/devviews/shopper/UserManage'),
+      },
+      {
+        path:'goods',
+        name:'GoodsManage',
+        component:()=>import ('@/views/devviews/shopper/GoodsManage'),
+      },
+      {
+        path: 'scenery',
+        name: 'SceneryManage',
+        component: () => import ('@/views/devviews/shopper/SceneryManage'),
+      }
+    ]
+  },
+  {
     path:'/cart',
     name:'Cart',
     component:()=>import ('@/views/devviews/Cart'),
   },
 
-  {
-    path:'/test',
-    name:'Test',
-    component:()=>import ('@/views/frontviews/Test'),
-  },
   {
     path:'/404',
     name:'NotFound',
