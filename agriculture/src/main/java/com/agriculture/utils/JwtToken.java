@@ -5,7 +5,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -22,7 +21,7 @@ public class JwtToken {
 //    private static String secret;   //密钥
 //    @Value("${jwt.expiration}")
 //    private static Long expiration;   //有效期
-    private static final Long expirationmill= (long) (60*60*1000);   //表示一个小时
+    private static final Long expirationmill= (long) (60*60*1000*1000000);   //表示一个小时
     private static final String secretkey="platform";
 
     public static String getUUID(){

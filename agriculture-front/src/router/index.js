@@ -179,15 +179,15 @@ const routes=[
   },
 
   {
-    path:'/test',
-    name:'Test',
-    component:()=>import ('@/views/frontviews/Test'),
-  },
-  {
     path:'/404',
     name:'NotFound',
     component:()=>import ('@/views/404'),
   },
+  {
+    path:'/test1',
+    name:'MAP',
+    component:()=>import('@/views/test')
+  }
 ]
 
 
