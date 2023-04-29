@@ -1,6 +1,9 @@
 <template>
   <div class="nav-container">
-    <el-menu v-for="item in adminmenus" :key="item.mid" :router="true">
+    <el-menu v-for="item in adminmenus" :key="item.mid"
+             :router="true"
+              active-text-color="#ffd04b"
+              :default-active="$route.path">
       <el-submenu :index="item.mpath" v-if="item.children!=null">
         <template slot="title"><i :class="item.micon"></i><span>{{item.mtitle}}</span></template>
         <el-menu-item-group v-for="o in item.children" style="background-color: rgb(221, 241, 209)">
@@ -18,6 +21,7 @@ export default {
   data(){
     return{
       adminmenus:[
+        {mid:10,mtitle:'首页',mdesp:'首页',mpath:'/admin/home',mrouter:'Home',mvisible:0,state:0,micon:'el-icon-s-home'},
         {mid:1,mtitle:'用户管理',mdesp:'用户管理',mpath:'/admin/user',mrouter:'UserManage',mvisible:0,state:0,micon:'el-icon-user-solid'},
         {mid:2,mtitle:'订单管理',mdesp:'订单管理',mpath:'/admin/order',mrouter:'OrderManage',mvisible:0,state:0,micon:'el-icon-s-order'},
         {mid:3,mtitle:'商品管理',mdesp:'商品管理',mpath:'/admin/goods',mrouter:'GoodsManage',mvisible:0,state:0,micon: 'el-icon-s-goods'},
@@ -38,29 +42,10 @@ export default {
   .el-menu {
     background-color: rgb(221, 241, 209)
   }
-  /deep/.el-menu .el-menu-item:hover{
-       /*outline: 0 !important;*/
-       /*color: #ffffff !important;*/
-       background-color: rgb(165, 200, 215) !important;
-     }
-
-  /deep/.el-menu.el-submenu :hover{
-    /*outline: 0 !important;*/
-    /*color: #ffffff !important;*/
-    background-color: rgb(165, 200, 215) !important;
-  }
-  /*/deep/.el-menu .el-menu-item.is-active:after{*/
-  /*  !*outline: 0 !important;*!*/
-  /*  color: #000000 !important;*/
-  /*  background-color:rgba(0,0,0,0)!important;*/
-  /*}*/
   /deep/.el-menu .el-menu-item.is-active {
     /*outline: 0 !important;*/
-    color: #000000 !important;
+    color: #303133 !important;
     background-color:rgba(0,0,0,0)!important;
     border-bottom: none;
-  }
-  span{
-    color: #000000
   }
 </style>

@@ -55,7 +55,7 @@ export default {
   box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
 }
 .el-header {
-  background-color: #B3C0D1;
+  background-color: #ecf6e5;
   color: #333;
   line-height: 60px;
   height: 100%;
