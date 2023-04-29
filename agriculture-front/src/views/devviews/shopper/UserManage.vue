@@ -1,6 +1,6 @@
 <template>
-  <div class="use-container">
-    用户管理
+  <div class="user-container">
+
   </div>
 </template>
 

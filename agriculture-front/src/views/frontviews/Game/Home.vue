@@ -1,15 +1,22 @@
 <template>
   <div class="game-container">
-    游戏小乐
+    <ArticleList></ArticleList>
+<!--    <ArticleContent></ArticleContent>-->
   </div>
 </template>
 
 <script>
+import ArticleList from "./ArticleList.vue";
+import ArticleContent from "./ArticleContent.vue";
+import HomeMiddle from "../home/HomeMiddle.vue";
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    ArticleList,
+    ArticleContent
+  }
 }
 </script>
 
 <style scoped>
-
 </style>

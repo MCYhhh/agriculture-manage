@@ -1,12 +1,12 @@
 <template>
-  <div class="use-container">
-    用户管理
+  <div class="goods-container">
+    商品管理
   </div>
 </template>
 
 <script>
 export default {
-  name: "UserManage"
+  name: "GoodsManage"
 }
 </script>
 

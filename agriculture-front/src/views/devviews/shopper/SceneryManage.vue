@@ -1,12 +1,12 @@
 <template>
-  <div class="use-container">
-    用户管理
+  <div class="scenery-container">
+    景区管理
   </div>
 </template>
 
 <script>
 export default {
-  name: "UserManage"
+  name: "SceneryManage"
 }
 </script>
 

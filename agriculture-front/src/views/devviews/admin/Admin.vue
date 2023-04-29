@@ -11,15 +11,14 @@
         </el-aside>
         <el-container>
           <el-header style="text-align: right; font-size: 12px">
-            <el-dropdown>
-              <i class="el-icon-setting" style="margin-right: 15px"></i>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>查看</el-dropdown-item>
-                <el-dropdown-item>新增</el-dropdown-item>
-                <el-dropdown-item>删除</el-dropdown-item>
+            <el-dropdown >
+              <i class="el-icon-caret-bottom"  style="margin-right: 15px;padding-right: -20px;font-size: 22px" ></i>
+              <el-dropdown-menu slot="dropdown" style="width: 100px;margin-right: -50px">
+                <el-dropdown-item>返回首页</el-dropdown-item>
+                <el-dropdown-item>管理后台</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
-            <span>王小虎</span>
+            <span style="margin-right: 60px;font-size: 16px">王小虎</span>
           </el-header>
           <el-main>
             <router-view></router-view>
@@ -55,7 +54,7 @@ export default {
   box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
 }
 .el-header {
-  background-color: #B3C0D1;
+  background-color: #ecf6e5;
   color: #333;
   line-height: 60px;
   height: 100%;
