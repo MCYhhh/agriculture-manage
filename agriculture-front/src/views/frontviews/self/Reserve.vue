@@ -1,10 +1,12 @@
 <template>
-
+  <div class="reserve-container">
+    我的预定
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Info"
+  name: "Reserve"
 }
 </script>
 

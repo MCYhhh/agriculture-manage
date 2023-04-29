@@ -6,37 +6,6 @@
              v-for="item in nav" :key="nav.id">
       <el-menu-item :index='item.path' style=" font-size: 22px;">{{item.name}}</el-menu-item>
     </el-menu>
-<!--    <el-menu :router='true'-->
-<!--             active-text-color='#ffd04b'-->
-<!--             mode="horizontal"-->
-<!--             v-for="item in nav" :key="nav.id"-->
-<!--    >-->
-<!--      <el-menu-item :index='item.path'>{{item.name}}-->
-<!--                  <el-popover-->
-<!--                    placement="top-start"-->
-<!--                    :title="item.title"-->
-<!--                    trigger="hover"-->
-<!--                    :content="item.content">-->
-<!--                  </el-popover>-->
-<!--      </el-menu-item>-->
-<!--    </el-menu>-->
-<!--    <el-row :gutter="15" class="nav-row">-->
-<!--      <el-col :span="3" class="first-nav-col">-->
-<!--        <router-link to="home" v-for="item in nav" :key="item.id" :to="item.path">-->
-<!--          <el-popover-->
-<!--            placement="top-start"-->
-<!--            width="200"-->
-<!--            :title="item.title"-->
-<!--            trigger="hover"-->
-<!--            :content="item.content">-->
-<!--&lt;!&ndash;            {{item.name}}&ndash;&gt;-->
-<!--&lt;!&ndash;            <span slot="name">{{item.name}}</span>&ndash;&gt;-->
-<!--            <el-button type="success" plain slot="reference" class="btn">{{item.name}}</el-button>-->
-<!--          </el-popover>-->
-<!--        </router-link>-->
-<!--      </el-col>-->
-
-<!--    </el-row>-->
 
   </div>
 </template>
