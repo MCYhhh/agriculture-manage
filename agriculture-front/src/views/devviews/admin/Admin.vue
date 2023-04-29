@@ -6,7 +6,7 @@
     </div>
     <div class="admin-content">
       <el-container style="height: 1000px; border: 1px solid #eee">
-        <el-aside width="200px"  style="background-color: rgb(235, 246, 235)">
+        <el-aside width="200px"  style="background-color: rgb(221, 241, 209)">
         <AdminNav></AdminNav>
         </el-aside>
         <el-container>
@@ -54,7 +54,7 @@ export default {
   box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
 }
 .el-header {
-  background-color: #faf6ec;
+  background-color: #ecf6e5;
   color: #333;
   line-height: 60px;
   height: 100%;

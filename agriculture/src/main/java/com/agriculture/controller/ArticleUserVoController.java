@@ -9,10 +9,13 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
-
+@RestController
+@RequestMapping("/articleUser")
 public class ArticleUserVoController {
     @Resource
     private IArticleService iService;
@@ -35,8 +38,8 @@ public class ArticleUserVoController {
     }
 
     //    通过用户编号查询文章
-    @PostMapping("/findByCid")
-    public Result findByCid(@RequestBody ArticleUserVoPage aPage){
+    @PostMapping("/findByUid")
+    public Result findByUid(@RequestBody ArticleUserVoPage aPage){
         Page<ArticleUserVo> iPage = new Page(aPage.getPage(),aPage.getSize());
         IPage<ArticleUserVo> tempIPage=iService.getByUid(iPage,aPage.getUid());
         System.out.print("total---"+tempIPage.getTotal());
