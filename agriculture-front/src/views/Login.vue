@@ -60,11 +60,11 @@ export default {
           const {data: res} = await loginAPI(json);
           console.log(res)
           if (res.code === '00000') {
+            this.$message.success("登录成功");
             localStorage.setItem("user", JSON.stringify(res.data)); // 存储用户信息到浏览器
-            this.$message.success("登录成功")
             this.$router.push('/front/home')
           } else {
-            this.$message.error(res.msg)
+             return this.$message.error(res.msg)
           }
         }
       });
