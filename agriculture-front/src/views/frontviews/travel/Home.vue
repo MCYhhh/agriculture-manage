@@ -7,6 +7,24 @@
       <test></test>
     </div>
     <div  class="title" v-bind:style="{ fontWeight: 'bold' }">景区</div>
+    <p style="margin-left: 350px">
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">游玩必去</el-button>
+      <i class="el-icon-arrow-right"></i>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">民族风情</el-button>
+      <i class="el-icon-arrow-right"></i>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">网红打卡</el-button>
+      <i class="el-icon-arrow-right"></i>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">交通指南</el-button>
+      <i class="el-icon-arrow-right"></i>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">住宿指南</el-button>
+    </p>
+    <div class="demo-image__placeholder" style="margin-left:110px;margin-bottom: 15px;margin-top: -5px">
+      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">大理黄龙潭</p></el-card>
+      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">大理网红拍照打卡</p></el-card>
+      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">傣家粽</p></el-card>
+      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">云泼水</p></el-card>
+    </div>
+
     <el-card style="width: 80%;margin-left: 100px;">
       <div class="demo-image__preview" v-for="(item,index) in news" :key="item.id">
         <el-image
@@ -165,9 +183,24 @@ export default {
 </script>
 
 <style scoped>
+.frontimages{
+  width:300px;
+  height:260px;
+  display: inline-block;
+  background-color: #F6EEE8FF;
+}
+.description{
+  font-size: 16px;
+  color: #a9b5c0;
+  text-align: center;
+}
 .map{
   margin-left: -300px;
   margin-top: 100px;
+}
+.fimages :hover{
+  width: 270px;
+  /*height: 260px;*/
 }
 .title{
   width: 77.2%;
