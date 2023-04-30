@@ -5,7 +5,6 @@
     <HomeRight></HomeRight>
     <HomeMiddle></HomeMiddle>
     <HomeMiddle2></HomeMiddle2>
-    <Footer></Footer>
   </div>
 </template>
 
@@ -16,7 +15,6 @@ import HomeLeft from "./HomeLeft";
 import HomeRight from "./HomeRight";
 import HomeMiddle from "./HomeMiddle";
 import HomeMiddle2 from "./HomeMiddle2";
-import Footer from "./Footer";
 export default {
   name: "Home",
   components: {
@@ -26,7 +24,6 @@ export default {
     HomeRight,
     HomeMiddle,
     HomeMiddle2,
-    Footer
   }
 }
 </script>

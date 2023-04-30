@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import {loginAPI} from "../api";
+
 export default {
   name: "Login",
   data() {
@@ -52,9 +54,19 @@ export default {
   methods: {
     onSubmit() {
       console.log('submit!',this.LoginForm);
-      this.$message({
-        message: '登录成功',
-        type: 'success'
+      this.$refs['form'].validate(async (valid) => {
+        if (valid) {  // 表单校验合法
+          const json = JSON.stringify(this.LoginForm)
+          const {data: res} = await loginAPI(json);
+          console.log(res)
+          if (res.code === '00000') {
+            localStorage.setItem("user", JSON.stringify(res.data)); // 存储用户信息到浏览器
+            this.$message.success("登录成功")
+            this.$router.push('/front/home')
+          } else {
+            this.$message.error(res.msg)
+          }
+        }
       });
 
     },

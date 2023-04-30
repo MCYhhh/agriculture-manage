@@ -16,17 +16,16 @@
             <div style="padding: 14px;">
               <span>{{ item.gname }}</span>
               <span style="padding-left: 20px">
-                <el-tag type="warning">￥{{ item.gprice }}元</el-tag></span>
+                <el-tag type="warning">￥{{ item.gprice }}元</el-tag><van-icon name="shop-o" class="icon" style="margin-left: 10px">店铺</van-icon></span>
               <p>{{item.gdesp}}</p>
+<!--
               <div class="bottom clearfix">
-<!--                <time class="time">{{ currentDate }}</time>-->
+              <time class="time">{{ currentDate }}</time>-->
                 <van-goods-action >
                   <van-goods-action-button type="warning" text="加入购物车" @click="addcart"/>
                   <van-goods-action-button type="danger" text="立即购买" @click="buy"/>
                 </van-goods-action>
               </div>
-            </div>
-
           </el-card>
         </el-col>
         <div class="block">

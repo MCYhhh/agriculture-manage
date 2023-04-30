@@ -185,6 +185,8 @@ export default {
 <style scoped>
 .articleList{
   position: static;
+  height: 800px;
+  margin-left: 160px;
 }
 .img{
   float: left;
@@ -224,8 +226,11 @@ export default {
 .button{
   /*top: 10px;*/
   /*right: 50px;*/
-  margin-left: 300px;
-  font-size: 20px;
+  /*right: 10px;*/
+  top:25px;
+  margin-left: 400px;
+  position: relative;
+  font-size: 15px;
   color: white;
   background: #7fb2ec;
 }

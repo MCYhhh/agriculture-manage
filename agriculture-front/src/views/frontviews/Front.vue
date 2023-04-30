@@ -13,25 +13,24 @@
       </el-header>
       <el-main>
         <router-view></router-view>
+        <Footer></Footer>
       </el-main>
     </el-container>
-
   </div>
-
 </template>
 
 <script>
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 export default {
   name: "Home",
-  components: {Nav},
-
+  components: {Footer, Nav}
 }
 </script>
 
 <style scoped>
-  .logo {
+  .logo{
     border-radius: 50px;
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
   }
 </style>

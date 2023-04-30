@@ -219,8 +219,7 @@ export default {
 
 .scenery_container{
   margin:
-    /*-150px 0 0 20px;*/
-  -0px 0 0 300px
+    -0px 0 -180px 300px
 }
 .content{
   position: relative;
