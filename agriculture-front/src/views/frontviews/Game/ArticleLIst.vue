@@ -1,7 +1,7 @@
 <template>
   <div class="articleList">
     <el-card class="card" shadow="hover" v-for="item in news">
-      <el-button type="text" class="button">点击了解</el-button>
+      <el-button class="button" round>点击了解</el-button>
       <el-image style="width:200px; height: 200px;" class="img" alt="图片"
                 :src="item.img"
                 :preview-src-list="item.srcList" >
@@ -56,7 +56,7 @@ export default {
           srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
           title:'大厦公园',
           type:'娱乐',
-          summary:'多走走多看看',
+          summary:'多走走多看看，最近的恻然封',
           content:'最近风沙肆虐，水源不足等灾害频频发生;气候离不开环境，环境也离不开气候，在这两者之间，人类却成了第三者。\n' +
             '随手关灯，是一种再普通不过的行为，然而10亿人在同一时间做同样的一件普通的事，人们心中激荡起强烈的情感共鸣，进而产生对人类命运和地球未来的共同关切。这样的举动，能否激起人类这个“第三者”对环保意识的觉醒?\n',
           score: 3.7,
@@ -196,20 +196,19 @@ export default {
   margin-right: 20px;
 }
 .info{
-  margin:  10px auto ;
+  margin:  10px auto;
 }
 .title{
   font-size: 25px;
 }
 .summary{
   font-size: 20px;
-  margin:  10px auto ;
+  margin-top: 10px;
 }
 .text{
-  padding-bottom: 5px;
   padding-left: 20px;
   float: left;
-  height: 300px;
+  height: 200px;
 }
 .card{
   float: left;
@@ -217,10 +216,12 @@ export default {
   width: 750px;
   height: 240px;
   background: #d0caca;
+  position: static;
 }
 .button{
-  top: 10px;
-  right: 10px;
+  position: relative;
+  top: 0;
+  right: 0;
   font-size: 20px;
   color: white;
   background: #7fb2ec;
