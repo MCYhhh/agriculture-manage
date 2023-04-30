@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import store from "./store";
+import '../src/assets/css/globalcss.css'
 // import BaiduMap from 'vue-baidu-map'
 // Vue.use(BaiduMap, {
 //   ak: 'XZnOK8f5Kf9q3IDnx1i1aBUQ5RKHLSl7'  //这个地方是官方提供的ak密钥
@@ -19,17 +20,9 @@ import store from "./store";
 
 Vue.use(ElementUI,{size:"small"})
 Vue.use(Vant)
-
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
-})
 
 // Vue.use(BaiduMap, { ak: 'XZnOK8f5Kf9q3IDnx1i1aBUQ5RKHLSl7' })
 
