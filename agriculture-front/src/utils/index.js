@@ -8,7 +8,7 @@ import axios from 'axios'
 axios.defaults.headers["Content-Type"] = "application/json ; charset=utf-8"
 
 const myAxios = axios.create({
-  baseURL: 'http://localhost:8083'
+  baseURL: 'http://localhost:8084'
 })
 
 // request 拦截器
@@ -40,12 +40,12 @@ myAxios.interceptors.request.use(config => {
 //           res = res ? JSON.parse(res) : res
 //       }
 //       // 当权限验证不通过的时候给出提示
-//       if (res.code === '401') {
+//       if (res.code === '20011') {
 //           // ElementUI.Message({
 //           //     message: res.msg,
 //           //     type: 'error'
 //           // });
-//           router.push("/layout/login")
+//         this.$router.push('/')
 //       }
 //       return res;
 //   },

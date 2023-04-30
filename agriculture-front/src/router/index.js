@@ -306,7 +306,7 @@ router.beforeEach((to, from, next) => {
   //判断是否是登录页，如果是接着下一步
   if (to.path === '/' || to.path==='/register') return next()
   //    获取token
-  const tokenStr = JSON.parse(localStorage.getItem('user')).token
+  const tokenStr = localStorage.getItem('token')
   //判断token是否存在，
   if (!tokenStr) {
     return next('/')
