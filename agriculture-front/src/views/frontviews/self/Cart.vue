@@ -29,7 +29,7 @@ import CartHeader from "./CartHeader";
 import CartBody from "./CartBody";
 import Total from "./Total";
 import axios from 'axios'
-import bus from "../../eventBus";
+import bus from "../../../eventBus";
 export default {
   name: "Cart",
   components:{

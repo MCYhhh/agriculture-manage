@@ -39,4 +39,7 @@ export default {
   background-color:rgba(0,0,0,0)!important;
   border-bottom: none;
 }
+span{
+  font-size: 16px;
+}
 </style>

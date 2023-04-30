@@ -1,7 +1,7 @@
 <template>
   <div class="home-container">
     <HomeMainOver></HomeMainOver>
-    <HomeLeft></HomeLeft>
+    <HomeLeft ></HomeLeft>
     <HomeRight></HomeRight>
     <HomeMiddle></HomeMiddle>
     <HomeMiddle2></HomeMiddle2>
