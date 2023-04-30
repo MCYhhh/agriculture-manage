@@ -56,7 +56,7 @@ const routes=[
             path: 'trolley',
             name: 'Trolley',
             component: () => import ('@/views/frontviews/self/Trolley'),
-          }
+          },
         ]
       },
       {
@@ -73,6 +73,9 @@ const routes=[
         path: 'game',
         name: 'Game',
         component: () => import ('@/views/frontviews/Game/Home'),
+        children: [
+
+        ]
       },
       {
         path: 'shop',
@@ -82,14 +85,9 @@ const routes=[
     ]
   },
   {
-    path: '/articlelist',
-    name: 'ArticleList',
-    component: () => import ('@/views/frontviews/Game/ArticleList'),
-  },
-  {
-    path: '/articlecontent',
-    name: 'ArticleContent',
-    component: () => import ('@/views/frontviews/Game/ArticleContent'),
+    path: '/front/game/detail',
+    name: 'Detail',
+    component: () => import ('@/views/frontviews/Game/ArticleDetail'),
   },
   {
     path: '/admin',
@@ -172,12 +170,6 @@ const routes=[
       }
     ]
   },
-  {
-    path:'/cart',
-    name:'Cart',
-    component:()=>import ('@/views/devviews/Cart'),
-  },
-
   {
     path:'/404',
     name:'NotFound',

@@ -1,10 +1,11 @@
 <template>
   <div class="footer-container" >
-    <van-grid  v-for="item in footerList">
-      <van-grid-item v-for="value in item" :key="value" >
-        <p style="color: #e59c9c">{{ value }}</p>
-      </van-grid-item>
-    </van-grid>
+    <div class="footer-left" >
+      <p>haohoahoaoha</p>
+    </div>
+    <div class="footer-right">
+      <p>豪豪豪豪</p>
+    </div>
   </div>
 </template>
 
@@ -31,7 +32,7 @@ export default {
   width: 2000px;
   height:200px ;
   position: static;
-  background-color: #f6f3df;
+  background-color: #315979;
 }
 .van-grid-item{
   flex-basis:15%;
@@ -39,6 +40,12 @@ export default {
 /deep/ .van-grid-item__content{
   background-color: rgba(0,0,0,0);
   padding: -20px;
+}
+.footer-left{
+  float: left;
+}
+.footer-right{
+  float: right;
 }
 
 </style>

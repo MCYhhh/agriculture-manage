@@ -167,7 +167,8 @@ export default {
 </script>
 <style scoped>
 .homeleft-container{
-  margin:-150px 0 0 20px;
+  margin:-150px 0 0 180px;
+  width: 2000px;
 }
 .content{
   position: relative;

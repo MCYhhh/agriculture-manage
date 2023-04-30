@@ -1,5 +1,9 @@
 <template>
   <div class="articleContent">
+    <div class="back">
+      <i class="el-icon-d-arrow-left" style="font-size: 25px;color: #999999;" @click="backgame"></i>
+      <span style="font-size: 22px;color:#e0dddd;" >返回</span>
+    </div>
     <div class="title">
         {{news.title}}
     </div>
@@ -30,7 +34,7 @@
     </div>
 
     <div class="img">
-      <el-image style="width:auto; height: 500px;padding: 10px 200px ;"
+      <el-image style="width:auto; height: 700px;padding: 10px 200px ;"
                 :src="news.img"
                 :preview-src-list="news.srcList">
       </el-image>
@@ -45,7 +49,7 @@
 
 <script>
 export default {
-  name: "ArticleContent",
+  name: "ArticleDetail",
   data() {
     return {
       news: {
@@ -100,6 +104,11 @@ export default {
         img:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
         srcList: ['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
       },
+    }
+  },
+  methods:{
+    backgame(){
+      this.$router.push('/front/game')
     }
   }
 }

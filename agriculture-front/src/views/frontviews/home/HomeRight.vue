@@ -1,6 +1,6 @@
 <template>
   <div class="homeright-container">
-    <div class="notify" style="width: 500px">
+    <div class="notify" style="width: 400px">
       <van-notice-bar left-icon="volume-o" :scrollable="true"  v-for="(item,index) in topics" :key="item.id">
         <van-swipe
           vertical
@@ -69,10 +69,10 @@ export default {
         {id: 4, content: "花香城一天导航游玩~~~"},
         {id: 5, content: "限时领取，3折优惠购买~~~"},
         {id: 6, content: "小李家桃子熟啦，快来采摘！！"},
-        {id: 7, content: "小惠助农，点击详情！！"},
-        {id: 8, content: "顾客有福利啦！！"},
-        {id: 9, content: "花香城一天导航游玩~~~"},
-        {id: 10, content: "限时领取，3折优惠购买~~~"},
+        // {id: 7, content: "小惠助农，点击详情！！"},
+        // {id: 8, content: "顾客有福利啦！！"},
+        // {id: 9, content: "花香城一天导航游玩~~~"},
+        // {id: 10, content: "限时领取，3折优惠购买~~~"},
       ]
     }
   }
@@ -92,10 +92,10 @@ export default {
   }
   .homeright-container{
     position: absolute;
-    top: 500px;
+    top: 600px;
     right: 25px;
-    width: 500px;
-    height: 1170px;
+    width: 400px;
+    height: 1000px;
     box-shadow: -5px 5px 5px rgba(0,0,0,0.2);
   }
   /deep/ .van-swipe-item{

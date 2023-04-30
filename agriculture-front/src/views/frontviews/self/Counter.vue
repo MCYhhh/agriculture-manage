@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import bus from "../../eventBus";
+import bus from "../../../eventBus";
 export default {
   name: "Counter",
   props:{
