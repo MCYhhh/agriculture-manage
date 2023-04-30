@@ -1,11 +1,11 @@
 <template>
   <div class="mustgo">
     <el-card class="card" shadow="hover" v-for="item in scenerys">
-      <el-button type="primary" class="button" @click="getSceneryDetail">点击了解</el-button>
       <div class="scenery">
         <div class="sname">
           <p class="title">{{item.sname}} </p>
         </div>
+        <el-button type="primary" class="button" @click="getSceneryDetail">点击了解</el-button>
         <div class="info">
           <p class="saddress">
             地址:{{item.saddress}}
@@ -95,10 +95,12 @@ export default {
 <style scoped>
 .info p{
   display:inline-block;
-  margin-right: 20px;
+  margin-right: 100px;
 }
 .scenery {
-  float: left;
+  width:70%;
+  display: inline-block;
+  position: static;
 }
 .sname{
   font-size: 40px;
@@ -108,17 +110,21 @@ export default {
 }
 .card{
   margin: 10px auto;
-  position: static;
+  /*position: static;*/
   width: 80%;
   border-radius: 20px;
 }
+.el-card__body, .el-main{
+  position: static;
+}
 .button{
   position: relative;
-  top: 10px;
-  right: 20px;
+  top: -70px;
+  left: 700px;
 }
 .img{
   float: right;
+  top: 20px;
+  right: 20px;
 }
-
 </style>

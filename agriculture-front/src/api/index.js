@@ -22,7 +22,7 @@ export const loginAPI = (json) => {     //,usrl,uinfo
 export const articleAPI = (json) => {
   return request({
     url:'/article/findAll',
-    method:'GET',
+    method:'POST',
     data:json,
   })
 }
