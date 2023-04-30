@@ -34,21 +34,24 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="currentPage1"
-        :page-sizes="[25, 50, 75, 100]"
-        :page-size="25"
+        :current-page="articlePage.page"
+        :page-sizes="[4, 8, 10, 16, 20]"
+        :page-size="articlePage.size"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="100">
+        :total="articlePage.size">
       </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
+import {articleAPI} from "../../../api";
+
 export default {
   name: "ArticleLIst",
   data(){
     return {
+      newList:{},
       news:[
         {
           id:1,
@@ -163,7 +166,12 @@ export default {
           uname:'小星星'
         }
       ],
-      currentPage4: 1,
+      articlePage:{
+        page: 1,
+        size:10,
+        total:100,
+      }
+
     }
   },
   methods:{
@@ -175,7 +183,22 @@ export default {
     },
     getArticleDetail(){
       this.$router.push('/front/game/detail')
-    }
+    },
+     async getarticleList() {
+       console.log("sgdjxhekhfc")
+     const json = JSON.stringify(this.articlePage);
+     const {data: res} = await articleAPI(json);
+     console.log('token'+localStorage.getItem('user').token);
+       console.log(res);
+     // if (res.code==='00000'){
+     //   console.log("文章获取成功");
+     // }else {
+     //   this.$message.error(res.msg)
+     // }
+   }
+  },
+  created() {
+    this.getarticleList()
   },
   mounted() {
   }
