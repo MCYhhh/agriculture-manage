@@ -1,10 +1,14 @@
 <template>
   <div class="footer-container" >
-    <div class="footer-left" >
+    <div class="footer-left" style="width: 500px;margin-left: 50px">
+      <p>haohoahoaoha</p>
+      <p>haohoahoaoha</p>
       <p>haohoahoaoha</p>
     </div>
-    <div class="footer-right">
-      <p>豪豪豪豪</p>
+    <div class="footer-right" style="margin-right: 120px">
+      <p>haohoahoaoha</p>
+      <p>haohoahoaoha</p>
+      <p>haohoahoaoha</p>
     </div>
   </div>
 </template>
@@ -43,6 +47,9 @@ export default {
 }
 .footer-left{
   float: left;
+}
+p{
+  color: white;
 }
 .footer-right{
   float: right;

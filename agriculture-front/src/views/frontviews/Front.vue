@@ -13,6 +13,7 @@
       </el-header>
       <el-main>
         <router-view></router-view>
+        <Footer></Footer>
       </el-main>
     </el-container>
   </div>
@@ -20,9 +21,10 @@
 
 <script>
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 export default {
   name: "Home",
-  components: {Nav}
+  components: {Footer, Nav}
 }
 </script>
 
