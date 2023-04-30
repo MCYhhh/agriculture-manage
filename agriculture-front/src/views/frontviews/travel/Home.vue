@@ -32,18 +32,25 @@
           </p>
         </div>
         <div class="itemrate">
-          <el-rate
-            v-model="item.score"
-            show-score
-            text-color="#ff9900"
-            score-template="{value}">
-          </el-rate>
-          <p style="position: relative;top: -60px;left:160px">
-            <span class="date"><i class="el-icon-date">{{item.create_time}}</i></span>
-            <el-link type="success">@云南旅游</el-link>
+<!--          <el-rate-->
+<!--            v-model="item.score"-->
+<!--            show-score-->
+<!--            text-color="#ff9900"-->
+<!--            score-template="{value}">-->
+<!--          </el-rate>-->
+          <p style="position: relative;top: -70px;left:160px;margin-bottom: 35px">
+            <span class="date" >
+              <van-icon name="clock-o" style="font-weight: lighter;font-size: 5px"/>
+              <span style="font-size: 15px" >{{item.create_time}} </span>
+               <el-link type="success" style="font-size: 16px;margin-left: 10px"> / 悦享滇韵</el-link>
+            </span>
+            <i class="el-icon-d-arrow-right" style="margin-left: 50px;"></i>
+            <span style="font-size: 15px;color:green;">了解更多</span>
+
           </p>
           <!--          <span>@{{item.uname}}</span>-->
-          <el-button type="primary" class="browse">查看详情</el-button>
+
+<!--          <el-button type="primary" class="browse">了解更多</el-button>-->
         </div>
         <el-divider class="divide"></el-divider>
       </div>
@@ -202,7 +209,8 @@ span{
 }
 .itemrate {
   position: static;
-  margin-top: -50px;
+  margin-left: 700px;
+  margin-top: -15px;
 }
 .itemrate .el-rate{
   position: relative;
@@ -211,6 +219,7 @@ span{
 .itemrate .browse{
   position: relative;
   top:-105px;
-  left:380px
+  left:380px;
+  /*color:red;*/
 }
 </style>

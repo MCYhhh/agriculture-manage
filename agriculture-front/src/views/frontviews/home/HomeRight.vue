@@ -96,7 +96,7 @@ export default {
     right: 25px;
     width: 400px;
     height: 1000px;
-    box-shadow: -5px 5px 5px rgba(0,0,0,0.2);
+    /*box-shadow: -5px 0px 5px rgba(0,0,0,0.2);*/
   }
   /deep/ .van-swipe-item{
     height: 150px;
@@ -109,8 +109,11 @@ export default {
     margin: 5px;
   }
   .notify{
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
 
+  }
+  /deep/ .van-notice-bar{
+    background-color: #f8f5f4;
   }
 </style>
 
