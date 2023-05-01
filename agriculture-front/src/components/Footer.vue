@@ -1,11 +1,11 @@
 <template>
   <div class="footer-container" >
-    <div class="footer-left" style="width: 500px;margin-left: 50px">
+    <div class="footer-left" style="width: 50%;">
       <p>haohoahoaoha</p>
       <p>haohoahoaoha</p>
       <p>haohoahoaoha</p>
     </div>
-    <div class="footer-right" style="margin-right: 120px">
+    <div class="footer-right">
       <p>haohoahoaoha</p>
       <p>haohoahoaoha</p>
       <p>haohoahoaoha</p>
@@ -31,11 +31,10 @@ export default {
 
 <style scoped>
 .footer-container{
-  margin-top: 600px ;
-  margin-left: -30px;
-  width: 2000px;
-  height:200px ;
-  position: static;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  /*position: static;*/
   background-color: #315979;
 }
 .van-grid-item{
@@ -47,12 +46,13 @@ export default {
 }
 .footer-left{
   float: left;
+  margin-left: 50px;
 }
 p{
   color: white;
 }
 .footer-right{
   float: right;
+  margin-right: 50px;
 }
-
 </style>

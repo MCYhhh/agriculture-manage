@@ -8,11 +8,11 @@
     </div>
     <div  class="title" v-bind:style="{ fontWeight: 'bold' }">景区</div>
     <p style="margin-left: 350px">
-      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">游玩必去</el-button>
+      <el-button type="primary" plain @click="gomustgo" style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">游玩必去</el-button>
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">民族风情</el-button>
       <i class="el-icon-arrow-right"></i>
-      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">网红打卡</el-button>
+      <el-button type="primary" plain @click="hot" style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">网红打卡</el-button>
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">交通指南</el-button>
       <i class="el-icon-arrow-right"></i>
@@ -173,13 +173,16 @@ export default {
     },
     create(){
       console.log("创建创建文章")
+    },
+    gomustgo(){
+      this.$router.push("/front/mustgo")
+    },
+    hot(){
+      this.$router.push("/front/hot")
     }
+
   },
 }
-
-
-
-
 </script>
 
 <style scoped>

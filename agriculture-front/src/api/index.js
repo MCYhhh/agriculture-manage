@@ -19,31 +19,23 @@ export const loginAPI = (json) => {     //,usrl,uinfo
     data: json,
   })
 }
-
-
-//提交图片接口
-export const uploadAPI =(formData) => {
-    return request ({
-        url:'/file/upload',
-        method: 'POST',
-        data: formData,
-        headers: {'Content-Type': 'multipart/form-data'},
-    })
-}
-
-//新增文章
-export const saveArticleAPI =(json) => {
-  return request ({
-    url:'/article/save',
-    method: 'POST',
-    data: json,
+export const articleAPI = (json) => {
+  return request({
+    url:'/article/findAll',
+    method:'POST',
+    data:json,
   })
 }
-
-//注销接口
-export const logoutAPI =() => {
-  return request ({
-    url:'/user/logout',
-    method: 'GET',
+export const articleDetailAPI = (id) => {
+  return request({
+    url:'/article/'+id,
+    method:'GET',
+  })
+}
+export const sceneryAllAPI = (json) => {
+  return request({
+    url:'/scenery/findAll',
+    method:'POST',
+    data:json,
   })
 }

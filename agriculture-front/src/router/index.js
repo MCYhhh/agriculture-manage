@@ -175,11 +175,6 @@ const routes=[
     name:'NotFound',
     component:()=>import ('@/views/404'),
   },
-  {
-    path:'/file',
-    name:'file',
-    component:()=>import ('@/views/file'),
-  },
 ]
 
 
@@ -195,99 +190,123 @@ Router.prototype.push = function push(location, onResolve, onReject) {
 }
 
 
+//
 const router = new Router({
   mode: 'history',
   base: './',
   routes
 })
 
-// 提供一个重置路由的方法
+// // 提供一个重置路由的方法
 export const resetRouter = () => {
   router.matcher = new Router({
     mode: 'history',
-    base: './',
+    base:'./',
     routes
   })
 }
 
-// 注意：刷新页面会导致页面路由重置
-export const setRoutes = () => {
-  const storeMenus = localStorage.getItem("menus");
-  if (storeMenus) {
+// // 注意：刷新页面会导致页面路由重置
+// export const setRoutes = () => {
+//   const storeMenus = localStorage.getItem("menus");
+//   if (storeMenus) {
+//
+//     // 获取当前的路由对象名称数组
+//     const currentRouteNames = router.getRoutes().map(v => v.name)
+//     if (!currentRouteNames.includes('Manage')) {
+//       // 拼装动态路由
+//       const manageRoute = {
+//         path: '/front', name: 'Front', component: () => import('@/views/frontviews/Front'), meta: {
+//           title: '农旅信息管理后台'
+//         }, redirect: "/login",
+//         children: [
+//           {
+//             path: 'home',
+//             name: 'Home',
+//             component: () => import ('@/views/frontviews/home/Home'),
+//           },
+//           {
+//             path: 'self',
+//             name: 'Self',
+//             component: () => import ('@/views/frontviews/self/Home'),
+//           },
+//           {
+//             path: 'travel',
+//             name: 'Travel',
+//             component: () => import ('@/views/frontviews/travel/Home'),
+//           },
+//           {
+//             path: 'community',
+//             name: 'Community',
+//             component: () => import ('@/views/frontviews/community/Home'),
+//           },
+//           {
+//             path: 'game',
+//             name: 'Game',
+//             component: () => import ('@/views/frontviews/game/Home'),
+//           },
+//           {
+//             path: 'shop',
+//             name: 'Shop',
+//             component: () => import ('@/views/frontviews/shop/Home'),
+//           },
+//         ]
+//       }
+//       // const menus = JSON.parse(storeMenus)
+//       // menus.forEach(item => {
+//       //   if (item.path) {  // 当且仅当path不为空的时候才去设置路由
+//       //     let itemMenu = { path: item.path.replace("/", ""), name: item.name, component: () => import('../views/' + item.pagePath + '.vue')}
+//       //     manageRoute.children.push(itemMenu)
+//       //   } else if(item.children.length) {
+//       //     item.children.forEach(item => {
+//       //       if (item.path) {
+//       //         let itemMenu = { path: item.path.replace("/", ""), name: item.name, component: () => import('../views/' + item.pagePath + '.vue')}
+//       //         manageRoute.children.push(itemMenu)
+//       //       }
+//       //     })
+//       //   }
+//       // })
+//       // 动态添加到现在的路由对象中去
+//       router.addRoute(manageRoute)
+//     }
 
-    // 获取当前的路由对象名称数组
-    const currentRouteNames = router.getRoutes().map(v => v.mtitle)
-    if (currentRouteNames.includes('admin')) {
-      // 拼装动态路由
-      const adminRoute={path: '/admin', name: 'Admin', component:()=>import ('@/views/devviews/admin/Admin'),meta:{
-        title:'管理员后台'
-      },redirect: '/admin/home'
-      }
-      const menus = JSON.parse(storeMenus)
-      menus.forEach(item => {
-        if (item.mpath) {  // 当且仅当path不为空的时候才去设置路由
-          let itemMenu = { path: item.mpath.replace("/", ""), name: item.mtitle, component: () => import('@/views/devviews/admin/' + item.mrouter + '.vue')}
-          adminRoute.children.push(itemMenu)
-        } else if(item.children.length) {
-          item.children.forEach(item => {
-            if (item.mpath) {
-              let itemMenu = { path: item.mpath.replace("/", ""), name:item.mtitle, component: () => import('@/views/devviews/admin/' + item.mrouter + '.vue')}
-              adminRoute.children.push(itemMenu)
-            }
-          })
-        }
-      })
-      // 动态添加到现在的路由对象中去
-      router.addRoute(adminRoute)
-    }
-    if (currentRouteNames.includes('shopper')) {
-      // 拼装动态路由
-      const adminRoute={path: '/shopper', name: 'Shopper', component:()=>import ('@/views/devviews/shopper/Shopper'),meta:{
-          title:'商家后台'
-        },redirect: '/shopper/home'
-      }
-      const menus1 = JSON.parse(storeMenus)
-      menus1.forEach(item => {
-        if (item.mpath) {  // 当且仅当path不为空的时候才去设置路由
-          let itemMenu = { path: item.mpath.replace("/", ""), name: item.mtitle, component: () => import('@/views/devviews/shopper/' + item.mrouter + '.vue')}
-          adminRoute.children.push(itemMenu)
-        } else if(item.children.length) {
-          item.children.forEach(item => {
-            if (item.mpath) {
-              let itemMenu = { path: item.mpath.replace("/", ""), name:item.mtitle, component: () => import('@/views/devviews/shopper/' + item.mrouter + '.vue')}
-              adminRoute.children.push(itemMenu)
-            }
-          })
-        }
-      })
-      // 动态添加到现在的路由对象中去
-      router.addRoute(adminRoute)
-    }
-
-  }
-}
-
-// 重置就再set一次路由
-setRoutes()
+//   }
+// }
+//
+// // 重置我就再set一次路由
+// setRoutes()
 
 
-router.beforeEach((to, from, next) => {
-  localStorage.setItem("currentPathName", to.name)  // 设置当前的路由名称
-  store.commit("setPath")
+// router.beforeEach((to, from, next) => {
+//   localStorage.setItem("currentPathName", to.name)  // 设置当前的路由名称
+//   store.commit("setPath")
+//
+//   // 未找到路由的情况
+//   if (!to.matched.length) {
+//     const storeMenus = localStorage.getItem("menus")
+//     if (storeMenus) {
+//       next("/404")
+//     } else {
+//       // 跳回登录页面
+//       next("/login")
+//     }
+//   }
+//   // 其他的情况都放行
+//   next()
+//
+// })
 
-  // 未找到路由的情况
-  if (!to.matched.length) {
-    const storeMenus = localStorage.getItem("menus")
-    if (storeMenus) {
-      next("/404")
-    } else {
-      // 跳回登录页面
-      next("/")
-    }
-  }
-  // 其他的情况都放行
-  next()
-
-})
+//路由导航守卫
+// router.beforeEach((to, from, next) => {
+//   //判断是否是登录页，如果是接着下一步
+//   if (to.path === '/' || to.path==='/register') return next()
+//   //    获取token
+//   const tokenStr = JSON.parse(localStorage.getItem('user')).token
+//   //判断token是否存在，
+//   if (!tokenStr) {
+//     return next('/')
+//   }
+//   next()
+// })
 
 export default router
