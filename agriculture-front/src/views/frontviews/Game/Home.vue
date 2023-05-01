@@ -124,10 +124,10 @@ export default {
   margin:  10px auto ;
 }
 .text{
-  padding-bottom: 5px;
-  padding-left: 20px;
-  float: left;
-  height: 300px;
+  /*padding-bottom: 5px;*/
+  /*padding-left: 20px;*/
+  float: right;
+  /*height: 300px;*/
 }
 .card{
   display: inline-block;
