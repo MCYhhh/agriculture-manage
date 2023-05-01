@@ -15,8 +15,8 @@ const store =new Vuex.Store ({
     logout() {
       // 清空缓存
       localStorage.removeItem("user")
-      localStorage.removeItem("menus")
-      router.push("/login")
+      // localStorage.removeItem("menus")
+      this.$router.push("/")
       //
       // // 重置路由
       // resetRouter()

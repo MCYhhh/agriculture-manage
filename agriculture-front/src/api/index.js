@@ -19,3 +19,23 @@ export const loginAPI = (json) => {     //,usrl,uinfo
     data: json,
   })
 }
+export const articleAPI = (json) => {
+  return request({
+    url:'/article/findAll',
+    method:'POST',
+    data:json,
+  })
+}
+export const articleDetailAPI = (id) => {
+  return request({
+    url:'/article/'+id,
+    method:'GET',
+  })
+}
+export const sceneryAllAPI = (json) => {
+  return request({
+    url:'/scenery/findAll',
+    method:'POST',
+    data:json,
+  })
+}

@@ -25,7 +25,7 @@ public class ArticleController {
     }
 
     //查询所有
-    @GetMapping("/findAll")
+    @PostMapping("/findAll")
     public Result listall(@RequestBody ArticlePage articlePage){
         //iUserService.list();
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
@@ -66,7 +66,7 @@ public class ArticleController {
         return Result.success(articleIPage);
     }
     //通过作者id查找
-    @GetMapping("/findUid")
+    @PostMapping("/findUid")
     public Result findUid(@RequestBody ArticlePage articlePage){
         //iUserService.list();
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
