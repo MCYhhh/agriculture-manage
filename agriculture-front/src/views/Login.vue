@@ -61,6 +61,7 @@ export default {
           console.log(res)
           if (res.code === '00000') {
             this.$message.success("登录成功");
+            localStorage.setItem("menus", JSON.stringify(res.data.menus))  // 存储用户菜单到浏览器
             localStorage.setItem("user", JSON.stringify(res.data)); // 存储用户信息到浏览器
             this.$router.push('/front/home')
           } else {

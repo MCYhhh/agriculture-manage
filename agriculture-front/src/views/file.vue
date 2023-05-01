@@ -21,13 +21,10 @@
         <el-form-item label="正文" :label-width="formLabelWidth">
           <el-input v-model="form.content" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="分数" :label-width="formLabelWidth">
-          <el-input v-model="form.score" autocomplete="off"></el-input>
-        </el-form-item>
 
         <el-form-item label="上传封面" prop="imageUrl">
           <el-upload
-            action="http://localhost:8084/file/upload"
+            action="http://localhost:8084/file"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
             :on-success="handleAvatarSuccess"
@@ -55,8 +52,7 @@
 
 
 <script>
-import {uploadAPI} from "../../../api";
-import {saveArticleAPI} from "../../../api";
+
 export default {
   data() {
     return {
@@ -65,13 +61,11 @@ export default {
       dialogTableVisible: false,
       dialogFormVisible: false,
       form: {
-        title: "",
-        type:0,
-        summary: "",
-        content: "",
-        img: "",
-        score:2.2,
-        uid:1,
+        cname: "",
+        ccolor: "",
+        cinfo: "",
+        curl: "",
+        cisadopt: 0,
       },
       formLabelWidth: "120px",
       json :"",
@@ -80,9 +74,8 @@ export default {
   },
   methods: {
     handleAvatarSuccess(res, file) {
-      console.log("handleAvatarSuccess")
       console.log(res)
-      this.form.img = res
+      this.form.curl = res
       // console.log(this.form.curl = res);
       // this.form.curl = sessionStorage.setItem("curl",this.curl)
     },
@@ -96,12 +89,9 @@ export default {
     },
 
     submitCat: async function (){
-      // const {data:res}=await
-      console.log("上传")
-      console.log(this.form)
-      // this.form.curl='http://localhost:8082/myImg/65ba45786a8742a2b8a08d3ad396b25d..jpg'
+      this.form.curl='http://localhost:8082/myImg/65ba45786a8742a2b8a08d3ad396b25d..jpg'
       this.json = JSON.stringify(this.form),
-        await saveArticleAPI(this.json);
+        await addcatAPI(this.json);
       // console.log(res.data);
       this.$message.success("文章发布成功！！");
       // this.isDisabled=true;
