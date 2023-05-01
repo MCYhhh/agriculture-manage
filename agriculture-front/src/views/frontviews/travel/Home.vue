@@ -8,7 +8,7 @@
     </div>
     <div  class="title" v-bind:style="{ fontWeight: 'bold' }">景区</div>
     <p style="margin-left: 350px">
-      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">游玩必去</el-button>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;"  @click="gomustgo()" >游玩必去</el-button>
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="ethnic()">民族风情</el-button>
       <i class="el-icon-arrow-right"></i>
@@ -221,6 +221,12 @@ export default {
     }
   },
   methods:{
+    gomustgo(){
+       this.$router.push("/front/mustgo")
+     },
+   hot(){
+      this.$router.push("/front/hot")
+    },
     ethnic(){
       this.$router.push('/front/ethnic')
     },
