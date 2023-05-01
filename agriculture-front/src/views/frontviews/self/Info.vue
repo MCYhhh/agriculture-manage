@@ -1,5 +1,5 @@
 <template>
-  <div class="self-container" style="height: 1000px">
+  <div class="info-container" style="height: 1000px">
     <div class="infochange">
       <el-button type="primary" size="medium" @click="modifyinfo" class="change">修改信息</el-button>
     </div>
@@ -178,12 +178,16 @@ export default {
  }
  .infochange{
    float: right;
-   margin: -15px 0 10px 0;
+   margin: 0 0 10px 0;
  }
  .change{
    margin-right: 50px;
    font-size: 15px;
    padding: 16px;
    margin-top: 10px;
+ }
+ .info-container{
+   margin-top: -18px;
+   margin-left: -18px;
  }
 </style>

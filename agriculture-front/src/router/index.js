@@ -65,16 +65,6 @@ const routes=[
         component: () => import ('@/views/frontviews/travel/Home'),
       },
       {
-        path: 'mustgo',
-        name: 'mustgo',
-        component: () => import ('@/views/frontviews/travel/Mustgo'),
-      },
-      {
-        path: 'hot',
-        name: 'Hot',
-        component: () => import ('@/views/frontviews/travel/Hot'),
-      },
-      {
         path: 'community',
         name: 'Community',
         component: () => import ('@/views/frontviews/community/Home'),
@@ -331,6 +321,17 @@ export const resetRouter = () => {
 //
 // })
 
-
+//路由导航守卫
+// router.beforeEach((to, from, next) => {
+//   //判断是否是登录页，如果是接着下一步
+//   if (to.path === '/' || to.path==='/register') return next()
+//   //    获取token
+//   const tokenStr = JSON.parse(localStorage.getItem('user')).token
+//   //判断token是否存在，
+//   if (!tokenStr) {
+//     return next('/')
+//   }
+//   next()
+// })
 
 export default router

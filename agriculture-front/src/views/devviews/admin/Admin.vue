@@ -1,8 +1,7 @@
 <template>
   <div class="admin-container">
     <div class="img" style="margin-left: 20px;padding: 5px">
-      <img src="../../../assets/images/logo.jpg" class="logo" width="100px">
-      <img src="../../../assets/images/font.png" height="100px">
+      <Logo></Logo>
     </div>
     <div class="admin-content">
       <el-container style="height: 1000px; border: 1px solid #eee">
@@ -10,15 +9,7 @@
         <AdminNav></AdminNav>
         </el-aside>
         <el-container>
-          <el-header style="text-align: right; font-size: 12px">
-            <el-dropdown >
-              <i class="el-icon-caret-bottom"  style="margin-right: 15px;padding-right: -20px;font-size: 22px" ></i>
-              <el-dropdown-menu slot="dropdown" style="width: 100px;margin-right: -50px">
-                <el-dropdown-item>返回首页</el-dropdown-item>
-                <el-dropdown-item>管理后台</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-            <span style="margin-right: 60px;font-size: 16px">王小虎</span>
+          <el-header >
           </el-header>
           <el-main>
             <router-view></router-view>
@@ -32,9 +23,10 @@
 
 <script>
 import AdminNav from "../../../components/AdminNav";
+import Logo from "../../../components/Logo";
 export default {
   name: "Admin",
-  components: {AdminNav},
+  components: {Logo, AdminNav},
   data() {
     const item = {
       date: '2016-05-02',

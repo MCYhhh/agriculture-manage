@@ -118,6 +118,7 @@ export default {
 }
 .title{
   font-size: 25px;
+
 }
 .summary{
   font-size: 20px;
