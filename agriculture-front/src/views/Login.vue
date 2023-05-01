@@ -61,8 +61,9 @@ export default {
           console.log(res)
           if (res.code === '00000') {
             localStorage.setItem("user", JSON.stringify(res.data)); // 存储用户信息到浏览器
+            // $router.push('/front/home')
             this.$message.success("登录成功")
-            this.$router.push('/front/home')
+            this.$router.push("/front/transport")
           } else {
             this.$message.error(res.msg)
           }

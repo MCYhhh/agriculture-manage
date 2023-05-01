@@ -99,10 +99,6 @@ export default {
   methods: {
   onSubmit() {
       console.log('submit!',this.RegisterForm);
-      this.$message({
-        message: '注册成功',
-        type: 'success'
-      });
       console.log(this.RegisterForm)
       this.$refs['form'].validate(async (valid) => {
         if (valid) {  // 表单校验合法
@@ -114,9 +110,11 @@ export default {
           const {data: res} = await registerAPI(json);
           console.log(res)
           if (res.code === '00000') {
+            console.log("成功乘车")
             this.$message.success("注册成功")
             // this.$router.push("/")
           } else {
+            console.log("shdcjsjio")
             this.$message.error(res.msg)
           }
         }

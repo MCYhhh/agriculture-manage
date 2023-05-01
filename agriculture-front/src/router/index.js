@@ -85,6 +85,21 @@ const routes=[
     ]
   },
   {
+    path: '/front/transport',
+    name: 'Transport',
+    component: () => import ('@/views/frontviews/travel/Transport'),
+  },
+  {
+    path: '/front/accomodation',
+    name: 'Accommodation',
+    component: () => import ('@/views/frontviews/travel/Accommodation'),
+  },
+  {
+    path: '/front/ethnic',
+    name: 'Ethnic',
+    component: () => import ('@/views/frontviews/travel/Ethnic'),
+  },
+  {
     path: '/front/game/detail',
     name: 'Detail',
     component: () => import ('@/views/frontviews/Game/ArticleDetail'),
