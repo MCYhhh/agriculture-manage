@@ -12,7 +12,7 @@
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="ethnic()">民族风情</el-button>
       <i class="el-icon-arrow-right"></i>
-      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">网红打卡</el-button>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="hot()">网红打卡</el-button>
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="transport()">交通指南</el-button>
       <i class="el-icon-arrow-right"></i>

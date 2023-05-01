@@ -79,25 +79,150 @@
     <div class="description">
       <p style="margin-left: 140px;font-size: 20px">云南境内少数民族主要有彝族、哈尼族、白族、傣族、壮族、苗族、回族、傈僳族、拉祜族佤族、纳西族、景颇族、布朗族、普米族、阿昌族、怒族、基诺族、德昂族、独龙族等25个。 云南是我国民族种类最多的省份。</p>
     </div>
-    </div>
+    <div class="homeleft-container">
 
+
+      <el-card style="width: 60%;">
+        <div class="demo-image__preview" v-for="(item,index) in news" :key="item.id">
+          <el-image
+            style="width: 100px; height: 100px;margin-bottom: -40px;padding-top: 10px"
+            :src="item.url"
+            :preview-src-list="item.srcList"
+          >
+          </el-image>
+          <div class="content">
+            <p>
+              <span>{{item.site}}</span>
+              <el-divider direction="vertical"></el-divider>
+              <span>{{item.type}}</span>
+            </p>
+            <p >
+              <el-tag>摘要</el-tag>
+              {{item.abstarct}}
+            </p>
+            <p >
+              <el-tag type="warning">正文</el-tag>
+              {{item.content}}
+            </p>
+          </div>
+          <div class="itemrate">
+            <p style="position: relative;top: -25px;left:500px">
+              <el-link type="success" style="margin-left: 200px;color:green;">@悦享滇韵</el-link>
+              <i class="el-icon-d-arrow-right" style="margin-left: 50px;"></i>
+              <span style="font-size: 15px;color:green;">了解更多</span>
+<!--              <span class="date"><i class="el-icon-date" style="margin-left: 20px">{{item.create_time}}</i></span>-->
+
+            </p>
+            <!--          <span>@{{item.uname}}</span>-->
+<!--            <el-button type="primary" class="browse">查看详情</el-button>-->
+          </div>
+          <el-divider class="divide"></el-divider>
+        </div>
+        <div class="block">
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage4"
+            :page-sizes="[100, 200, 300, 400]"
+            :page-size="100"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="400">
+          </el-pagination>
+        </div>
+      </el-card>
+
+
+
+
+
+
+
+
+    </div>
+    </div>
 
 </template>
 
 <script>
-  import Zaran from './Zaran'
-
 export default {
   data()  {
     return{
+
+
+      news:[
+        {
+          id:1,
+          url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
+          site:'大理白族蝴蝶会',
+          type:'娱乐',
+          abstarct:'蝴蝶会是大理白族民间一个人与自然亲密无间，共享美好春光的游乐盛会，于每年农历四月十五日在点苍山云弄峰脚下的蝴蝶泉边举行',
+          content:'蝴蝶会是大理白族民间一个人与自然亲密无间，共享美好春光的游乐盛会，于每年农历四月十五日在点苍山云弄峰脚下的蝴蝶泉边举行。',
+          score: 3.7,
+          create_time:'2022-03-19',
+          uname:'小星星'
+        },
+        {
+          id:2,
+          url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
+          site:'漫山公园',
+          type:'游记',
+          abstarct:'好好看',
+          content:'最近风沙肆虐，水源不足等灾害频频发生;气候离不开环境，环境也离不开气候，在这两者之间，人类却成了第三者。\n' +
+            '随手关灯，是一种再普通不过的行为，然而10亿人在同一时间做同样的一件普通的事，人们心中激荡起强烈的情感共鸣，进而产生对人类命运和地球未来的共同关切。这样的举动，能否激起人类这个“第三者”对环保意识的觉醒?\n',
+          score: 2.1,
+          create_time:'2022-02-09',
+          uname:'星月银河'
+        },
+        {
+          id:3,
+          url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
+          site:'樱花公园',
+          type:'游记',
+          abstarct:'好好看',
+          content:'最近风沙肆虐，水源不足等灾害频频发生;气候离不开环境，环境也离不开气候，在这两者之间，人类却成了第三者。\n' +
+            '随手关灯，是一种再普通不过的行为，然而10亿人在同一时间做同样的一件普通的事，人们心中激荡起强烈的情感共鸣，进而产生对人类命运和地球未来的共同关切。这样的举动，能否激起人类这个“第三者”对环保意识的觉醒?\n',
+          score: 4.2,
+          create_time:'2022-02-19',
+          uname:'似水流年'
+        },
+        {
+          id:4,
+          url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
+          site:'香山公园',
+          type:'游记',
+          abstarct:'好好看',
+          content:'最近风沙肆虐，水源不足等灾害频频发生;气候离不开环境，环境也离不开气候，在这两者之间，人类却成了第三者。\n' +
+            '随手关灯，是一种再普通不过的行为，然而10亿人在同一时间做同样的一件普通的事，人们心中激荡起强烈的情感共鸣，进而产生对人类命运和地球未来的共同关切。这样的举动，能否激起人类这个“第三者”对环保意识的觉醒?\n',
+          score: 3.7,
+          create_time:'2022-01-19',
+          uname:'畅游世界'
+        }
+      ],
+      value: 0,
+      switch1: false,
+      switch2: false,
+      option: [
+        { text: '全部文章', value: 0 },
+        { text: '娱乐趣谈', value: 1 },
+        { text: '游记探寻', value: 2 },
+      ],
+
+
+
+
+
+
+
+
       show2: false,
       images:{
         srcList: ['https://www.dalitravel.cn/upload/image/202003/03/1565a37247d0e3d02a3d669824184b50.jpg','../../../assets/images/yunnan1.jpg','https://p1-q.mafengwo.net/s16/M00/BF/21/CoUBUmEuN4WAQpEBABmrddaOMac200.jpg?imageView2%2F2%2Fw%2F1360%2Fq%2F90','https://p1-q.mafengwo.net/s16/M00/BF/40/CoUBUmEuN8qAaTXiADTR163bpk4906.jpg?imageView2%2F2%2Fw%2F1360%2Fq%2F90','https://p1-q.mafengwo.net/s16/M00/BF/38/CoUBUmEuN7OAZoqOABXLo0Rl8cw563.jpg?imageView2%2F2%2Fw%2F1360%2Fq%2F90'],
       }
     }
-  },
-  components: {
-    Zaran
   },
   name: "Ethnic",
   methods:{
@@ -111,7 +236,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.articleContent{
+  /*background-image: url('../../../assets/images/yunnan8.png');*/
+  /*background-repeat: no-repeat;*/
+  /*background-opacity: 0.5*/
+}
 .description{
   /*width:1px;*/
   /*text-align: center;*/
@@ -213,16 +343,11 @@ export default {
 .recommendation{
   background: #f4ece7;
   float: right;
-  /*margin-left: 20px;*/
-  /*margin-left: 1000px;*/
   margin-right: 100px;
   margin-top: -500px;
   width: 400px;
-  /*height: 300px;*/
-  /*border:2px solid #a9b5c0;*/
   border-radius: 9px;
   text-align: center;
-  /*position: fixed;*/
 }
 .recommendation1{
   background: #f4ece7;
@@ -240,6 +365,48 @@ export default {
 .el-zoom-in-bottom-enter-active{
   transition:0.8s linear;
 }
+
+
+
+
+.homeleft-container{
+  /*background-size: cover;*/
+  /*width: 992px;*/
+  /*margin:-150px 0 0 180px;*/
+  /*width: 2000px;*/
+  margin-left: 225px;
+}
+.content{
+  position: relative;
+  left: 120px;
+  top:-75px;
+  width: 75%;
+}
+span{
+  font-weight: bold;
+}
+/deep/ .van-popup--top{
+  width: 20%;
+}
+.divide{
+  margin-top: -35px;
+}
+.itemrate {
+  position: static;
+  margin-top: -30px;
+}
+.itemrate .el-rate{
+  position: relative;
+  top:-25px
+}
+.itemrate .browse{
+  position: relative;
+  top:-65px;
+  left:800px
+}
+
+
+
 
 </style>
 
