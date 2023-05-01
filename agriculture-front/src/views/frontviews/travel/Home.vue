@@ -10,13 +10,13 @@
     <p style="margin-left: 350px">
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">游玩必去</el-button>
       <i class="el-icon-arrow-right"></i>
-      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">民族风情</el-button>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="ethnic()">民族风情</el-button>
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">网红打卡</el-button>
       <i class="el-icon-arrow-right"></i>
-      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">交通指南</el-button>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="transport()">交通指南</el-button>
       <i class="el-icon-arrow-right"></i>
-      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">住宿指南</el-button>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="accommodation()">住宿指南</el-button>
     </p>
     <div class="demo-image__placeholder" style="margin-left:110px;margin-bottom: 15px;margin-top: -5px">
       <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">大理黄龙潭</p></el-card>
@@ -35,9 +35,10 @@
         </el-image>
         <div class="content">
           <p>
-            <span>{{item.sname}}</span>
-            <el-divider direction="horizon"></el-divider>
-<!--            <span>{{item.type}}</span>-->
+            <span>{{item.sname}} </span>
+            <el-button type="success" round style="margin-left:800px;margin-bottom: -10px"><span style="font-size: 15px">预约</span></el-button>
+              <el-divider direction="horizon"></el-divider>
+<!--          <span>{{item.type}}</span>-->
           </p>
           <hr>
           <p >
@@ -85,6 +86,54 @@
       </div>
     </el-card>
 
+
+    <div class="reserveinfo" >
+      <el-dialog title="填写预定信息" :visible.sync="dialogFormVisible" width="30%">
+        <el-form>
+          <el-form-item label="姓名" label-width="100px">
+            <el-input  v-model="user1.uname" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="用户昵称" label-width="100px">
+            <el-input  v-model="user1.uname"></el-input>
+          </el-form-item>
+          <el-form-item label="性别" label-width="100px">
+            <el-radio-group v-model="user1.usex">
+              <el-radio label="男"></el-radio>
+              <el-radio label="女"></el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="邮箱" label-width="100px">
+            <el-input type="email" v-model="user1.uemail"></el-input>
+          </el-form-item>
+          <el-form-item label="手机号" label-width="100px">
+            <el-input type="number" v-model="user1.utel"></el-input>
+          </el-form-item>
+          <el-form-item label="居住地" label-width="100px">
+            <el-input v-model="user1.uaddress"></el-input>
+          </el-form-item>
+          <el-form-item label="备注" label-width="100px">
+            <el-input v-model="user1.udesp"></el-input>
+          </el-form-item>
+          <el-form-item label="状态" label-width="100px">
+            <el-input v-model="user1.state" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="创建时间" label-width="100px">
+            <el-input v-model="user1.create_time" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="最近更新时间" label-width="100px">
+            <el-input v-model="user1.update_time" disabled></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="cancelinfo">取 消</el-button>
+          <el-button type="primary" @click="confirminfo">确 定</el-button>
+        </div>
+      </el-dialog>
+    </div>
+
+
+
+
   </div>
 
 </template>
@@ -96,6 +145,16 @@ export default {
   components: {test},
   data() {
     return {
+      user1:{
+        // uid:1,
+        // uname:"孙雨彤"
+      },
+      reserve1:{
+        // rid:1,
+        // uid:user1.uid,
+        // sid:'',
+
+      },
       dialogFormVisible: false,
       news:[
         {
@@ -162,6 +221,15 @@ export default {
     }
   },
   methods:{
+    ethnic(){
+      this.$router.push('/front/ethnic')
+    },
+    transport(){
+      this.$router.push('/front/transport')
+    },
+    accommodation(){
+      this.$router.push('/front/accomodation')
+    },
     onConfirm() {
       this.$refs.item.toggle();
     },
@@ -171,10 +239,27 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
     },
-    create(){
-      console.log("创建创建文章")
+    // create(){
+    //   console.log("创建文章")
+    // },
+    cancelinfo(){
+      this.dialogFormVisible = false;
+      console.log(this.user)
+      console.log(this.user1)
+    },
+    confirminfo(){
+      console.log(this.user.uname)
+      this.dialogFormVisible = false;
+      this.user=JSON.parse(JSON.stringify(this.user1));
+    },
+    modifyinfo(){
+      this.user1=JSON.parse(JSON.stringify(this.user));
+      this.dialogFormVisible = true
     }
   },
+  created() {
+    // this.user1=localStorage.getItem('user')
+  }
 }
 
 

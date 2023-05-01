@@ -1,7 +1,11 @@
 <template>
   <div class="communitty-container">
     社区中心
+    <div>
+      <img src="../../../assets/images/yunnan1.jpg">
+    </div>
   </div>
+
 </template>
 
 <script>
