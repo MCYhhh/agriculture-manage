@@ -115,6 +115,11 @@ const routes=[
     component: () => import ('@/views/frontviews/travel/Mustgo'),
   },
   {
+    path: '/front/hot',
+    name: 'Hot',
+    component: () => import ('@/views/frontviews/travel/Hot'),
+  },
+  {
     path: '/front/game/detail',
     name: 'Detail',
     component: () => import ('@/views/frontviews/Game/ArticleDetail'),
