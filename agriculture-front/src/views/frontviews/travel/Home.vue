@@ -12,7 +12,7 @@
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">民族风情</el-button>
       <i class="el-icon-arrow-right"></i>
-      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">网红打卡</el-button>
+      <el-button type="primary" plain @click="hot" style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">网红打卡</el-button>
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">交通指南</el-button>
       <i class="el-icon-arrow-right"></i>
@@ -176,13 +176,13 @@ export default {
     },
     gomustgo(){
       this.$router.push("/front/mustgo")
+    },
+    hot(){
+      this.$router.push("/front/hot")
     }
+
   },
 }
-
-
-
-
 </script>
 
 <style scoped>

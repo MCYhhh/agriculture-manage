@@ -70,6 +70,11 @@ const routes=[
         component: () => import ('@/views/frontviews/travel/Mustgo'),
       },
       {
+        path: 'hot',
+        name: 'Hot',
+        component: () => import ('@/views/frontviews/travel/Hot'),
+      },
+      {
         path: 'community',
         name: 'Community',
         component: () => import ('@/views/frontviews/community/Home'),
