@@ -19,10 +19,10 @@
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="accommodation()">住宿指南</el-button>
     </p>
     <div class="demo-image__placeholder" style="margin-left:110px;margin-bottom: 15px;margin-top: -5px">
-      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">大理黄龙潭</p></el-card>
-      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">大理网红拍照打卡</p></el-card>
-      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">傣家粽</p></el-card>
-      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">云泼水</p></el-card>
+      <el-card class="frontimages"><img class="fimages" src="../../../assets/images/yunnan10.jpg" style="width: 270px;  "><p class="description">大理黄龙潭</p></el-card>
+      <el-card class="frontimages"><img class="fimages" src="../../../assets/images/yunnan11.jpg" style="width: 260px;  "><p class="description">大理网红拍照打卡</p></el-card>
+      <el-card class="frontimages"><img class="fimages" src="../../../assets/images/yunnan12.jpg" style="width: 260px;  "><p class="description">傣家粽</p></el-card>
+      <el-card class="frontimages"><img class="fimages" src="../../../assets/images/yunnan13.jpg" style="width: 260px;  "><p class="description">云泼水</p></el-card>
     </div>
 
     <el-card style="width: 80%;margin-left: 100px;">
@@ -85,54 +85,6 @@
         </el-pagination>
       </div>
     </el-card>
-
-
-    <div class="reserveinfo" >
-      <el-dialog title="填写预定信息" :visible.sync="dialogFormVisible" width="30%">
-        <el-form>
-          <el-form-item label="姓名" label-width="100px">
-            <el-input  v-model="user1.uname" disabled></el-input>
-          </el-form-item>
-          <el-form-item label="用户昵称" label-width="100px">
-            <el-input  v-model="user1.uname"></el-input>
-          </el-form-item>
-          <el-form-item label="性别" label-width="100px">
-            <el-radio-group v-model="user1.usex">
-              <el-radio label="男"></el-radio>
-              <el-radio label="女"></el-radio>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item label="邮箱" label-width="100px">
-            <el-input type="email" v-model="user1.uemail"></el-input>
-          </el-form-item>
-          <el-form-item label="手机号" label-width="100px">
-            <el-input type="number" v-model="user1.utel"></el-input>
-          </el-form-item>
-          <el-form-item label="居住地" label-width="100px">
-            <el-input v-model="user1.uaddress"></el-input>
-          </el-form-item>
-          <el-form-item label="备注" label-width="100px">
-            <el-input v-model="user1.udesp"></el-input>
-          </el-form-item>
-          <el-form-item label="状态" label-width="100px">
-            <el-input v-model="user1.state" disabled></el-input>
-          </el-form-item>
-          <el-form-item label="创建时间" label-width="100px">
-            <el-input v-model="user1.create_time" disabled></el-input>
-          </el-form-item>
-          <el-form-item label="最近更新时间" label-width="100px">
-            <el-input v-model="user1.update_time" disabled></el-input>
-          </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="cancelinfo">取 消</el-button>
-          <el-button type="primary" @click="confirminfo">确 定</el-button>
-        </div>
-      </el-dialog>
-    </div>
-
-
-
 
   </div>
 
@@ -290,9 +242,12 @@ export default {
   margin-top: 100px;
 }
 .fimages :hover{
-  width: 270px;
+  width: 280px;
   /*height: 260px;*/
 }
+/*.img :hover{*/
+/*  width: 280px;*/
+/*}*/
 .title{
   width: 77.2%;
   height:60px;

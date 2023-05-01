@@ -6,6 +6,7 @@
 
     </div>
     <div class="title">
+<!--      <i class="l-icon-guide"></i>-->
       交通攻略
     </div>
     <div class="uname">
@@ -92,8 +93,8 @@ export default {
         content5:'（1）大巴：每天7:30－17:10之间，约45分钟会有一班车，旺季有加车。中巴车票价58元，大巴车票价63元。车程4个小时。\n' +
           '（2）包车：从丽江包车前往香格里拉，需要确认车辆运营资质。根据车型不同，轿车400—600；商务车600—800；\n' +
           '（3）机场—独克宗古城：目前没有机场大巴，只能坐出租车。距离不远，20分钟左右就到，30元左右。',
-        img:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-        srcList: ['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg','https://p1-q.mafengwo.net/s16/M00/BF/21/CoUBUmEuN4WAQpEBABmrddaOMac200.jpg?imageView2%2F2%2Fw%2F1360%2Fq%2F90'],
+        img:'https://pic4.zhimg.com/v2-7b5cb1365840d17bf0119cff0c010f16_r.jpg',
+        srcList: ['https://pic4.zhimg.com/v2-7b5cb1365840d17bf0119cff0c010f16_r.jpg','https://p1-q.mafengwo.net/s16/M00/BF/21/CoUBUmEuN4WAQpEBABmrddaOMac200.jpg?imageView2%2F2%2Fw%2F1360%2Fq%2F90'],
       },
     }
   },

@@ -110,6 +110,11 @@ const routes=[
     component: () => import ('@/views/frontviews/travel/Hot'),
   },
   {
+    path: '/front/detail',
+    name: 'Detail',
+    component: () => import ('@/views/frontviews/travel/Detail'),
+  },
+  {
     path: '/front/game/detail',
     name: 'Detail',
     component: () => import ('@/views/frontviews/Game/ArticleDetail'),
