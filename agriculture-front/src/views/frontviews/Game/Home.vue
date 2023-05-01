@@ -1,10 +1,10 @@
 <template>
   <div class="articleList">
     <el-card class="card" shadow="hover" v-for="item in news" >
-      <el-button type="primary" class="button" @click="getArticleDetail">点击了解</el-button>
+      <el-button type="primary" class="button" @click="getArticleDetail(item.id)">点击了解</el-button>
       <el-image style="width:200px; height: 200px;" class="img" alt="图片"
                 :src="item.img"
-                :preview-src-list="item.srcList" >
+                :preview-src-list="item.srcList">
         {{item.img}}
       </el-image>
       <div class="text">
@@ -69,8 +69,10 @@ export default {
       this.articlePage.page=val;
       this.getarticleList();
     },
-    getArticleDetail(){
-      this.$router.push('/front/game/detail')
+    getArticleDetail(id){
+      console.log(id);
+      localStorage.setItem("articleDetailId",id)
+      this.$router.push("/front/game/detail")
     },
    async getarticleList() {
      const json = JSON.stringify(this.articlePage);
@@ -116,7 +118,6 @@ export default {
 }
 .title{
   font-size: 25px;
-
 }
 .summary{
   font-size: 20px;
@@ -129,10 +130,10 @@ export default {
   height: 300px;
 }
 .card{
-  float: left;
+  display: inline-block;
   margin: 15px;
-  width: 750px;
-  height: 240px;
+  width: 40%;
+  height:290px;
   background: #e4eeee;
 }
 .button{
@@ -147,7 +148,7 @@ export default {
   background: #7fb2ec;
 }
 el-pagination{
-  position: relative;
-  bottom: 30px;
+  display: block;
 }
+
 </style>

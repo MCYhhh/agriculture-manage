@@ -26,3 +26,9 @@ export const articleAPI = (json) => {
     data:json,
   })
 }
+export const articleDetailAPI = (id) => {
+  return request({
+    url:'/article/'+id,
+    method:'GET',
+  })
+}

@@ -29,18 +29,21 @@
     <div class="block">
       <el-pagination
         @size-change="handleSizeChange"
-        @current-change="sceneryPage.page"
-        :current-page="sceneryPage.page"
-        :page-sizes="[4, 8, 10, 16, 20]"
-        :page-size="sceneryPage.size"
+        @current-change="handleCurrentChange"
+        :current-page="aPage.page"
+        :page-sizes="[4,6,8]"
+        :page-size="aPage.size"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="sceneryPage.total">
+        :total="a.total"
+        style="text-align: center;display: block;bottom: 200px;">
       </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
+import articleDetail from "../Game/ArticleDetail.vue";
+
 export default {
   name: "mustgo",
   data(){
@@ -71,7 +74,7 @@ export default {
           uid:1
         }
       ],
-      sceneryPage:{
+      aPage:{
         page: 1,
         size:10,
         total:100,
@@ -79,16 +82,38 @@ export default {
     }
   },
   methods:{
-    getSceneryDetail(){
-      this.$router.push("/front/home");
-    },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
+      this.aPage.size=val;
+      this.getarticleList();
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
+      this.aPage.page=val;
+      this.getarticleList();
     },
-  }
+    getArticleDetail(){
+      this.$router.push('/front/game/detail')
+    },
+    async getarticleList() {
+      const json = JSON.stringify(this.aPage);
+      const {data: res} = await articleDetailAPI(json);
+      console.log(res);
+      console.log("开始");
+      if (res.code==='00000'){
+        console.log("文章获取成功");
+        this.news=res.data.records;
+        console.log(res.data.records[0].img);
+        this.aPage.total=res.data.total;
+      }else {
+        this.$message.error(res.msg)
+      }
+      console.log("结束")
+    }
+  },
+  created() {
+    this.getarticleList()
+  },
 }
 </script>
 
@@ -116,6 +141,9 @@ export default {
 }
 .el-card__body, .el-main{
   position: static;
+}
+.el-card__body{
+  box-shadow: #999999 5px 6px;
 }
 .button{
   position: relative;
