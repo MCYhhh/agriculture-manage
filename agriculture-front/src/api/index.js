@@ -32,3 +32,10 @@ export const articleDetailAPI = (id) => {
     method:'GET',
   })
 }
+export const sceneryAllAPI = (json) => {
+  return request({
+    url:'/scenery/findAll',
+    method:'POST',
+    data:json,
+  })
+}
