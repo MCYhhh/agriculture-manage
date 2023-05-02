@@ -58,13 +58,6 @@
         <div class="little-title">五.丽江——香格里拉 </div>
         <p class="content1" style = "white-space: pre-wrap">{{news.content5}}</p>
       </div>
-
-
-
-
-
-
-
     </div>
   </div>
 </template>

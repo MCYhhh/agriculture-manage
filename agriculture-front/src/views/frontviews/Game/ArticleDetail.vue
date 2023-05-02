@@ -80,8 +80,8 @@ export default {
         // console.log(res.data.records[0].img);
         this.articlePage.total=res.data.total;
       }else {
-        this.$message.error(res.msg)
       }
+        this.$message.error(res.msg)
       console.log("结束")
     }
   },
