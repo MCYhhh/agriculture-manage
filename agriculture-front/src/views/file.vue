@@ -21,14 +21,19 @@
         <el-form-item label="正文" :label-width="formLabelWidth">
           <el-input v-model="form.content" autocomplete="off"></el-input>
         </el-form-item>
+        <el-form-item label="分数" :label-width="formLabelWidth">
+          <el-input v-model="form.score" autocomplete="off"></el-input>
+        </el-form-item>
 
         <el-form-item label="上传封面" prop="imageUrl">
           <el-upload
-            action="http://localhost:8084/file"
+            action="http://localhost:8083/file/upload"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
             :on-success="handleAvatarSuccess"
             :on-remove="handleRemove"
+            enctype="multipart/form-data"
+            :http-request="onUpload"
           >
             <i class="el-icon-plus"></i>
           </el-upload>
@@ -42,9 +47,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="submitCat(form)"
-        >确 定</el-button
-        >
+        <el-button type="primary" @click="submitArticle(form)">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -52,7 +55,8 @@
 
 
 <script>
-
+import {saveArticleAPI} from "../api";
+import {uploadAPI} from "../api";
 export default {
   data() {
     return {
@@ -61,40 +65,59 @@ export default {
       dialogTableVisible: false,
       dialogFormVisible: false,
       form: {
-        cname: "",
-        ccolor: "",
-        cinfo: "",
-        curl: "",
-        cisadopt: 0,
+        title: "",
+        type:0,
+        summary: "",
+        content: "",
+        img: "",
+        score:2.2,
+        uid:1,
       },
       formLabelWidth: "120px",
       json :"",
       isDisabled:false,
     };
   },
+
   methods: {
-    handleAvatarSuccess(res, file) {
+   async onUpload(file){
+      console.log(file)
+     localStorage.setItem('isFile',"isFile")
+      const formData=new FormData()
+      formData.append('file',file.file)
+     this.json = JSON.stringify(this.form)
+      const{data:res}=await uploadAPI(formData)
+     console.log("const{data:res}=await uploadAPI(formData)")
+     this.form.img=res
+    },
+    handleAvatarSuccess(res) {
+      console.log("上传")
       console.log(res)
-      this.form.curl = res
-      // console.log(this.form.curl = res);
-      // this.form.curl = sessionStorage.setItem("curl",this.curl)
+      // this.form.img=res.data
+      // console.log("filefile",file)
+
     },
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
     handlePictureCardPreview(file) {
+      console.log("预览预览")
+      console.log("预览预览")
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
       console.log(file.url);
     },
 
-    submitCat: async function (){
-      this.form.curl='http://localhost:8082/myImg/65ba45786a8742a2b8a08d3ad396b25d..jpg'
-      this.json = JSON.stringify(this.form),
-        await addcatAPI(this.json);
-      // console.log(res.data);
+    submitArticle: async function (){
+      localStorage.removeItem('isFile')
+      // const {data:res}=await
+      console.log("上传提交提交")
+      console.log(this.form)
+      this.json = JSON.stringify(this.form)
+      const{data:res}=await saveArticleAPI(this.json);
+      console.log(res.data);
       this.$message.success("文章发布成功！！");
-      // this.isDisabled=true;
+      this.isDisabled=true;
     }
   },
 };

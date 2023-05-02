@@ -127,13 +127,7 @@ export const goodsByGeAPI = (json) => {
     data:json,
   })
 }
-export const saveArticleAPI = (json) => {
-  return request({
-    url:'/article/save',
-    method:'POST',
-    data:json,
-  })
-}
+
 export const logoutAPI = () => {
   return request({
     url:'/user/logout',
@@ -165,6 +159,102 @@ export const ordersSaveAPI = (json) => {
   })
 }
 
+//发表文章
+export const saveArticleAPI = (json) => {
+  return request({
+    url:'/article/save',
+    method:'POST',
+    data:json,
+  })
+}
+
+// 文件上传
+export function uploadAPI (file) {
+  return request({
+    url: '/file/upload',
+    method: 'POST',
+    data: file,
+  })
+}
+
+//个人订单
+export const selfOrderAPI = (json) => {
+  return request({
+    url:'/orders/findCid',
+    method:'POST',
+    data:json
+  })
+}
+
+//根据订单编号修改订单
+export const updateOrderAPI = (json) => {
+  return request({
+    url:'/orders/modify',
+    method:'POST',
+    data:json
+  })
+}
+
+// 查询所有订单
+export const orderAllAPI = (json) => {
+  return request({
+    url:'/orders/findAll',
+    method:'POST',
+    data:json
+  })
+}
+
+// 查询所有订单用户
+export const orderUserAllAPI = (json) => {
+  return request({
+    url:'/orderuservo/allorders',
+    method:'POST',
+    data:json
+  })
+}
+
+// 订单用户查询所有消费小于等于
+export const orderUserLeAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserLe',
+    method:'POST',
+    data:json
+  })
+}
+
+// 订单用户查询所有消费大于等于
+export const orderUserGeAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserGe',
+    method:'POST',
+    data:json
+  })
+}
+
+// 状态查询订单用户
+export const orderUserOsateAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserOsate',
+    method:'POST',
+    data:json
+  })
+}
 
 
+// 订单编号查询订单用户
+export const orderUserOidAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserOid',
+    method:'POST',
+    data:json
+  })
+}
 
+// 用户姓名查询订单用户
+export const orderUserUameAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserUame',
+    method:'POST',
+    data:json
+  })
+}

@@ -86,7 +86,7 @@ export default {
        console.log(res.data.records[0].img);
        this.articlePage.total=res.data.total;
      }else {
-       this.$message.error(res.msg)
+       this.$message.warning("查询失败，未找到相应结果")
      }
      console.log("结束")
    }
