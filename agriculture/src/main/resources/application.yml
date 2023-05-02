@@ -10,8 +10,9 @@ spring:
   servlet:
     multipart:
       enabled: true
-      max-file-size: 20MB
-      max-request-size: 20MB
+      max-file-size: 20MB  #限制上传文件的大小
+      max-request-size: 10MB    #限制整个请求的大小
+      file-size-threshold: 2KB   #设置写入磁盘的文件的大小啊哦阈值
   redis:
     host: 127.0.0.1  #redis服务器地址
     port: 6379    #redis服务器连接端口
@@ -39,7 +40,6 @@ mybatis-plus:
     # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-files:
-  upload:
-    path: /file/
+file:
+  path: "D:/files/"
 
