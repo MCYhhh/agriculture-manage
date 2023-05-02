@@ -214,6 +214,8 @@ export default {
       }else{
         console.log(typeof this.value)
         console.log(this.value)
+        this.aPage.size=20
+        this.aPage.page=1
         if (this.choose.includes('价格小于')) {
           console.log("Le")
           const numReg = /^([1-9][0-9]*)+(.[0-9]{1,2})?$/
@@ -221,9 +223,9 @@ export default {
           if (numRe.test(this.value)) {
             console.log("拿到输入值-数字", this.value)
             console.log(this.value)
-            this.value = Number(this.value)
-            console.log(this.value)
-            this.getGoodsLeList(this.value)
+            this.aPage.gprice = Number(this.value)
+            console.log("this.aPage.gprice"+this.aPage.gprice)
+            this.getGoodsLeList()
           }else{
             console.log("非数字", this.value)
             console.log(typeof this.value)
@@ -241,9 +243,9 @@ export default {
           if (numRe.test(this.value)) {
             console.log("拿到输入值-数字", this.value)
             console.log(this.value)
-            this.value = Number(this.value)
-            console.log(this.value)
-            this.getGoodsGeList(this.value)
+            this.aPage.gprice = Number(this.value)
+            console.log("this.aPage.gprice"+this.aPage.gprice)
+            this.getGoodsGeList()
           }else{
             console.log("非数字", this.value)
             console.log(typeof this.value)
@@ -256,14 +258,14 @@ export default {
           }
         } else {
           console.log("name")
-          this.getGoodsByNameList(this.value)
+          this.aPage.gname=this.value
+          console.log("this.aPage.gname"+this.aPage.gname)
+          this.getGoodsByNameList()
         }
       }
     },
-    async getGoodsLeList(value) {
-      console.log("getGoodsLeList"+value)
-      this.aPage.gprice=value
-      console.log(this.aPage)
+    async getGoodsLeList() {
+      console.log("getGoodsLeList")
       const json = JSON.stringify(this.aPage);
       const {data: res} = await goodsByLeAPI(json);
       console.log("开始");
@@ -282,11 +284,8 @@ export default {
       }
       console.log("结束")
     },
-    async getGoodsGeList(value){
-      console.log(value)
-      console.log("getGoodsGeList("+value)
-      this.aPage.gname=value
-      console.log(this.aPage)
+    async getGoodsGeList(){
+      console.log("getGoodsGeList")
       const json = JSON.stringify(this.aPage);
       const {data: res} = await goodsByGeAPI(json);
       console.log("开始");
@@ -305,10 +304,8 @@ export default {
       }
       console.log("结束")
     },
-    async getGoodsByNameList(value){
-      console.log("getGoodsByNameList("+value)
-      this.aPage.gname=value
-      console.log(this.aPage)
+    async getGoodsByNameList(){
+      console.log("getGoodsByNameList")
       const json = JSON.stringify(this.aPage);
       const {data: res} = await goodsByNameAPI(json);
       console.log("开始");
@@ -367,12 +364,28 @@ export default {
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
       this.aPage.size = val;
-      this.getList();
+      if (this.choose.includes('价格小于')) {
+        this.getGoodsLeList()
+      } else if (this.choose.includes('价格大于')) {
+        this.getGoodsGeList()
+      } else if (this.choose.includes('商品名称')){
+        this.getGoodsByNameList()
+      }else {
+        this.getGoodsList()
+      }
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
       this.aPage.page = val;
-      this.getList();
+      if (this.choose.includes('价格小于')) {
+        this.getGoodsLeList()
+      } else if (this.choose.includes('价格大于')) {
+        this.getGoodsGeList()
+      } else if (this.choose.includes('商品名称')){
+        this.getGoodsByNameList()
+      }else {
+        this.getGoodsList()
+      }
     },
     async getGoodsList() {
       const json = JSON.stringify(this.aPage);
@@ -510,7 +523,7 @@ export default {
 
 .searchblock /deep/ .el-input__inner {
   border-radius: 100px;
-  border-color: rgba(0, 0, 0, 0);
+  border-color: rgba(218, 82, 82, 0) ;
   width: 600px;
   height: 40px;
 }
@@ -528,5 +541,6 @@ export default {
 
 .searchblock .el-button {
   border-radius: 30px;
+  border:10px;
 }
 </style>
