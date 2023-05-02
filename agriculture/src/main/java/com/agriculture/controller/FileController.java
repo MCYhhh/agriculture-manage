@@ -61,9 +61,11 @@ public class FileController {
         String url = null;
 
 // 存新上传的图片
+        System.out.println(1);
         File dest = new File(filepath, fileName);
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
+            System.out.println("if");
         }
         try {
             file.transferTo(dest);
@@ -71,6 +73,7 @@ public class FileController {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+        System.out.println("return");
         return url;
     }
 }
