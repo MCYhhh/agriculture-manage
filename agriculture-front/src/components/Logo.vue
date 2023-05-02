@@ -31,12 +31,16 @@ export default {
     }
   },
   methods:{
-   async chooseValue(label){
+    async chooseValue(label){
       if(label==="返回首页"){
         this.$router.push('/front/home')
       }
-      else if (label==="注销后台"){
-        console.log("进入后台进入后台")
+      else if (label==="进入后台"){
+        const utype=localStorage.getItem('user').utype;
+        if(utype===2)
+          this.$router.push('/admin/home')
+        else
+          this.$router.push('/shopper/home')
       }
       else{
         console.log("注销")

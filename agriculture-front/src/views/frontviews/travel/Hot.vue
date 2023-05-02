@@ -1,5 +1,9 @@
 <template>
   <div class="hot">
+    <div class="back" @click="backgame">
+      <i class="el-icon-d-arrow-left" style="font-size: 25px;color: #999999;"></i>
+      <span style="font-size: 22px;color:#e0dddd;" >返回</span>
+    </div>
     <el-card class="card" shadow="hover" v-for="item in scenerys">
       <el-image style="width:300px; height: 300px;top: 0" class="img" alt="图片"
                 :src="item.surl"
@@ -65,6 +69,9 @@ export default {
     }
   },
   methods:{
+    backgame(){
+      this.$router.push('/front/travel')
+    },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
       this.aPage.size=val;

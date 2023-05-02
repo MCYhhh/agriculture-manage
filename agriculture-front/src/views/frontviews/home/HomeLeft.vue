@@ -32,13 +32,13 @@
         </el-image>
         <div class="content">
           <p>
-            <span>{{item.site}}</span>
+            <span>{{item.title}}</span>
             <el-divider direction="vertical"></el-divider>
             <span>{{item.type}}</span>
           </p>
           <p >
             <el-tag>摘要</el-tag>
-            {{item.abstarct}}
+            {{item.summary}}
           </p>
           <p >
             <el-tag type="warning">正文</el-tag>
@@ -63,14 +63,24 @@
       </div>
       <div class="block">
         <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
+          @size-change="handleSize"
+          @current-change="handleCurrent"
+          :current-page="articlePage.page"
+          :page-sizes="[2,4,6,8,10,20]"
+          :page-size="articlePage.size"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400">
+          :total="articlePage.total">
+          <!--          style="text-align: center;display: block;bottom: 200px;">-->
         </el-pagination>
+<!--        <el-pagination-->
+<!--          @size-change="handleSizeChange"-->
+<!--          @current-change="handleCurrentChange"-->
+<!--          :current-page="currentPage4"-->
+<!--          :page-sizes="[100, 200, 300, 400]"-->
+<!--          :page-size="100"-->
+<!--          layout="total, sizes, prev, pager, next, jumper"-->
+<!--          :total="400">-->
+<!--        </el-pagination>-->
       </div>
     </el-card>
 
@@ -79,65 +89,19 @@
 </template>
 
 <script>
+import {articleAPI} from "../../../api";
+import {ArticleUserAPI} from "../../../api";
 export default {
   name:'HomeLeft',
   data() {
     return {
-      dialogFormVisible: false,
-      news:[
-        {
-          id:1,
-          url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-          srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
-          site:'大厦公园',
-          type:'娱乐',
-          abstarct:'多走走多看看',
-          content:'最近风沙肆虐，水源不足等灾害频频发生;气候离不开环境，环境也离不开气候，在这两者之间，人类却成了第三者。\n' +
-            '随手关灯，是一种再普通不过的行为，然而10亿人在同一时间做同样的一件普通的事，人们心中激荡起强烈的情感共鸣，进而产生对人类命运和地球未来的共同关切。这样的举动，能否激起人类这个“第三者”对环保意识的觉醒?\n',
-          score: 3.7,
-          create_time:'2022-03-19',
-          uname:'小星星'
-        },
-        {
-          id:2,
-          url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-          srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
-          site:'漫山公园',
-          type:'游记',
-          abstarct:'好好看',
-          content:'最近风沙肆虐，水源不足等灾害频频发生;气候离不开环境，环境也离不开气候，在这两者之间，人类却成了第三者。\n' +
-            '随手关灯，是一种再普通不过的行为，然而10亿人在同一时间做同样的一件普通的事，人们心中激荡起强烈的情感共鸣，进而产生对人类命运和地球未来的共同关切。这样的举动，能否激起人类这个“第三者”对环保意识的觉醒?\n',
-          score: 2.1,
-          create_time:'2022-02-09',
-          uname:'星月银河'
-        },
-        {
-          id:3,
-          url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-          srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
-          site:'樱花公园',
-          type:'游记',
-          abstarct:'好好看',
-          content:'最近风沙肆虐，水源不足等灾害频频发生;气候离不开环境，环境也离不开气候，在这两者之间，人类却成了第三者。\n' +
-            '随手关灯，是一种再普通不过的行为，然而10亿人在同一时间做同样的一件普通的事，人们心中激荡起强烈的情感共鸣，进而产生对人类命运和地球未来的共同关切。这样的举动，能否激起人类这个“第三者”对环保意识的觉醒?\n',
-          score: 4.2,
-          create_time:'2022-02-19',
-          uname:'似水流年'
-        },
-        {
-          id:4,
-          url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-          srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
-          site:'香山公园',
-          type:'游记',
-          abstarct:'好好看',
-          content:'最近风沙肆虐，水源不足等灾害频频发生;气候离不开环境，环境也离不开气候，在这两者之间，人类却成了第三者。\n' +
-            '随手关灯，是一种再普通不过的行为，然而10亿人在同一时间做同样的一件普通的事，人们心中激荡起强烈的情感共鸣，进而产生对人类命运和地球未来的共同关切。这样的举动，能否激起人类这个“第三者”对环保意识的觉醒?\n',
-          score: 3.7,
-          create_time:'2022-01-19',
-          uname:'畅游世界'
-        }
-      ],
+      // dialogFormVisible: false,
+      news:[],
+      articlePage:{
+        page: 1,
+        size:4,
+        total:100,
+      },
       value: 0,
       switch1: false,
       switch2: false,
@@ -146,23 +110,44 @@ export default {
         { text: '娱乐趣谈', value: 1 },
         { text: '游记探寻', value: 2 },
       ],
-      currentPage4: 4
+      // currentPage4: 4
     }
   },
   methods:{
     onConfirm() {
       this.$refs.item.toggle();
     },
-    handleSizeChange(val) {
+    handleSize(val) {
       console.log(`每页 ${val} 条`);
+      this.articlePage.size=val;
+      this.getarticleList();
     },
-    handleCurrentChange(val) {
+    handleCurrent(val) {
       console.log(`当前页: ${val}`);
+      this.articlePage.page=val;
+      this.getarticleList();
     },
-    create(){
-      console.log("创建创建文章")
-    }
+    async getarticleList() {
+      const json = JSON.stringify(this.articlePage);
+      const {data: res} = await ArticleUserAPI(json);
+      console.log(res);
+      console.log("开始");
+      if (res.code==='00000'){
+        console.log("文章获取成功");
+        this.news=res.data.records;
+        console.log(res.data.records[0].img);
+        this.articlePage.total=res.data.total;
+      }else {
+        this.$message.error(res.msg)
+      }
+      console.log("结束")
+    },
+
   },
+  created(){
+    console.log("jinlaile")
+    this.getarticleList()
+  }
 }
 </script>
 <style scoped>

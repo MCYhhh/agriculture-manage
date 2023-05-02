@@ -1,7 +1,7 @@
 <template>
   <div class="articleContent">
-    <div class="back">
-      <i class="el-icon-d-arrow-left" style="font-size: 25px;color: #999999;" @click="backgame"></i>
+    <div class="back" @click="backgame">
+      <i class="el-icon-d-arrow-left" style="font-size: 25px;color: #999999;" ></i>
       <span style="font-size: 22px;color:#e0dddd;" >返回</span>
     </div>
     <div class="title">
@@ -44,7 +44,7 @@ name: "Detail",
     methods:{
     backgame(){
     localStorage.removeItem('item')
-    this.$router.push('/front/travel')
+    this.$router.push('/front/ethnic')
     },
     },
     created(){
