@@ -19,6 +19,8 @@ export const loginAPI = (json) => {     //,usrl,uinfo
     data: json,
   })
 }
+
+//查询所有文章
 export const articleAPI = (json) => {
   return request({
     url:'/article/findAll',
@@ -26,6 +28,8 @@ export const articleAPI = (json) => {
     data:json,
   })
 }
+
+//文章详情
 export const articleDetailAPI = (id) => {
   return request({
     url:'/article/'+id,
@@ -39,6 +43,8 @@ export const ArticleUserAPI = (json) => {
     data:json,
   })
 }
+
+
 export const articleUserDetailAPI = (json) => {
   return request({
     url:'/articleUser/findByAid',
@@ -46,6 +52,8 @@ export const articleUserDetailAPI = (json) => {
     data:json,
   })
 }
+
+// 查询所有景区
 export const sceneryAllAPI = (json) => {
   return request({
     url:'/scenery/findAll',
@@ -53,6 +61,8 @@ export const sceneryAllAPI = (json) => {
     data:json,
   })
 }
+
+// 文章创建
 export const saveArticleAPI = (json) => {
   return request({
     url:'/article/save',
@@ -61,12 +71,15 @@ export const saveArticleAPI = (json) => {
   })
 }
 
+// 登出
 export const logoutAPI = () => {
   return request({
     url:'/user/logout',
     method:'GET',
   })
 }
+
+// 订单详情
 export const detailOrdersSaveAPI = (json) => {
   return request({
     url:'/detailorder/save',
@@ -74,6 +87,8 @@ export const detailOrdersSaveAPI = (json) => {
     data:json,
   })
 }
+
+// 通过用户cid查询订单
 export const ordersFindCidAPI = (json) => {
   return request({
     url:'/orders/findCid',
@@ -81,6 +96,8 @@ export const ordersFindCidAPI = (json) => {
     data:json,
   })
 }
+
+// 通过商品名称查询
 export const goodsByNameAPI = (json) => {
   return request({
     url:'/goods/findByGname',
@@ -88,6 +105,8 @@ export const goodsByNameAPI = (json) => {
     data:json,
   })
 }
+
+// 查询所有商品
 export const goodsAllAPI = (json) => {
   return request({
     url:'/goods/findAll',
@@ -95,6 +114,8 @@ export const goodsAllAPI = (json) => {
     data:json,
   })
 }
+
+// 购物车创建
 export const trolleySaveAPI = (json) => {
   return request({
     url:'/trolley/save',
@@ -102,6 +123,8 @@ export const trolleySaveAPI = (json) => {
     data:json,
   })
 }
+
+// 订单创建
 export const ordersSaveAPI = (json) => {
   return request({
     url:'/orders/save',
@@ -109,6 +132,8 @@ export const ordersSaveAPI = (json) => {
     data:json,
   })
 }
+
+// 通过商品价格小于查询
 export const goodsByLeAPI = (json) => {
   return request({
     url:'/goods/selectLe',
@@ -116,6 +141,8 @@ export const goodsByLeAPI = (json) => {
     data:json,
   })
 }
+
+// 通过商品价格大于查询
 export const goodsByGeAPI = (json) => {
   return request({
     url:'/goods/selectGe',
@@ -123,6 +150,8 @@ export const goodsByGeAPI = (json) => {
     data:json,
   })
 }
+
+// 预定创建
 export const reserveSaveAPI = (json) => {
   return request({
     url:'/reserve/save',
