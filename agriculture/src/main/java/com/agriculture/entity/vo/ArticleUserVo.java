@@ -21,9 +21,9 @@ public class ArticleUserVo {
 
     private Integer uid;
 
-    private LocalDateTime createTime;
+    private LocalDateTime create_time;
 
-    private LocalDateTime updateTime;
+    private LocalDateTime update_time;
 
     private String img;
 
