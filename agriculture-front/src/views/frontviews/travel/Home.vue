@@ -8,21 +8,21 @@
     </div>
     <div  class="title" v-bind:style="{ fontWeight: 'bold' }">景区</div>
     <p style="margin-left: 350px">
-      <el-button type="primary" plain @click="gomustgo" style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">游玩必去</el-button>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;"  @click="gomustgo()" >游玩必去</el-button>
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="ethnic()">民族风情</el-button>
       <i class="el-icon-arrow-right"></i>
-      <el-button type="primary" plain @click="hot" style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">网红打卡</el-button>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="hot()">网红打卡</el-button>
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="transport()">交通指南</el-button>
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="accommodation()">住宿指南</el-button>
     </p>
     <div class="demo-image__placeholder" style="margin-left:110px;margin-bottom: 15px;margin-top: -5px">
-      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">大理黄龙潭</p></el-card>
-      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">大理网红拍照打卡</p></el-card>
-      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">傣家粽</p></el-card>
-      <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">云泼水</p></el-card>
+      <el-card class="frontimages"><img class="fimages" src="../../../assets/images/yunnan10.jpg" style="width: 270px;  "><p class="description">大理黄龙潭</p></el-card>
+      <el-card class="frontimages"><img class="fimages" src="../../../assets/images/yunnan11.jpg" style="width: 260px;  "><p class="description">大理网红拍照打卡</p></el-card>
+      <el-card class="frontimages"><img class="fimages" src="../../../assets/images/yunnan12.jpg" style="width: 260px;  "><p class="description">傣家粽</p></el-card>
+      <el-card class="frontimages"><img class="fimages" src="../../../assets/images/yunnan13.jpg" style="width: 260px;  "><p class="description">云泼水</p></el-card>
     </div>
 
     <el-card style="width: 80%;margin-left: 100px;">
@@ -35,9 +35,10 @@
         </el-image>
         <div class="content">
           <p>
-            <span>{{item.sname}}</span>
-            <el-divider direction="horizon"></el-divider>
-<!--            <span>{{item.type}}</span>-->
+            <span>{{item.sname}} </span>
+            <el-button type="success" round style="margin-left:800px;margin-bottom: -10px"><span style="font-size: 15px">预约</span></el-button>
+              <el-divider direction="horizon"></el-divider>
+<!--          <span>{{item.type}}</span>-->
           </p>
           <hr>
           <p >
@@ -96,6 +97,16 @@ export default {
   components: {test},
   data() {
     return {
+      user1:{
+        // uid:1,
+        // uname:"孙雨彤"
+      },
+      reserve1:{
+        // rid:1,
+        // uid:user1.uid,
+        // sid:'',
+
+      },
       dialogFormVisible: false,
       news:[
         {
@@ -162,6 +173,12 @@ export default {
     }
   },
   methods:{
+    gomustgo(){
+       this.$router.push("/front/mustgo")
+     },
+   hot(){
+      this.$router.push("/front/hot")
+    },
     ethnic(){
       this.$router.push('/front/ethnic')
     },
@@ -180,18 +197,32 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
     },
-    create(){
-      console.log("创建创建文章")
+    // create(){
+    //   console.log("创建文章")
+    // },
+    cancelinfo(){
+      this.dialogFormVisible = false;
+      console.log(this.user)
+      console.log(this.user1)
     },
-    gomustgo(){
-      this.$router.push("/front/mustgo")
+    confirminfo(){
+      console.log(this.user.uname)
+      this.dialogFormVisible = false;
+      this.user=JSON.parse(JSON.stringify(this.user1));
     },
-    hot(){
-      this.$router.push("/front/hot")
+    modifyinfo(){
+      this.user1=JSON.parse(JSON.stringify(this.user));
+      this.dialogFormVisible = true
     }
-
   },
+  created() {
+    // this.user1=localStorage.getItem('user')
+  }
 }
+
+
+
+
 </script>
 
 <style scoped>
@@ -211,9 +242,12 @@ export default {
   margin-top: 100px;
 }
 .fimages :hover{
-  width: 270px;
+  width: 280px;
   /*height: 260px;*/
 }
+/*.img :hover{*/
+/*  width: 280px;*/
+/*}*/
 .title{
   width: 77.2%;
   height:60px;

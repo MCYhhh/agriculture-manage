@@ -1,3 +1,4 @@
+<nav></nav>
 <template>
   <div class="mustgo">
     <el-card class="card" shadow="hover" v-for="item in scenerys">
