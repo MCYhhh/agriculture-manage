@@ -37,7 +37,6 @@
           <p>
             <span>{{item.sname}} </span>
             <el-button type="success" round style="margin-left:800px;margin-bottom: -10px"><span style="font-size: 15px">预约</span></el-button>
-              <el-divider direction="horizon"></el-divider>
           </p>
           <hr>
           <p >
@@ -83,7 +82,7 @@
 
 <script>
 import test from "../../test";
-import {sceneryAllAPI} from "../../../api";
+import {sceneryAllAPI,reserveSaveAPI} from "../../../api";
 
 export default {
   name: "Home",

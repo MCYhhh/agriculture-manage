@@ -183,7 +183,7 @@ export default {
         this.articlePage.type = i - 1;
         console.log("看：",this.articlePage.type)
         const json = JSON.stringify(this.articlePage);
-        const {data: res} = await articleOrderbyscore(json);
+        const {data: res} = await articleTypeAPI(json);
         console.log(res);
         console.log("开始");
         if (res.code === '00000') {

@@ -148,6 +148,14 @@ export const sceneryAllAPI = (json) => {
     data:json,
   })
 }
+//删除景点
+export const deleteSceneryAPI = (id) => {
+  return request({
+    url:'/scenery/delete/'+id,
+    method:'DELETE',
+  })
+}
+
 
 
 export const trolleySaveAPI = (json) => {
@@ -165,6 +173,80 @@ export const ordersSaveAPI = (json) => {
   })
 }
 
+// 预定创建
+export const reserveSaveAPI = (json) => {
+  return request({
+    url:'/reserve/save',
+    method:'POST',
+    data:json,
+  })
+}
 
 
+// 文件上传
+export function uploadAPI (file) {
+  return request({
+    url: '/file/upload',
+    method: 'POST',
+    data: file,
+  })
+}
 
+//个人订单
+export const selfOrderAPI = (json) => {
+  return request({
+    url:'/orders/findCid',
+    method:'POST',
+    data:json
+  })
+}
+//根据订单编号修改订单
+export const updateOrderAPI = (json) => {
+  return request({
+    url:'/orders/modify',
+    method:'POST',
+    data:json
+  })
+}
+
+//新增景点
+export const articleSaveAPI = (json) => {
+  return request({
+    url:'/scenery/save',
+    method:'POST',
+    data:json
+  })
+}
+//新增或者更改景点
+export const articleSaveorModifyAPI = (json) => {
+  return request({
+    url:'/scenery/saveOrmodify',
+    method:'POST',
+    data:json
+  })
+}
+
+//根据景点名字模糊查询
+export const sceneryLikeNameAPI = (json) => {
+  return request({
+    url:'/scenery/findBySname',
+    method:'POST',
+    data:json
+  })
+}
+//根据uid选择景点
+export const sceneryByuIdAPI = (json) => {
+  return request({
+    url:'/scenery/selectUid',
+    method:'POST',
+    data:json
+  })
+}
+//根据uid以及景点名字模糊查询
+export const sceneryUidLikeNameAPI = (json) => {
+  return request({
+    url:'/scenery/findByUidSname',
+    method:'POST',
+    data:json
+  })
+}

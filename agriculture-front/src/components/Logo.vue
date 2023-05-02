@@ -36,7 +36,7 @@ export default {
         this.$router.push('/front/home')
       }
       else if (label==="进入后台"){
-        const utype=localStorage.getItem('user').utype;
+        const utype=JSON.parse(localStorage.getItem('user')).utype;
         if(utype===2)
           this.$router.push('/admin/home')
         else
