@@ -21,11 +21,11 @@
       </div>
       <div class="createTime" >
         <el-tag>创建时间</el-tag>
-        {{news.createTime}}
+        {{news.create_time}}
       </div>
       <div class="updateTime">
         <el-tag>更新时间</el-tag>
-        {{news.updateTime}}
+        {{news.update_time}}
       </div>
     </div>
     <hr>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import {articleDetailAPI} from "../../../api";
+import {articleAPI, articleDetailAPI, articleUserDetailAPI} from "../../../api";
 
 export default {
   name: "ArticleDetail",
@@ -55,6 +55,12 @@ export default {
     return {
       id:1,
       news: {},
+      articlePage:{
+        page: 1,
+        size:1,
+        total:1,
+        id:1
+      }
    }
   },
   methods:{
@@ -63,13 +69,16 @@ export default {
       this.$router.push('/front/game')
     },
     async getArticleDetail(id){
-      const {data: res} = await articleDetailAPI(id);
+      this.articlePage.id=id;
+      // const json =JSON.stringify(this.articlePage)
+      const {data: res} = await articleUserDetailAPI(this.articlePage);
       console.log(res);
       console.log("开始");
       if (res.code==='00000'){
         console.log("文章获取成功");
-        this.news=res.data;
-        console.log(res.data);
+        this.news=res.data.records[0];
+        // console.log(res.data.records[0].img);
+        this.articlePage.total=res.data.total;
       }else {
         this.$message.error(res.msg)
       }

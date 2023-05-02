@@ -57,7 +57,7 @@
             <el-link type="success">@{{item.uname}}</el-link>
           </p>
 <!--          <span>@{{item.uname}}</span>-->
-          <el-button type="primary" class="browse">查看详情</el-button>
+          <el-button type="primary" class="browse" @click="detail(item.id)">查看详情</el-button>
         </div>
         <el-divider class="divide"></el-divider>
       </div>
@@ -114,6 +114,11 @@ export default {
     }
   },
   methods:{
+    detail(id){
+      console.log(id);
+      localStorage.setItem("articleDetailId",id)
+      this.$router.push("/front/game/detail")
+    },
     onConfirm() {
       this.$refs.item.toggle();
     },

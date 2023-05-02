@@ -32,10 +32,48 @@ export const articleDetailAPI = (id) => {
     method:'GET',
   })
 }
+
+
+
+export const ArticleUserAPI = (json) => {
+  return request({
+    url:'/articleUser/findAll',
+    method:'POST',
+    data:json,
+  })
+}
+
+export const articleUserDetailAPI = (json) => {
+  return request({
+    url:'/articleUser/findByAid',
+    method:'POST',
+    data:json,
+  })
+}
+
+
+
+
+
+
 export const sceneryAllAPI = (json) => {
   return request({
     url:'/scenery/findAll',
     method:'POST',
     data:json,
+  })
+}
+export const saveArticleAPI = (json) => {
+  return request({
+    url:'/article/save',
+    method:'POST',
+    data:json,
+  })
+}
+
+export const logoutAPI = () => {
+  return request({
+    url:'/user/logout',
+    method:'GET',
   })
 }
