@@ -40,10 +40,10 @@
             <el-tag>摘要</el-tag>
             {{item.summary}}
           </p>
-          <p >
-            <el-tag type="warning">正文</el-tag>
-            {{item.content}}
-          </p>
+
+
+
+          <div class="zhengwen"> <el-tag type="warning" >正文</el-tag>{{item.content}}</div>
         </div>
         <div class="itemrate">
           <el-rate
@@ -156,6 +156,14 @@ export default {
 }
 </script>
 <style scoped>
+.zhengwen{
+  /*width: 715px; !* (一定要加宽度）*!*/
+  text-overflow: ellipsis; /* 溢出用省略号 */
+  white-space: nowrap; /*溢出不换行 */
+  -webkit-line-clamp: 1;  /*控制显示的行数 */
+  -webkit-box-orient:vertical;
+  overflow:hidden; /*超出的文本隐藏 */
+}
 .homeleft-container{
   margin:-150px 0 0 180px;
   width: 2000px;
@@ -173,11 +181,11 @@ span{
   width: 20%;
 }
 .divide{
-  margin-top: -85px;
+  margin-top: -95px;
 }
 .itemrate {
   position: static;
-  margin-top: -50px;
+  margin-top: -30px;
 }
 .itemrate .el-rate{
   position: relative;
