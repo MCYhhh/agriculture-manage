@@ -123,3 +123,10 @@ export const goodsByGeAPI = (json) => {
     data:json,
   })
 }
+export const reserveSaveAPI = (json) => {
+  return request({
+    url:'/reserve/save',
+    method:'POST',
+    data:json,
+  })
+}
