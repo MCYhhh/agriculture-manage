@@ -1,9 +1,6 @@
 package com.agriculture.controller;
 
-import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
-import com.agriculture.common.Result;
-import com.agriculture.mapper.FileMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,26 +8,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
+import java.io.File;
 import java.io.IOException;
 
 @RestController
 @RequestMapping("/file")
 public class FileController {
 
-    @Value("${files.upload.path}")
-    private String fileUploadPath;
-
+//    @Value("${files.upload.path}")
+//    private String fileUploadPath;
+//
     @Value("${server.port}")
     private String port;
 
-    private String ip = "localhost";
-
-    @Resource
-    private FileMapper fileMapper;
+//    private String ip = "localhost";
+//
+//    @Resource
+//    private FileMapper fileMapper;
 
 //    @Autowired
 //    private StringRedisTemplate stringRedisTemplate;
+
+    @Value("${file.path}")
+    private String filepath;
 
 
     /**
@@ -41,15 +41,37 @@ public class FileController {
      * @throws IOException
      */
     @PostMapping("/upload")
-    public Result upload(@RequestParam(value = "file") MultipartFile file) throws IOException {
-        String originalFilename = file.getOriginalFilename();  // 获取源文件的名称
-        // 定义文件的唯一标识（前缀）
-        String flag = IdUtil.fastSimpleUUID();
-        String rootFilePath = System.getProperty("user.dir") + "/file/" + flag + "_" + originalFilename;  // 获取上传的路径
-        FileUtil.writeBytes(file.getBytes(), rootFilePath);  // 把文件写入到上传的路径
-        String url = "http://" + ip + ":" + port + "/file/" + flag;
-        return Result.success(url);  // 返回结果 url
-    }
+    public String upload(@RequestParam(value = "file") MultipartFile file) throws IOException {
+//        String originalFilename = file.getOriginalFilename();  // 获取源文件的名称
+//        // 定义文件的唯一标识（前缀）
+//        String flag = IdUtil.fastSimpleUUID();
+//        String rootFilePath = System.getProperty("user.dir") + "/file/" + flag + "_" + originalFilename;  // 获取上传的路径
+//        FileUtil.writeBytes(file.getBytes(), rootFilePath);  // 把文件写入到上传的路径
+//        String url = "http://" + ip + ":" + port + "/file/" + flag;
+////        return Result.success(url);  // 返回结果 url
+//        System.out.println(url);
+//        return url;
 
+
+        // 获取文件名
+        String fileName = file.getOriginalFilename();
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+// 生成新文件
+        fileName = IdUtil.fastSimpleUUID() + suffixName;
+        String url = null;
+
+// 存新上传的图片
+        File dest = new File(filepath, fileName);
+        if (!dest.getParentFile().exists()) {
+            dest.getParentFile().mkdirs();
+        }
+        try {
+            file.transferTo(dest);
+            url = "http://localhost" + ":" + port + "" + "/file/" + fileName;
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        return url;
+    }
 }
 
