@@ -46,6 +46,27 @@ export const goodsAllAPI = (json) => {
     data:json,
   })
 }
+export const goodsByNameAPI = (json) => {
+  return request({
+    url:'/goods/findByGname',
+    method:'POST',
+    data:json,
+  })
+}
+export const goodsByLeAPI = (json) => {
+  return request({
+    url:'/goods/selectLe',
+    method:'POST',
+    data:json,
+  })
+}
+export const goodsByGeAPI = (json) => {
+  return request({
+    url:'/goods/selectGe',
+    method:'POST',
+    data:json,
+  })
+}
 export const saveArticleAPI = (json) => {
   return request({
     url:'/article/save',
