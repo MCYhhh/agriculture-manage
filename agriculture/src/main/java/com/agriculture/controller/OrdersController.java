@@ -55,7 +55,7 @@ public class OrdersController {
         return Result.success(ordersIPage);
     }
     //根据cid
-    @GetMapping("/findCid")
+    @PostMapping("/findCid")
     public Result findCid(@RequestBody OrdersPage ordersPage){
         QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("cid",ordersPage.getCid());

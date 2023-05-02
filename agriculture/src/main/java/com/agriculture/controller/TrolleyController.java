@@ -25,7 +25,7 @@ public class TrolleyController {
             if(trolley.getGid().equals(a.getGid())&&trolley.getCid().equals(a.getCid())) {
                 a.setTnum(trolley.getTnum()+a.getTnum());
                 a.setTtotal(a.getTtotal().add(trolley.getTtotal()));
-                return Result.success("修改成功",iTrolleyService.saveOrUpdate(a));
+                return Result.success("原购物车存在，继续保存成功",iTrolleyService.saveOrUpdate(a));
             }
         }
         return Result.success(iTrolleyService.save(trolley));
