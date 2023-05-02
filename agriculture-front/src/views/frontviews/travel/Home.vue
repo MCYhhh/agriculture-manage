@@ -10,13 +10,13 @@
     <p style="margin-left: 350px">
       <el-button type="primary" plain @click="gomustgo" style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">游玩必去</el-button>
       <i class="el-icon-arrow-right"></i>
-      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">民族风情</el-button>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="ethnic()">民族风情</el-button>
       <i class="el-icon-arrow-right"></i>
       <el-button type="primary" plain @click="hot" style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">网红打卡</el-button>
       <i class="el-icon-arrow-right"></i>
-      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">交通指南</el-button>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="transport()">交通指南</el-button>
       <i class="el-icon-arrow-right"></i>
-      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;">住宿指南</el-button>
+      <el-button type="primary" plain style="font-size: 20px;padding:10px;margin-top: 10px;margin-bottom: 20px;" @click="accommodation()">住宿指南</el-button>
     </p>
     <div class="demo-image__placeholder" style="margin-left:110px;margin-bottom: 15px;margin-top: -5px">
       <el-card class="frontimages"><el-image class="fimages" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="width: 260px;  "></el-image><p class="description">大理黄龙潭</p></el-card>
@@ -162,6 +162,15 @@ export default {
     }
   },
   methods:{
+    ethnic(){
+      this.$router.push('/front/ethnic')
+    },
+    transport(){
+      this.$router.push('/front/transport')
+    },
+    accommodation(){
+      this.$router.push('/front/accomodation')
+    },
     onConfirm() {
       this.$refs.item.toggle();
     },

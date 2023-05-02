@@ -71,8 +71,8 @@ export default {
         this.news=res.data;
         console.log(res.data);
       }else {
-        this.$message.error(res.msg)
       }
+        this.$message.error(res.msg)
       console.log("结束")
     }
   },

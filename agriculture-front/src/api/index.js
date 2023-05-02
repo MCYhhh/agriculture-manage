@@ -39,3 +39,54 @@ export const sceneryAllAPI = (json) => {
     data:json,
   })
 }
+export const goodsAllAPI = (json) => {
+  return request({
+    url:'/goods/findAll',
+    method:'POST',
+    data:json,
+  })
+}
+export const saveArticleAPI = (json) => {
+  return request({
+    url:'/article/save',
+    method:'POST',
+    data:json,
+  })
+}
+export const logoutAPI = () => {
+  return request({
+    url:'/user/logout',
+    method:'GET',
+  })
+}
+
+export const ordersSaveAPI = (json) => {
+  return request({
+    url:'/orders/save',
+    method:'POST',
+    data:json,
+  })
+}
+export const ordersFindCidAPI = (json) => {
+  return request({
+    url:'/orders/findCid',
+    method:'POST',
+    data:json,
+  })
+}
+
+export const detailOrdersSaveAPI = (json) => {
+  return request({
+    url:'/detailorder/save',
+    method:'POST',
+    data:json,
+  })
+}
+
+export const trolleySaveAPI = (json) => {
+  return request({
+    url:'/trolley/save',
+    method:'POST',
+    data:json,
+  })
+}
