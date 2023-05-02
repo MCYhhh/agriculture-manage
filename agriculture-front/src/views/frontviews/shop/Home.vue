@@ -13,7 +13,7 @@
           </el-dropdown-menu>
         </el-dropdown>
       </el-button>
-      <el-input v-model="value" prefix-icon="el-icon-search" @keyup.enter.native="search()"></el-input>
+      <el-input v-model="value"  prefix-icon="el-icon-search" @keyup.enter.native="search()"></el-input>
     </div>
     <div class="goodslist">
       <el-row style="margin: 70px">
@@ -122,7 +122,7 @@ import {
   ordersFindCidAPI,
   detailOrdersSaveAPI,
   trolleySaveAPI,
-  goodsByNameAPI
+  goodsByNameAPI, goodsByLeAPI, goodsByGeAPI
 } from "../../../api";
 
 export default {
@@ -216,35 +216,94 @@ export default {
         console.log(this.value)
         if (this.choose.includes('价格小于')) {
           console.log("Le")
-          const numReg = /^[0-9]+$/
+          const numReg = /^([1-9][0-9]*)+(.[0-9]{1,2})?$/
           const numRe = new RegExp(numReg)
           if (numRe.test(this.value)) {
-            // this.$message({<!-- -->
-            //   type: 'error',
-            //   message: '请输入数字 ',
-            //   duration: 10000,
-            //   showClose: true,
-            // })
-            // return false
+            console.log("拿到输入值-数字", this.value)
+            console.log(this.value)
+            this.value = Number(this.value)
+            console.log(this.value)
+            this.getGoodsLeList(this.value)
+          }else{
+            console.log("非数字", this.value)
+            console.log(typeof this.value)
+            this.$message({
+              type: 'error',
+              message: '请输入数字 ',
+              duration: 10000,
+              showClose: true,
+            })
           }
-          console.log("搜索搜索,拿到输入值", this.value)
-          this.value = Number(this.value)
-          console.log(typeof this.value)
-          this.getGoodsLeList(this.value)
         } else if (this.choose.includes('价格大于')) {
           console.log("Ge")
-          this.getGoodsGeList(this.value)
+          const numReg = /^([1-9][0-9]*)+(.[0-9]{1,2})?$/
+          const numRe = new RegExp(numReg)
+          if (numRe.test(this.value)) {
+            console.log("拿到输入值-数字", this.value)
+            console.log(this.value)
+            this.value = Number(this.value)
+            console.log(this.value)
+            this.getGoodsGeList(this.value)
+          }else{
+            console.log("非数字", this.value)
+            console.log(typeof this.value)
+            this.$message({
+              type: 'error',
+              message: '请输入数字 ',
+              duration: 10000,
+              showClose: true,
+            })
+          }
         } else {
           console.log("name")
           this.getGoodsByNameList(this.value)
         }
       }
     },
-    getGoodsLeList(value) {
-      console.log(value)
+    async getGoodsLeList(value) {
+      console.log("getGoodsLeList"+value)
+      this.aPage.gprice=value
+      console.log(this.aPage)
+      const json = JSON.stringify(this.aPage);
+      const {data: res} = await goodsByLeAPI(json);
+      console.log("开始");
+      if (res.code === '00000') {
+        this.goods=[]
+        console.log("通过商品价格小于gprice获取成功");
+        console.log(res);
+        this.goods = res.data.records;
+        this.aPage.total = res.data.total;
+        this.$message({
+          message: "已获取商品",
+          type: "success"
+        })
+      } else {
+        this.$message.error(res.msg)
+      }
+      console.log("结束")
     },
-    getGoodsGeList(value){
+    async getGoodsGeList(value){
       console.log(value)
+      console.log("getGoodsGeList("+value)
+      this.aPage.gname=value
+      console.log(this.aPage)
+      const json = JSON.stringify(this.aPage);
+      const {data: res} = await goodsByGeAPI(json);
+      console.log("开始");
+      if (res.code === '00000') {
+        this.goods=[]
+        console.log("通过商品价格大于gprice获取成功");
+        console.log(res);
+        this.goods = res.data.records;
+        this.aPage.total = res.data.total;
+        this.$message({
+          message: "已获取商品",
+          type: "success"
+        })
+      } else {
+        this.$message.error(res.msg)
+      }
+      console.log("结束")
     },
     async getGoodsByNameList(value){
       console.log("getGoodsByNameList("+value)
