@@ -21,11 +21,11 @@
       </div>
       <div class="createTime" >
         <el-tag>创建时间</el-tag>
-        {{news.create_time}}
+        {{news.create_time|dateFormat}}
       </div>
       <div class="updateTime">
         <el-tag>更新时间</el-tag>
-        {{news.update_time}}
+        {{news.update_time|dateFormat}}
       </div>
     </div>
     <hr>
@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import {articleAPI, articleDetailAPI, articleUserDetailAPI} from "../../../api";
-
+import  {articleUserDetailAPI} from "../../../api";
+import dayjs from 'dayjs'
 export default {
   name: "ArticleDetail",
   data() {
@@ -75,14 +75,27 @@ export default {
       console.log(res);
       console.log("开始");
       if (res.code==='00000'){
+        this.$message.success("文章获取成功")
         console.log("文章获取成功");
         this.news=res.data.records[0];
         // console.log(res.data.records[0].img);
         this.articlePage.total=res.data.total;
       }else {
-      }
         this.$message.error(res.msg)
+      }
+
       console.log("结束")
+    }
+  },
+  filters: {
+    dateFormat(time) {
+      //对time进行格式化处理 ，得到YYYY-MM-DD HH:mm:ss
+      //  把格式化的结果，return出去
+      //  直接调用dayjs()得到的是当前的时间
+      //  dayjs（给定的日期时间）得到指定的时间
+      //  只要导入了dayjs 的库文件，在window全局，就可以使用dayjs()方法
+      const dstr = dayjs(time).format("YYYY-MM-DD HH:mm:ss")
+      return dstr
     }
   },
   created(){

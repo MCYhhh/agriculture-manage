@@ -2,16 +2,16 @@
   <div class="homeleft-container">
     <div class="newstitle">
       <van-dropdown-menu style="width: 20%">
-        <van-dropdown-item v-model="value" :options="option" />
-        <van-dropdown-item title="筛选" ref="item" >
+        <van-dropdown-item  :title="title" v-model="choiceValue" :options="option"  @change="chooseachoice"/>
+        <van-dropdown-item  title="筛选" ref="item">
           <van-cell center title="最新榜">
-            <template #right-icon>
-              <van-switch v-model="switch1" size="24" active-color="#ee0a24" />
+            <template #right-icon  >
+              <van-switch v-model="switch1" size="24" active-color="#ee0a24"  @change="changeStatus($event)" />
             </template>
           </van-cell>
           <van-cell center title="最热榜">
             <template #right-icon>
-              <van-switch v-model="switch2" size="24" active-color="#ee0a24" />
+              <van-switch v-model="switch2" size="24" active-color="#ee0a24" @change="changeStatus1($event)"/>
             </template>
           </van-cell>
           <div style="padding: 5px 16px;">
@@ -53,7 +53,7 @@
             score-template="{value}">
           </el-rate>
           <p style="position: relative;top: -60px;left:160px">
-            <span class="date"><i class="el-icon-date">{{item.create_time}}</i></span>
+            <span class="date"><i class="el-icon-date">{{item.create_time| dateFormat}}</i></span>
             <el-link type="success">@{{item.uname}}</el-link>
           </p>
 <!--          <span>@{{item.uname}}</span>-->
@@ -72,15 +72,6 @@
           :total="articlePage.total">
           <!--          style="text-align: center;display: block;bottom: 200px;">-->
         </el-pagination>
-<!--        <el-pagination-->
-<!--          @size-change="handleSizeChange"-->
-<!--          @current-change="handleCurrentChange"-->
-<!--          :current-page="currentPage4"-->
-<!--          :page-sizes="[100, 200, 300, 400]"-->
-<!--          :page-size="100"-->
-<!--          layout="total, sizes, prev, pager, next, jumper"-->
-<!--          :total="400">-->
-<!--        </el-pagination>-->
       </div>
     </el-card>
 
@@ -89,31 +80,127 @@
 </template>
 
 <script>
-import {articleAPI} from "../../../api";
-import {ArticleUserAPI} from "../../../api";
+import {ArticleUserAPI,articleTypeAPI,articleOrderbytime,articleOrderbyscore} from "../../../api";
+import dayjs from 'dayjs'
 export default {
   name:'HomeLeft',
   data() {
     return {
-      // dialogFormVisible: false,
+      title:"文章",
+      choice:'',
+      choiceValue:'',
       news:[],
       articlePage:{
         page: 1,
         size:4,
         total:100,
+        type:0
       },
       value: 0,
       switch1: false,
       switch2: false,
       option: [
-        { text: '全部文章', value: 0 },
-        { text: '娱乐趣谈', value: 1 },
-        { text: '游记探寻', value: 2 },
+        { text: '全部文章', value:'0' },
+        { text: '农产品销售', value: '1' },
+        { text: '旅游分享', value: '2'},
+        { text: '农产品种植技巧', value: '3' },
+        { text: '民族风俗', value: '4' },
       ],
       // currentPage4: 4
     }
   },
   methods:{
+    chooseachoice(i){
+      this.title = this.option[i].text;
+      this.choiceValue = i;
+      this.choices(i)
+      console.log(i)
+    },
+    // 开关事件
+    changeStatus(e){
+      console.log(e) //e返回状态，row当前行数据，index下标
+      this.changes(e);
+    },
+    async changes(e){
+      console.log(e)
+      if(e===true){
+        console.log("看：",this.articlePage.type)
+        const json = JSON.stringify(this.articlePage);
+        const {data: res} = await articleOrderbytime(json);
+        console.log(res);
+        console.log("开始");
+        if (res.code === '00000') {
+          console.log("文章获取成功");
+          this.news = res.data.records;
+          console.log(res.data.records);
+          // news.create_time=dayjs(es.data.records[0]);
+          this.articlePage.total = res.data.total;
+        } else {
+          this.$message.error(res.msg)
+        }
+        console.log("结束")
+      }
+      // else{
+      //   this.getarticleList();
+      // }
+    },
+
+    changeStatus1(e){
+      console.log(e);
+      this.changes1(e);
+    },
+    async changes1(e){
+      console.log(e)
+      if(e===true){
+        console.log("看：",this.articlePage.type)
+        const json = JSON.stringify(this.articlePage);
+        const {data: res} = await articleOrderbyscore(json);
+        console.log(res);
+        console.log("开始");
+        if (res.code === '00000') {
+          console.log("文章获取成功");
+          this.news = res.data.records;
+          console.log(res.data.records);
+          // news.create_time=dayjs(es.data.records[0]);
+          this.articlePage.total = res.data.total;
+        } else {
+          this.$message.error(res.msg)
+        }
+        console.log("结束")
+      }
+      // else{
+      //   this.getarticleList();
+      // }
+    },
+    async choices(i) {
+      // this.choice = this.option[i].text;
+      console.log(i)
+      if(i===1){
+        console.log(i)
+        this.getarticleList()
+      }
+      else {
+        this.articlePage.type = i - 1;
+        console.log("看：",this.articlePage.type)
+        const json = JSON.stringify(this.articlePage);
+        const {data: res} = await articleOrderbyscore(json);
+        console.log(res);
+        console.log("开始");
+        if (res.code === '00000') {
+          console.log("文章获取成功");
+          this.news = res.data.records;
+          console.log(res.data.records);
+          // news.create_time=dayjs(es.data.records[0]);
+          this.articlePage.total = res.data.total;
+        } else {
+          this.$message.error(res.msg)
+        }
+        console.log("结束")
+      }
+    },
+
+
+
     detail(id){
       console.log(id);
       localStorage.setItem("articleDetailId",id)
@@ -141,6 +228,7 @@ export default {
         console.log("文章获取成功");
         this.news=res.data.records;
         console.log(res.data.records[0].img);
+        // news.create_time=dayjs(es.data.records[0]);
         this.articlePage.total=res.data.total;
       }else {
         this.$message.error(res.msg)
@@ -148,6 +236,17 @@ export default {
       console.log("结束")
     },
 
+    },
+  filters: {
+    dateFormat(time) {
+      //对time进行格式化处理 ，得到YYYY-MM-DD HH:mm:ss
+      //  把格式化的结果，return出去
+      //  直接调用dayjs()得到的是当前的时间
+      //  dayjs（给定的日期时间）得到指定的时间
+      //  只要导入了dayjs 的库文件，在window全局，就可以使用dayjs()方法
+      const dstr = dayjs(time).format("YYYY-MM-DD HH:mm:ss")
+      return dstr
+    }
   },
   created(){
     console.log("jinlaile")
@@ -156,6 +255,13 @@ export default {
 }
 </script>
 <style scoped>
+/deep/ .van-popup--top {
+  top: 0;
+  left: 210px;
+  /*width: 100%;*/
+  padding-right: 19.9px;
+}
+
 .zhengwen{
   /*width: 715px; !* (一定要加宽度）*!*/
   text-overflow: ellipsis; /* 溢出用省略号 */

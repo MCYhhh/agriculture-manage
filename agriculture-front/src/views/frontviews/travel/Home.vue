@@ -60,22 +60,11 @@
             <span style="font-size: 15px;color:green;">了解更多</span>
 
           </p>
-          <!--          <span>@{{item.uname}}</span>-->
 
-<!--          <el-button type="primary" class="browse">了解更多</el-button>-->
         </div>
         <el-divider class="divide"></el-divider>
       </div>
       <div class="block">
-<!--        <el-pagination-->
-<!--          @size-change="handleSizeChange"-->
-<!--          @current-change="handleCurrentChange"-->
-<!--          :current-page="currentPage4"-->
-<!--          :page-sizes="[100, 200, 300, 400]"-->
-<!--          :page-size="100"-->
-<!--          layout="total, sizes, prev, pager, next, jumper"-->
-<!--          :total="400">-->
-<!--        </el-pagination>-->
         <el-pagination
           @size-change="handleSize"
           @current-change="handleCurrent"
@@ -84,7 +73,6 @@
           :page-size="aPage.size"
           layout="total, sizes, prev, pager, next, jumper"
           :total="aPage.total">
-<!--          style="text-align: center;display: block;bottom: 200px;">-->
         </el-pagination>
       </div>
     </el-card>
@@ -108,68 +96,6 @@ export default {
           size:10,
           total:100,
         },
-    //   scenerys:[
-    //     {
-    //       id:1,
-    //       surl:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-    //       srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
-    //       sname:'蝴蝶泉公园',
-    //       type:'娱乐',
-    //       saddress:'云南省大理白族自治州蝴蝶泉公园',
-    //       sdesp:'大理三月好风光 蝴蝶泉边好梳妆,一曲《蝴蝶泉边》的美妙歌声响彻了中华大地，一部爱情电影《五朵金花》的故事传遍了全国，大理蝴蝶泉公园几近家喻户晓。蝴蝶泉公园,位于苍山云弄峰麓,原名“无底潭”，是国家AAA级旅游景区、国家重点风景名胜区、苍山世界地质公园。景区距大理古城25公里。景区内清泉甘凉、蝴蝶相容、绿树成荫、花团锦簇。',
-    //       score: 3.7,
-    //       create_time:'2022-03-19',
-    //       // s:'小星星'
-    //     },
-    //     {
-    //       id:2,
-    //       surl:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-    //       srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
-    //       sname:'漫山公园',
-    //       type:'游记',
-    //       saddress:'好好看',
-    //       sdesp:'最近风沙肆虐，水源不足等灾害频频发生;气候离不开环境，环境也离不开气候，在这两者之间，人类却成了第三者。\n' +
-    //         '随手关灯，是一种再普通不过的行为，然而10亿人在同一时间做同样的一件普通的事，人们心中激荡起强烈的情感共鸣，进而产生对人类命运和地球未来的共同关切。这样的举动，能否激起人类这个“第三者”对环保意识的觉醒?\n',
-    //       score: 2.1,
-    //       create_time:'2022-02-09',
-    //       // uname:'星月银河'
-    //     },
-    //     {
-    //       id:3,
-    //       surl:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-    //       srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
-    //       sname:'樱花公园',
-    //       type:'游记',
-    //       saddress:'好好看',
-    //       sdesp:'最近风沙肆虐，水源不足等灾害频频发生;气候离不开环境，环境也离不开气候，在这两者之间，人类却成了第三者。\n' +
-    //         '随手关灯，是一种再普通不过的行为，然而10亿人在同一时间做同样的一件普通的事，人们心中激荡起强烈的情感共鸣，进而产生对人类命运和地球未来的共同关切。这样的举动，能否激起人类这个“第三者”对环保意识的觉醒?\n',
-    //       score: 4.2,
-    //       create_time:'2022-02-19',
-    //       // uname:'似水流年'
-    //     },
-    //     {
-    //       id:4,
-    //       surl:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-    //       srcList:['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
-    //       site:'香山公园',
-    //       type:'游记',
-    //       saddress:'好好看',
-    //       sdesp:'最近风沙肆虐，水源不足等灾害频频发生;气候离不开环境，环境也离不开气候，在这两者之间，人类却成了第三者。\n' +
-    //         '随手关灯，是一种再普通不过的行为，然而10亿人在同一时间做同样的一件普通的事，人们心中激荡起强烈的情感共鸣，进而产生对人类命运和地球未来的共同关切。这样的举动，能否激起人类这个“第三者”对环保意识的觉醒?\n',
-    //       score: 3.7,
-    //       create_time:'2022-01-19',
-    //       // uname:'畅游世界'
-    //     }
-    //   ],
-    //   value: 0,
-    //   switch1: false,
-    //   switch2: false,
-    //   option: [
-    //     { text: '全部文章', value: 0 },
-    //     { text: '娱乐趣谈', value: 1 },
-    //     { text: '游记探寻', value: 2 },
-    //   ],
-    //   currentPage4: 4
     }
   },
   methods:{

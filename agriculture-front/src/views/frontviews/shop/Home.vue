@@ -1,5 +1,9 @@
 <template>
   <div class="shop-container">
+    <div class="back" @click="backFront()">
+      <i class="el-icon-d-arrow-left" style="font-size: 25px;color: #999999;" ></i>
+      <span style="font-size: 22px;color:#e0dddd;" >返回</span>
+    </div>
     <div class="searchblock">
       <el-button>
         <el-dropdown @command="chooseValue">
@@ -180,6 +184,11 @@ export default {
     }
   },
   methods: {
+    backFront(){
+      // this.aPage.size = 20;
+      // this.aPage.page = 20;
+      this.$router.go(0);
+    },
     chooseValue(label) {
       this.choose = label
       if (this.choose.includes('价格小于')) {
