@@ -16,8 +16,6 @@ public class OrderDetailVO {
 
     private BigDecimal dtotal;
 
-
-
     private String gname;
 
     private BigDecimal gprice;
