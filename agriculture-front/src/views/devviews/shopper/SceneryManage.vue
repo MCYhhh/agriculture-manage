@@ -1,7 +1,7 @@
 <template>
   <div class="scenery-container">
     <div style="margin: 10px 0">
-      <el-input style="width: 200px" placeholder="请输入景点名称" suffix-icon="el-icon-search" v-model="sname"></el-input>
+      <el-input style="width: 200px" placeholder="请输入景点名称" suffix-icon="el-icon-search" v-model="sname" @keyup.enter.native="query"></el-input>
       <el-button class="ml-5" type="primary" @click="query">搜索</el-button>
       <el-button type="warning" @click="reset">重置</el-button>
       <el-button type="primary" @click="handleAdd" >新增 <i class="el-icon-circle-plus-outline"></i></el-button>

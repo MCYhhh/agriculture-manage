@@ -73,7 +73,7 @@
 
 <script>
 import {
-  reserveSceneryByCidAPI,
+  reserveSceneryfindAllAPI,
 } from "../../../api";
 
 export default {
@@ -89,7 +89,8 @@ export default {
       aPage:{
         page: 1,
         size:10,
-        cid : JSON.parse(localStorage.getItem('user')).uid
+        cid:0,
+        uid: JSON.parse(localStorage.getItem('user')).uid,
       }
     }
   },
@@ -109,7 +110,7 @@ export default {
     },
     async getList() {
       const json = JSON.stringify(this.aPage);
-      const {data: res} = await reserveSceneryByCidAPI(json);
+      const {data: res} = await reserveSceneryfindAllAPI(json);
       console.log(res)
       if (res.code === '00000') {
         this.reserves = res.data.records;
@@ -123,7 +124,6 @@ export default {
     }
   },
   created() {
-
     this.getList()
   },
 }

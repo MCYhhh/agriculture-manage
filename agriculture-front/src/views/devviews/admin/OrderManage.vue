@@ -146,11 +146,12 @@ export default {
       value: '',
       choose: '选择类型',
       option1: [
+        {label: '没有条件', value: -1},
         {label: '订单状态', value: 0},
-        {label: '用户姓名', value: 1},
         {label: '消费小于', value: 2},
         {label: '消费大于', value: 3},
         {label: '订单编号', value: 4},
+        {label: '用户姓名', value: 1},
       ],
       tag:0,
       loading:false,
@@ -206,13 +207,15 @@ export default {
         })
       }
       this.tag = 1
+      if (this.choose.includes('没有条件')){
+        this.tag = 0
+      }
     },
     search() {
       if (this.tag === 0) {
-        this.$message({
-          message: "请选择条件",
-          type: "warning",
-        })
+        this.aPage.size=10
+        this.aPage.page=1
+        this.getList();
       } else if (this.value==="") {
         this.$message({
           message: "请输入值",
