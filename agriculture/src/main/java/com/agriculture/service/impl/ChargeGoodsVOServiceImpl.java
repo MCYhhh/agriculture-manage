@@ -29,5 +29,15 @@ public class ChargeGoodsVOServiceImpl extends ServiceImpl<ChargeGoodsVOMapper, C
         return Mapper.findgname(iPage,gname);
     }
 
+    @Override
+    public Page<ChargeGoodsVO> finduidgname(Page<ChargeGoodsVO> iPage, String gname,Integer uid) {
+        return Mapper.finduidgname(iPage,gname,uid);
+    }
+
+    @Override
+    public Page<ChargeGoodsVO> all(Page<ChargeGoodsVO> iPage) {
+        return Mapper.all(iPage);
+    }
+
 
 }
