@@ -78,7 +78,7 @@ public class OrdersController {
     }
 
     //根据uid
-    @GetMapping("/findUid")
+    @PostMapping("/findUid")
     public Result findUid(@RequestBody OrdersPage ordersPage){
         QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("uid",ordersPage.getUid());

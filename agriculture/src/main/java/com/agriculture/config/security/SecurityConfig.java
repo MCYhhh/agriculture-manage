@@ -55,8 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
               .authorizeRequests()
               //对于登录接口  允许匿名访问（未登录状态下也可以访问，登录状态下不可以）
                 //permitAll 表示登录状态下和未登录状态下都可以访问
-              .antMatchers("/user/login","/user/register").anonymous().antMatchers("/file/**").permitAll()
-              //除上面外的所有请求全部需要鉴权认证
+                .antMatchers("/user/login","/user/register").anonymous().antMatchers("/file/**").permitAll()
+                //除上面外的所有请求全部需要鉴权认证
               .anyRequest().authenticated();
 //      把token校验过滤器添加到过滤器中
 //      addFilterBefore:把某个过滤器添加到某个过滤器之前（通过字节码对象来指定）

@@ -34,3 +34,4 @@ public class CorsConfig implements WebMvcConfigurer {
 //        registry.addResourceHandler("/img/img/img/**").addResourceLocations("classpath:/static/img/**");
     }
 }
+
