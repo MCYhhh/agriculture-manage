@@ -21,6 +21,7 @@
           </div>
         </van-dropdown-item>
       </van-dropdown-menu>
+      <el-button type="primary" class="creat-btn" @click="createArticle">发表文章</el-button>
     </div>
     <el-card style="width: 60%;">
       <div class="demo-image__preview" v-for="(item,index) in news" :key="item.id">
@@ -40,8 +41,6 @@
             <el-tag>摘要</el-tag>
             {{item.summary}}
           </p>
-
-
 
           <div class="zhengwen"> <el-tag type="warning" >正文</el-tag>{{item.content}}</div>
         </div>
@@ -74,18 +73,111 @@
         </el-pagination>
       </div>
     </el-card>
+    <el-dialog title="新增文章数据" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="文章标题" :label-width="formLabelWidth">
+          <el-input v-model="form.title" autocomplete="off" style="display: inline"></el-input>
+        </el-form-item>
+
+        <el-form-item label="文章类型" :label-width="formLabelWidth" >
+          <el-dropdown @command="chooseValue" style="width: 150px">
+        <span class="el-dropdown-link">
+          <i class="el-icon-caret-bottom"  style="font-size: 18px" ></i>
+          <el-input v-model="choose" style="width: 100px"></el-input>
+        </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item v-for="item in option " :key="item.value" :command="item.text" v-if="item.value>0">
+                <span>{{item.text}}</span>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+<!--          <el-input v-model="form.type" autocomplete="off"></el-input>-->
+        </el-form-item>
+
+        <el-form-item label="文章摘要" :label-width="formLabelWidth">
+          <el-input v-model="form.summary" autocomplete="off"></el-input>
+        </el-form-item>
+
+        <el-form-item label="文章正文" :label-width="formLabelWidth">
+          <el-input
+            type="textarea"
+            :autosize="{ minRows: 2, maxRows: 4}"
+            placeholder="请输入内容"
+            v-model="form.content">
+          </el-input>
+
+        </el-form-item>
+        <el-form-item label="推荐指数" :label-width="formLabelWidth">
+<!--          <el-input v-model="form.score" autocomplete="off"></el-input>-->
+          <el-rate
+            v-model="form.score"
+            :colors="colors">
+          </el-rate>
+        </el-form-item>
+
+        <el-form-item label="上传封面" prop="imageUrl" style="margin-left: 45px">
+          <el-upload
+            action="http://localhost:8084/file/upload"
+            list-type="picture-card"
+            :on-preview="handlePictureCardPreview"
+            :on-success="handleAvatarSuccess"
+            :on-remove="handleRemove"
+            enctype="multipart/form-data"
+            :http-request="onUpload"
+          >
+            <i class="el-icon-plus"></i>
+          </el-upload>
+          <el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="dialogImageUrl" alt="" />
+          </el-dialog>
+        </el-form-item>
+        <el-dialog :visible.sync="dialogVisible">
+          <img width="100%" :src="dialogImageUrl" alt="" />
+        </el-dialog>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submitArticle(form)"
+        >确 定</el-button
+        >
+      </div>
+    </el-dialog>
 
   </div>
 
 </template>
 
 <script>
-import {ArticleUserAPI,articleTypeAPI,articleOrderbytime,articleOrderbyscore} from "../../../api";
+import {
+  ArticleUserAPI,
+  articleTypeAPI,
+  articleOrderbytime,
+  articleOrderbyscore,
+  uploadAPI,
+  saveArticleAPI
+} from "../../../api";
 import dayjs from 'dayjs'
 export default {
   name:'HomeLeft',
   data() {
     return {
+
+      colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
+      dialogImageUrl: "",
+      dialogVisible: false,
+      dialogTableVisible: false,
+      dialogFormVisible: false,
+      form: {
+        title: "",
+        type:0,
+        summary: "",
+        content: "",
+        img: "",
+        score:0,
+        uid:JSON.parse(localStorage.getItem('user')).uid
+      },
+      formLabelWidth: "120px",
+      json :"",
       title:"文章",
       choice:'',
       choiceValue:'',
@@ -99,6 +191,7 @@ export default {
       value: 0,
       switch1: false,
       switch2: false,
+      choose:'文章类型',
       option: [
         { text: '全部文章', value:'0' },
         { text: '农产品销售', value: '1' },
@@ -110,6 +203,53 @@ export default {
     }
   },
   methods:{
+    chooseValue(label){
+      this.choose=label
+    },
+    async onUpload(file){
+      console.log(file)
+      localStorage.setItem('isFile',"isFile")
+      const formData=new FormData()
+      formData.append('file',file.file)
+      const{data:res}=await uploadAPI(formData)
+      this.form.img=res
+    },
+    handleAvatarSuccess(res) {
+      console.log("上传")
+      console.log(res)
+      // this.form.img=res.data
+      // console.log("filefile",file)
+
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      console.log("预览预览")
+      console.log("预览预览")
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+      console.log(file.url);
+    },
+
+    submitArticle: async function (){
+      localStorage.removeItem('isFile')
+      // const {data:res}=await
+      console.log("上传提交提交")
+      if(this.choose==="农产品销售")
+        this.form.type=1
+      else if(this.choose==="旅游分享")
+        this.form.type=2
+      else if(this.choose==="农产品种植技巧")
+        this.form.type=3
+      else if(this.choose==="民风民俗")
+        this.form.type=4
+      console.log(this.form)
+      this.json = JSON.stringify(this.form)
+      const{data:res}=await saveArticleAPI(this.json);
+      console.log(res.data);
+      this.$message.success("文章发布成功！！");
+    },
     chooseachoice(i){
       this.title = this.option[i].text;
       this.choiceValue = i;
@@ -200,7 +340,6 @@ export default {
     },
 
 
-
     detail(id){
       console.log(id);
       localStorage.setItem("articleDetailId",id)
@@ -208,6 +347,10 @@ export default {
     },
     onConfirm() {
       this.$refs.item.toggle();
+    },
+    createArticle(){
+      console.log("去发表文章")
+      this.dialogFormVisible=true
     },
     handleSize(val) {
       console.log(`每页 ${val} 条`);
@@ -249,7 +392,6 @@ export default {
     }
   },
   created(){
-    console.log("jinlaile")
     this.getarticleList()
   }
 }
@@ -261,7 +403,9 @@ export default {
   /*width: 100%;*/
   padding-right: 19.9px;
 }
-
+.newstitle{
+  position: static;
+}
 .zhengwen{
   /*width: 715px; !* (一定要加宽度）*!*/
   text-overflow: ellipsis; /* 溢出用省略号 */
@@ -297,10 +441,17 @@ span{
   position: relative;
   top:-25px
 }
+.el-form-item el-form-item-- small
 .itemrate .browse{
   position: relative;
   top:-105px;
   left:380px
+}
+.creat-btn{
+  position: absolute;
+  left:700px;
+  top:530px;
+  font-size: 18px;
 }
 
 </style>

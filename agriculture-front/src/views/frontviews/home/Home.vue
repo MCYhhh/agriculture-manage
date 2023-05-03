@@ -5,6 +5,7 @@
     <HomeRight></HomeRight>
     <HomeMiddle></HomeMiddle>
     <HomeMiddle2></HomeMiddle2>
+    <router-view></router-view>
   </div>
 </template>
 

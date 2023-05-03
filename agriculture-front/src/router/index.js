@@ -16,6 +16,11 @@ const routes=[
     component:()=>import ('@/views/Register'),
   },
   {
+    path: '/front/home/createArticle',
+    name: 'CreateArticle',
+    component: () => import ('@/views/frontviews/home/CreateArticle'),
+  },
+  {
     path:'/front',
     name:'Front',
     component:()=>import ('@/views/frontviews/Front'),
