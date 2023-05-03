@@ -183,4 +183,5 @@ export default {
 /deep/ .el-table td.el-table__cell{
   font-size: 15px;
 }
+
 </style >

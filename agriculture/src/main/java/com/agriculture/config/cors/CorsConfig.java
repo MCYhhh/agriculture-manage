@@ -1,5 +1,6 @@
 package com.agriculture.config.cors;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -33,4 +34,3 @@ public class CorsConfig implements WebMvcConfigurer {
 //        registry.addResourceHandler("/img/img/img/**").addResourceLocations("classpath:/static/img/**");
     }
 }
-

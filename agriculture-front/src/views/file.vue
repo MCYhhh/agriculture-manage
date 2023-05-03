@@ -27,7 +27,7 @@
 
         <el-form-item label="上传封面" prop="imageUrl">
           <el-upload
-            action="http://localhost:8083/file/upload"
+            action="http://localhost:8084/file"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
             :on-success="handleAvatarSuccess"
@@ -78,7 +78,6 @@ export default {
       isDisabled:false,
     };
   },
-
   methods: {
    async onUpload(file){
       console.log(file)
@@ -117,7 +116,7 @@ export default {
       const{data:res}=await saveArticleAPI(this.json);
       console.log(res.data);
       this.$message.success("文章发布成功！！");
-      this.isDisabled=true;
+      // this.isDisabled=true;
     }
   },
 };

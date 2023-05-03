@@ -30,11 +30,11 @@ public class SceneryController {
     //插入、保存景点
     @PostMapping("/save")
     public Result save(@RequestBody Scenery scenery){
-        for(Scenery a:iSceneryService.list()) {
-            if(scenery.getSname().equals(a.getSname())) {
-                return Result.error(HttpCode.USER_System.code(),"参数错误，景区已存在");
-            }
-        }
+//        for(Scenery a:iSceneryService.list()) {
+//            if(scenery.getSname().equals(a.getSname())) {
+//                return Result.error(HttpCode.USER_System.code(),"参数错误，景区已存在");
+//            }
+//        }
         return Result.success(iSceneryService.save(scenery));
     }
 
@@ -94,6 +94,39 @@ public class SceneryController {
         }
         return Result.success(sceneryIPage);
     }
+
+    //通过景点名称sname查询景点
+    @PostMapping("/findByUidSname")
+    public Result findByUidSname(@RequestBody SceneryPage sceneryPage){
+        QueryWrapper<Scenery> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("uid",sceneryPage.getUid()).like("sname",sceneryPage.getSname());
+        int page=sceneryPage.getPage();
+        int size=sceneryPage.getSize();
+        Page<Scenery> spage = new Page<>(page,size);
+        IPage<Scenery> sceneryIPage = iSceneryService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+sceneryIPage.getTotal());
+        System.out.print("pages---"+sceneryIPage.getPages());
+        System.out.print("record---"+sceneryIPage.getRecords());
+        sceneryIPage.getRecords().forEach(System.out::println);
+        List<Scenery> row = sceneryIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            return Result.error(HttpCode.USER_System.code(),"参数错误，没有符合条件的景区");
+        }
+        return Result.success(sceneryIPage);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     //查询所有景点
     @PostMapping("/findAll")

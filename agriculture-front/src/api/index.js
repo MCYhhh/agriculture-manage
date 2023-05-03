@@ -231,30 +231,6 @@ export const orderUserGeAPI = (json) => {
   })
 }
 
-// 状态查询订单用户
-export const orderUserOsateAPI = (json) => {
-  return request({
-    url:'/orderuservo/orderUserOsate',
-    method:'POST',
-    data:json
-  })
-}
 
 
-// 订单编号查询订单用户
-export const orderUserOidAPI = (json) => {
-  return request({
-    url:'/orderuservo/orderUserOid',
-    method:'POST',
-    data:json
-  })
-}
 
-// 用户姓名查询订单用户
-export const orderUserUameAPI = (json) => {
-  return request({
-    url:'/orderuservo/orderUserUame',
-    method:'POST',
-    data:json
-  })
-}
