@@ -11,16 +11,19 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 import store from "./store";
 import '../src/assets/css/globalcss.css'
+import myAxios from "./utils";
+
 // import BaiduMap from 'vue-baidu-map'
 // Vue.use(BaiduMap, {
 //   ak: 'XZnOK8f5Kf9q3IDnx1i1aBUQ5RKHLSl7'  //这个地方是官方提供的ak密钥
 // })
 
-
-
 Vue.use(ElementUI,{size:"small"})
 Vue.use(Vant)
 Vue.config.productionTip = false
+Vue.prototype.request=myAxios
+
+
 
 /* eslint-disable no-new */
 

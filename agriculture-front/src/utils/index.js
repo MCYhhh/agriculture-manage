@@ -3,19 +3,25 @@ import axios from 'axios'
 // import store from '@/store'
 // import router from '@/router'
 
+
 // 创建一个自定的axios方法(比原axios多了个基地址)
 // axios函数请求的url地址前面会被拼接基地址, 然后axios请求baseURL+url后台完整地址
 axios.defaults.headers["Content-Type"] = "application/json ; charset=utf-8"
 
 const myAxios = axios.create({
-  baseURL: 'http://localhost:8083'
+  baseURL: 'http://localhost:8084'
 })
 
 // request 拦截器
 // 可以自请求发送前对请求做一些处理
 // 比如统一加token，对请求参数统一加密
 myAxios.interceptors.request.use(config => {
-  config.headers['Content-Type'] = 'application/json;charset=utf-8';
+  let file = localStorage.getItem("isFile") ? localStorage.getItem("isFile") : null
+  if (file) {
+    config.headers['Content-Type'] = 'multipart/form-data;charset=utf-8';
+  }
+  else
+    config.headers['Content-Type'] = 'application/json;charset=utf-8';
   let user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null
   if (user) {
     config.headers['token'] = user.token;  // 设置请求头
