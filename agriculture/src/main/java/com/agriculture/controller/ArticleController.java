@@ -25,7 +25,7 @@ public class ArticleController {
     }
 
     //查询所有
-    @GetMapping("/findAll")
+    @PostMapping("/findAll")
     public Result listall(@RequestBody ArticlePage articlePage){
         //iUserService.list();
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();

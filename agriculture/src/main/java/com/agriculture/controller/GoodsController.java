@@ -208,7 +208,10 @@ public class GoodsController {
         }
         return Result.success(goodsIPage);
     }
-    
+    @GetMapping("/{gid}")
+    public Result findOne(@PathVariable Integer gid){
+        return Result.success(iGoodsService.getById(gid));
+    }
     //新增或修改商品
     @PostMapping("/saveOrmodify")
     public Result saveOrmodify(@RequestBody Goods goods){
