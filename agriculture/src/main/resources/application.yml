@@ -10,9 +10,9 @@ spring:
   servlet:
     multipart:
       enabled: true
-      max-file-size: 20MB  #限制上传文件的大小
-      max-request-size: 10MB    #限制整个请求的大小
-      file-size-threshold: 2KB   #设置写入磁盘的文件的大小啊哦阈值
+      max-file-size: 200MB  #限制上传文件的大小
+      max-request-size: 100MB    #限制整个请求的大小
+      file-size-threshold: 20MB   #设置写入磁盘的文件的大小啊哦阈值
   redis:
     host: 127.0.0.1  #redis服务器地址
     port: 6379    #redis服务器连接端口
