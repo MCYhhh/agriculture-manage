@@ -378,6 +378,110 @@ export const goodsbyUname = (json) => {
 }
 
 
+// export const reserveSceneryByUidAPI = (json) => {
+//   return request({
+//     url:'/reserveScenery/findByUid',
+//     method:'POST',
+//     data:json
+//   })
+// }
 
+export const reserveSceneryfindAllAPI = (json) => {
+  return request({
+    url:'/reserveScenery/findAll',
+    method:'POST',
+    data:json
+  })
+}
 
+// 修改信息
+export const modifyUserAPI = (json) => {
+  return request({
+    url:'/user/modify',
+    method:'POST',
+    data:json
+  })
+}
+
+// 商家查询所有订单用户
+export const orderUserShopAllAPI = (json) => {
+  return request({
+    url:'/orderuservo/bmyorders',
+    method: 'POST',
+    data: json,
+  })
+}
+// 购物车商品
+export const trolleyGoodsAPI = (json) => {
+  return request({
+    url:'/trolleyGoods/findAll',
+    method:'POST',
+    data:json
+  })
+}
+// 预约景点
+export const reserveSceneryByCidAPI = (json) => {
+  return request({
+    url:'/reserveScenery/findByCid',
+    method:'POST',
+    data:json
+  })
+}
+// 订单用户查询所有消费大于等于 商家
+export const orderUserShopGeAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserGe',
+    method:'POST',
+    data:json
+  })
+}
+// 用户编号查询订单用户 商家
+export const orderUserShopCidAPI = (json) => {
+  return request({
+    url:'/orderuservo/ciduidorders',
+    method: 'POST',
+    data: json,
+  })
+}
+
+// 订单编号查询订单用户 商家
+export const orderUserShopOidAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserOid',
+    method:'POST',
+    data:json
+  })
+}
+// 状态查询订单用户 商家
+export const orderUserShopOsateAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserShopOsate',
+    method:'POST',
+    data:json
+  })
+}
+// 订单用户查询所有消费小于等于 商家
+export const orderUserShopLeAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserLe',
+    method:'POST',
+    data:json
+  })
+}
+
+// 订单用户查询所有消费小于等于 商家
+export const findUserAllAPI = () => {
+  return request({
+    url:'/user/findAll',
+    method:'get',
+  })
+}
+// 删除用户
+export const deleteUserAllAPI = (uid) => {
+  return request({
+    url:'/user/delete/'+uid,
+    method:'DELETE',
+    data:uid
+  })
+}
 

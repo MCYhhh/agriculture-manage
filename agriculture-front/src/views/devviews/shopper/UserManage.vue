@@ -1,174 +1,178 @@
 <template>
   <div class="user-container">
+    <!--    <div style="margin: 10px 0">-->
+    <!--      <el-input style="width: 200px" placeholder="请输入景点名称" suffix-icon="el-icon-search" v-model="sname"></el-input>-->
+    <!--      <el-button class="ml-5" type="primary" @click="query">搜索</el-button>-->
+    <!--      <el-button type="warning" @click="reset">重置</el-button>-->
+    <!--    </div>-->
+
     <el-table
       :data="orders"
       v-loading="loading"
-      style="width: 80%;margin-left: -10%;margin-top: -20px">
+    >
       <el-table-column
         type="index"
         label="序号"
+        width="110">
+      </el-table-column>
+      <el-table-column
+        prop="uid"
+        label="用户编号"
+        width="110">
+      </el-table-column>
+      <el-table-column
+        prop="uname"
+        label="昵称"
         width="150">
       </el-table-column>
       <el-table-column
-        prop="oid"
-        label="订单编号"
-        width="150">
+        prop="uaddress"
+        label="地址"
+        width="260">
       </el-table-column>
       <el-table-column
-        prop="odate"
-        label="时间"
-        width="220">
-      </el-table-column>
-      <el-table-column
-        prop="ototal"
-        label="总消费/元"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="osate"
-        label="状态"
-        width="200"
+        prop="utel"
+        label="电话"
+        width="150"
       >
-        <template slot-scope="scope">
-          <el-tag
-            :type="scope.row.osate === 0 ? 'danger' : 'success'"
-            v-if="scope.row.osate === 0"
-            disable-transitions>待支付</el-tag>
-          <el-tag
-            :type="scope.row.osate === 0 ? 'danger' : 'success'"
-            v-else
-            disable-transitions>已支付</el-tag>
+      </el-table-column>
+      <el-table-column
+        prop="udesp"
+        label="简介"
+        width="300"
+      ></el-table-column>
+      <el-table-column prop="uimg" label="图片"  width="200">
+        <!-- 图片的显示 -->
+        <template   slot-scope="scope">
+          <img :src="scope.row.surl"   height="150" />
         </template>
       </el-table-column>
+      <el-table-column
+        prop="sdate"
+        label="日期"
+        width="150"
+      ></el-table-column>
+      <el-table-column
+        prop="usex"
+        label="性别"
+        width="150"
+      ></el-table-column>
+      <el-table-column
+        prop="state"
+        label="性别"
+        width="200"
+      >
+      </el-table-column>
       <el-table-column label="操作" width="240px">
+
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            @click="handleEdit(scope.$index, scope.row)">支付</el-button>
-          <el-button
-            size="mini"
-            type="success"
-            @click="handleDetail(scope.$index, scope.row)">详情</el-button>
+          <el-button type="success" @click="handleEdit(scope.row)">编辑 <i class="el-icon-edit"></i></el-button>
+          <el-popconfirm
+            class="ml-5"
+            confirm-button-text='确定'
+            cancel-button-text='我再想想'
+            icon="el-icon-info"
+            icon-color="red"
+            title="您确定删除吗？"
+            @confirm="deleteUser(scope.$index, scope.row)"
+          >
+            <el-button type="danger" slot="reference">删除 <i class="el-icon-remove-outline"></i></el-button>
+          </el-popconfirm>
+
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="articlePage.page"
-      :page-sizes="[4,6,8]"
-      :page-size="articlePage.size"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="articlePage.total"
-      style="text-align: center;display: block;bottom: 200px;">
-    </el-pagination>
-    <div class="pay">
-      <el-dialog title="订单支付" :visible.sync="dialogFormVisible" width="20%" style="padding: 20px">
-        <img src="../../../assets/images/支付宝.jpg" style="width: 300px;margin-left: 20px">
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="cancelinfo">取 消</el-button>
-          <el-button type="primary" @click="confirminfo">支 付</el-button>
-        </div>
-      </el-dialog>
-    </div>
-    <div class="detail">
-      <el-dialog title="订单详情" :visible.sync="dialogDetailFormVisible" >
-        <img src="../../../assets/images/支付宝.jpg" style="width: 300px;margin-left: 20px">
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="cancelinfo">取 消</el-button>
-          <el-button type="primary" @click="confirminfo">支 付</el-button>
-        </div>
-      </el-dialog>
-    </div>
-
-
+    <!--    <el-pagination-->
+    <!--      @size-change="handleSizeChange"-->
+    <!--      @current-change="handleCurrentChange"-->
+    <!--      :current-page="articlePage.page"-->
+    <!--      :page-sizes="[4,6,8]"-->
+    <!--      :page-size="articlePage.size"-->
+    <!--      layout="total, sizes, prev, pager, next, jumper"-->
+    <!--      :total="articlePage.total"-->
+    <!--      style="text-align: center;display: block;bottom: 200px;">-->
+    <!--    </el-pagination>-->
 
   </div>
 </template>
 
-
-
-
-
 <script>
-import {updateOrderAPI, selfOrderAPI} from "../../../api";
+import {
+  articleSaveorModifyAPI,
+  deleteSceneryAPI, deleteUserAllAPI,
+  findUserAllAPI, modifyUserAPI,
+  sceneryAllAPI,
+  sceneryLikeNameAPI
+} from "../../../api";
 
 export default {
-  name: "UserManage",
   data() {
     return {
+      dialogFormVisible:false,
+      visible: false,
       loading:false,
       activeName: '1',
-      dialogFormVisible:false,  //控制支付弹框
-      dialogDetailFormVisible:false,  //控制详情弹框
+      sname:'',
       orders:[],
-      articlePage:{
-        page: 1,
-        size:4,
-        total:0,
-        cid:JSON.parse(localStorage.getItem('user')).uid
-      }
     }
   },
   methods:{
-    cancelinfo(){
-      this.dialogFormVisible = false;
-    },
-    confirminfo(){
-      this.dialogFormVisible = false;
-      this.$message.success("支付成功")
-    },
-    modifyinfo(){
+    async handleEdit(row){
+      this.orders = JSON.parse(JSON.stringify(row))
       this.dialogFormVisible = true
+    },
+    reset(){
+      this.sname = ""
+    },
+    async saveormodify(){
+      this.orders.uid=JSON.parse(localStorage.getItem('user')).uid;
+      const {data: res} = await modifyUserAPI(this.orders)
+      if (res.code === '00000') {
+        this.$message.success("成功")
+        this.$router.go(0);
+      }
+      else{
+        this.$message.error("失败")
+      }
+    },
+    handleAdd() {
+      this.dialogFormVisible = true
+      this.orders = {}
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
       this.articlePage.size=val;
-      this.getarticleList();
+      this.getOrders();
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
       this.articlePage.page=val;
-      this.getarticleList();
+      this.getOrders();
     },
-    async handleEdit(index, row) {
-      if(row.osate===1)
-        alert("您已完成支付~~")
-      else{
-        this.dialogFormVisible=true
-        const {data:res}=await updateOrderAPI({
-          oid:row.oid,
-          cid:JSON.parse(localStorage.getItem('user')).uid,
-          uid:row.uid,
-          osate:1
-        })
-        console.log("更改状态",res)
-        if(res.code==='00000'){
-          this.$message.success("支付完成")
-        }else{
-          this.$message.error("支付失败")
-        }
-        // this.$router.go(0)
+    async deleteUser(index,row){
+      const {data: res} = await deleteUserAllAPI (row.uid)
+      console.log(res)
+      if(res.code==='00000'){
+        console.log(res)
+        alert("删除成功！")
+        this.$router.go(0);
       }
-
-    },
-    handleDetail(index, row) {
-      // this.dialogDetailFormVisible=true
-      localStorage.setItem("orderDetailId",row.oid)
-      this.$router.push("/front/self/orderdetail")
-      console.log(index, row);
+      else{
+        alert("删除失败！")
+      }
     },
     async getOrders() {
       const json = JSON.stringify(this.articlePage);
-      const {data: res} = await selfOrderAPI(json);
+      const {data: res} = await findUserAllAPI();
+      // sceneryAllAPI(json);
       console.log(res)
       if (res.code === '00000') {
-        this.orders = res.data.records;
-        this.articlePage.total = res.data.total;
-        this.$message.success("获取我的订单成功")
+        this.orders = res.data;
+        // this.articlePage.total = res.data.total;
+        this.$message.success("获取用户信息成功")
       }
       else{
-        this.$message.error("获取我的订单失败")
+        this.$message.error("获取用户信息失败")
       }
     }
   },
@@ -179,13 +183,5 @@ export default {
 </script>
 
 <style scoped>
-/deep/ .el-table th.el-table__cell{
-  font-size: 16px;
-}
-/deep/ .el-table td{
-  margin-left: -10px;
-}
-/deep/ .el-table td.el-table__cell{
-  font-size: 15px;
-}
+
 </style>

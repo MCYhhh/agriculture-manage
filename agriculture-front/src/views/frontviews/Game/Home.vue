@@ -153,7 +153,7 @@ export default {
   /*right: 50px;*/
   /*right: 10px;*/
   top:25px;
-  margin-left: 400px;
+  margin-left: 550px;
   position: relative;
   font-size: 15px;
   color: white;

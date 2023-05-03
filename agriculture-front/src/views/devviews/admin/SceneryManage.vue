@@ -32,13 +32,13 @@
         width="260">
       </el-table-column>
       <el-table-column
-        prop="oprice"
+        prop="sprice"
         label="价格"
         width="150"
       >
       </el-table-column>
       <el-table-column
-        prop="odesp"
+        prop="sdesp"
         label="描述"
         width="300"
       ></el-table-column>

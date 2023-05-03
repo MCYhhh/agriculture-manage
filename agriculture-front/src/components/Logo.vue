@@ -39,11 +39,12 @@ export default {
       }
       else if (label==="进入后台"){
         const utype=JSON.parse(localStorage.getItem('user')).utype;
+        console.log(utype)
        // resetRouter()
-       //  if(utype===2)
-       //    this.$router.push('/admin')
-       //  else if(utype===1)
-       //    this.$router.push('/shopper')
+        if(utype===2)
+          this.$router.push('/admin/home')
+        else if(utype===1)
+          this.$router.push('/shopper/home')
       }
       else{
         console.log("注销")

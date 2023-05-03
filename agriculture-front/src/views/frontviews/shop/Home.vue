@@ -24,7 +24,7 @@
         <el-col :span="4" v-for="(item, index) in goods" :key="item.gid" :offset="index%4 > 0 ? 2 : 0"
                 style="padding-bottom: 30px">
           <el-card :body-style="{ padding: '10px'}" style="width:130%" shadow="hover">
-            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+            <img :src="item.gimg"
                  style="width:100%;margin: auto" class="image">
             <div style="padding: 14px;">
               <span>{{ item.gname }}</span>

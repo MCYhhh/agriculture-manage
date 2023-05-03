@@ -24,11 +24,11 @@ export default {
     return {
       scenery:[
         {sid:1,sname:'丽江民风',saddress:'云南省丽江市万超县幸福小区101号',sprice:180,sdesp:'丽江风情，人文风俗',surl:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
-        {sid:2,sname:'丽江民风',saddress:'云南省丽江市万超县幸福小区101号',sprice:180,sdesp:'丽江风情，人文风俗',surl:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
-        {sid:3,sname:'丽江民风',saddress:'云南省丽江市万超县幸福小区101号',sprice:180,sdesp:'丽江风情，人文风俗',surl:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
+        {sid:2,sname:'大理民风',saddress:'云南省大理市白族自治州万超县幸福小区101号',sprice:180,sdesp:'丽江风情，人文风俗',surl:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
+        {sid:3,sname:'香格里拉民风',saddress:'云南省香格里拉万超县幸福小区101号',sprice:180,sdesp:'丽江风情，人文风俗',surl:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
         {sid:4,sname:'丽江民风',saddress:'云南省丽江市万超县幸福小区101号',sprice:180,sdesp:'丽江风情，人文风俗',surl:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
-        {sid:5,sname:'丽江民风',saddress:'云南省丽江市万超县幸福小区101号',sprice:180,sdesp:'丽江风情，人文风俗',surl:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
-        {sid:6,sname:'丽江民风',saddress:'云南省丽江市万超县幸福小区101号',sprice:180,sdesp:'丽江风情，人文风俗',surl:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
+        {sid:5,sname:'香格里拉民风',saddress:'云南省丽江市万超县幸福小区101号',sprice:180,sdesp:'丽江风情，人文风俗',surl:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
+        {sid:6,sname:'大理民风',saddress:'云南省丽江市万超县幸福小区101号',sprice:180,sdesp:'丽江风情，人文风俗',surl:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
        ],
     }
   }

@@ -175,11 +175,11 @@ const routes=[
         name: 'UserManage',
         component:()=>import ('@/views/devviews/admin/UserManage'),
       },
-      {
-        path: 'system',
-        name: 'SystemManage',
-        component:()=>import ('@/views/devviews/admin/SystemManage'),
-      },
+      // {
+      //   path: 'system',
+      //   name: 'SystemManage',
+      //   component:()=>import ('@/views/devviews/admin/SystemManage'),
+      // },
       {
         path: 'goods',
         name: 'GoodsManage',
@@ -190,15 +190,20 @@ const routes=[
         name: 'SceneryManage',
         component:()=>import ('@/views/devviews/admin/SceneryManage'),
       },
+      // {
+      //   path: 'auth',
+      //   name: 'AuthManage',
+      //   component:()=>import ('@/views/devviews/admin/AuthManage'),
+      // },
+      // {
+      //   path: 'role',
+      //   name: 'RoleManage',
+      //   component:()=>import ('@/views/devviews/admin/RoleManage'),
+      // },
       {
-        path: 'auth',
-        name: 'AuthManage',
-        component:()=>import ('@/views/devviews/admin/AuthManage'),
-      },
-      {
-        path: 'role',
-        name: 'RoleManage',
-        component:()=>import ('@/views/devviews/admin/RoleManage'),
+        path:'reserve',
+        name:'Reserve',
+        component:()=>import ('@/views/devviews/admin/Reserve'),
       },
     ]
   },
@@ -232,7 +237,12 @@ const routes=[
         path: 'scenery',
         name: 'SceneryManage',
         component: () => import ('@/views/devviews/shopper/SceneryManage'),
-      }
+      },
+      {
+        path:'reserve',
+        name:'Reserve',
+        component:()=>import ('@/views/devviews/shopper/Reserve'),
+      },
     ]
   },
   {
@@ -253,11 +263,11 @@ const routes=[
 //   return VueRouterPush.call(this, to).catch(err => err)
 // }
 //
-const originalPush = Router.prototype.push
-Router.prototype.push = function push(location, onResolve, onReject) {
-  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
-  return originalPush.call(this, location).catch(err => err)
-}
+// const originalPush = Router.prototype.push
+// Router.prototype.push = function push(location, onResolve, onReject) {
+//   if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+//   return originalPush.call(this, location).catch(err => err)
+// }
 
 
 //
@@ -267,14 +277,14 @@ const router = new Router({
   routes
 })
 
-// // 提供一个重置路由的方法
-export const resetRouter = () => {
-  router.matcher = new Router({
-    mode: 'history',
-    base:'./',
-    routes
-  })
-}
+// // // 提供一个重置路由的方法
+// export const resetRouter = () => {
+//   router.matcher = new Router({
+//     mode: 'history',
+//     base:'./',
+//     routes
+//   })
+// }
 
 // 注意：刷新页面会导致页面路由重置
 export const setRoutes = () => {

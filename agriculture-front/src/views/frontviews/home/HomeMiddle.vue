@@ -4,7 +4,7 @@
     <div class="recgoods">
       <van-grid :border="false" :column-num="4" v-for="items in goodsList">
         <van-grid-item v-for="(item,index) in items" :key="item.gid" class="goods-grid" style="padding-top: 150px;margin-top: -50px">
-          <van-image :src="item.gimg"/>
+          <img :src="item.gimg" class="images"/>
           <div class="goods" style="padding-top: 40px">
             <el-tag type="warning" style="position: relative;top: 15px;left: -150px;margin-bottom: 20px;font-size: 13px">{{ item.uname }}</el-tag>
             <p class="goodsname" style="width: 150px;margin-left: -100px">
@@ -29,14 +29,14 @@ export default {
   data(){
     return{
       goodsList:[
-        [{gid:1,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg:'https://img01.yzcdn.cn/vant/apple-1.jpg'},
-        {gid:2,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://img01.yzcdn.cn/vant/apple-2.jpg'},
-        {gid:3,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://img01.yzcdn.cn/vant/apple-2.jpg'},
-        {gid:4,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://img01.yzcdn.cn/vant/apple-2.jpg'}],
+        [{gid:1,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg:'http://localhost:8083/file/e34ed6e29a17415087e23ed7aa825664.jpg'},
+        {gid:2,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'http://localhost:8083/file/fda87de2d2124ee4a0560cece83888ba.jpg'},
+        {gid:3,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'http://localhost:8083/file/e34ed6e29a17415087e23ed7aa825664.jpg'},
+        {gid:4,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'http://localhost:8083/file/fda87de2d2124ee4a0560cece83888ba.jpg'}],
         [{gid:1,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg:'https://img.zcool.cn/community/0190bc5b0d56f5a8012043d8a59d1a.jpg@3000w_1l_0o_100sh.jpg'},
           {gid:2,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://desk-fd.zol-img.com.cn/t_s640x530c5/g4/M0A/06/04/ChMly113EU2IT0RaACsB4KbnZOsAAXnXwE5C-kAKwH4388.jpg'},
-          {gid:3,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://img01.yzcdn.cn/vant/apple-2.jpg'},
-          {gid:4,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'https://img01.yzcdn.cn/vant/apple-2.jpg'}],
+          {gid:3,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'http://localhost:8083/file/a4f713f1dd0b41719df51c8ad00ecb9a.jpg'},
+          {gid:4,uname:'小李大产量',gname:'人参果',gdesp:'俏农优选 人参果5斤大果（单果60到90克）新鲜水果黄肉黄心大圆果 生鲜',gprice:50,gimg: 'http://localhost:8083/file/a4f713f1dd0b41719df51c8ad00ecb9a.jpg'}],
         ]
     }
   }
@@ -84,7 +84,7 @@ export default {
 
   }
 
-  .van-image{
+  .images{
     position: relative;
     left:-100px;
     width: 200px;

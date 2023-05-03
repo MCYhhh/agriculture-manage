@@ -27,7 +27,7 @@
       <div class="demo-image__preview" v-for="(item,index) in news" :key="item.id">
         <el-image
           style="width: 100px; height: 100px;margin-bottom: -40px;padding-top: 10px"
-          :src="item.url"
+          :src="item.img"
           :preview-src-list="item.srcList"
         >
         </el-image>
@@ -233,6 +233,7 @@ export default {
     },
 
     submitArticle: async function (){
+      this.dialogFormVisible=false
       localStorage.removeItem('isFile')
       // const {data:res}=await
       console.log("上传提交提交")

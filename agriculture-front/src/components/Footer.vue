@@ -1,14 +1,14 @@
 <template>
   <div class="footer-container" >
     <div class="footer-left" style="width: 50%;">
-      <p>haohoahoaoha</p>
-      <p>haohoahoaoha</p>
-      <p>haohoahoaoha</p>
+      <p>@悦享滇韵</p>
+<!--      <p>haohoahoaoha</p>-->
+<!--      <p>haohoahoaoha</p>-->
     </div>
     <div class="footer-right">
-      <p>haohoahoaoha</p>
-      <p>haohoahoaoha</p>
-      <p>haohoahoaoha</p>
+      <p style="text-align: center;color: white;">@悦享滇韵</p>
+<!--      <p>haohoahoaoha</p>-->
+<!--      <p>haohoahoaoha</p>-->
     </div>
   </div>
 </template>
@@ -31,9 +31,10 @@ export default {
 
 <style scoped>
 .footer-container{
-  bottom: 0;
+  margin-top: 1000px;
   width: 100%;
   height: 200px;
+
   /*position: static;*/
   background-color: #315979;
 }

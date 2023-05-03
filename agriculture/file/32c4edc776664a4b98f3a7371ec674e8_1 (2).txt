@@ -1,0 +1,1 @@
+neo4j-admin import --mode csv --database common.db --nodes:entity ../import/entity.csv --relationships ../import/rel.csv --ignore-extra-columns=true --ignore-missing-nodes=true --ignore-duplicate-nodes=true

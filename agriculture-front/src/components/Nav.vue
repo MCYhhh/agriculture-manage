@@ -19,9 +19,9 @@ export default {
         {id:1,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/home',name:'首页'},
         {id:2,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/travel',name: '旅游规划'},
         {id:3,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/shop',name: '惠农惠物'},
-        {id:4,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/community',name: '社区中心'},
-        {id:5,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/game',name: '宣传助力'},
-        {id:6,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/self/home',name: '个人中心'},
+        // {id:4,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/community',name: '社区中心'},
+        {id:4,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/game',name: '宣传助力'},
+        {id:5,title:'一站式解决旅游攻略',content:'将根据您的需求为您设计出最合适的旅游路线',path:'/front/self/home',name: '个人中心'},
       ]
     }
   }

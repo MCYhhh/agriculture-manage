@@ -112,6 +112,7 @@ export default {
           if (res.code === '00000') {
             console.log("成功乘车")
             this.$message.success("注册成功")
+            this.reset()
             // this.$router.push("/")
           } else {
             console.log("shdcjsjio")
@@ -129,6 +130,7 @@ export default {
         this.RegisterForm.upwd=''
       this.RegisterForm.uaccount=''
       this.RegisterForm.checkupwd=''
+      this.RegisterForm.usex=''
     }
 
   }
