@@ -10,8 +10,8 @@
           width="150">
         </el-table-column>
         <el-table-column
-          prop="oid"
-          label="订单编号"
+          prop="rid"
+          label="预约编号"
           width="150">
         </el-table-column>
         <el-table-column

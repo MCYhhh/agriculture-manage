@@ -19,6 +19,7 @@
 
 <script>
 import {logoutAPI} from "../api";
+import {resetRouter, setRoutes} from "../router";
 export default {
   name: "Logo",
   data(){
@@ -38,12 +39,11 @@ export default {
       }
       else if (label==="进入后台"){
         const utype=JSON.parse(localStorage.getItem('user')).utype;
-        console.log("用户类型")
-        console.log(utype)
-        // if(utype===2)
-        //   this.$router.push('/admin')
-        // else if(utype===1)
-        //   this.$router.push('/shopper')
+       // resetRouter()
+       //  if(utype===2)
+       //    this.$router.push('/admin')
+       //  else if(utype===1)
+       //    this.$router.push('/shopper')
       }
       else{
         console.log("注销")

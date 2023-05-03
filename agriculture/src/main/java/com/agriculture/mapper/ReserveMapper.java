@@ -20,13 +20,13 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface ReserveMapper extends BaseMapper<Reserve> {
 
-    @Select("select a.rid,a.sid,a.uid cid,a.gid,a.dnum,a.dtotal,a.createTime,a.updateTime,b.sname,b.saddress,b.sprice,b.sdesp,b.surl,b.sstate,b.sdate,b.uid from reserve a left join scenery b on a.sid=b.sid")
+    @Select("select a.rid,a.sid,a.uid cid,a.gid,a.dnum,a.dtotal,a.create_time,a.update_time,b.sname,b.saddress,b.sprice,b.sdesp,b.surl,b.sstate,b.sdate,b.uid from reserve a left join scenery b on a.sid=b.sid")
     IPage<ReserveSceneryVo> getReserveSceneryPageVo(Page<ReserveSceneryVo> iPage);
 
-    @Select("select a.rid,a.sid,a.uid cid,a.gid,a.dnum,a.dtotal,a.createTime,a.updateTime,b.sname,b.saddress,b.sprice,b.sdesp,b.surl,b.sstate,b.sdate,b.uid from reserve a left join scenery b on a.sid=b.sid where a.uid=#{id}")
+    @Select("select a.rid,a.sid,a.uid cid,a.gid,a.dnum,a.dtotal,a.create_time,a.update_time,b.sname,b.saddress,b.sprice,b.sdesp,b.surl,b.sstate,b.sdate,b.uid from reserve a left join scenery b on a.sid=b.sid where a.uid=#{id}")
     IPage<ReserveSceneryVo> getReserveSceneryPageVoByCid(Page<ReserveSceneryVo> iPage, Integer id);
 
-    @Select("select a.rid,a.sid,a.uid cid,a.gid,a.dnum,a.dtotal,a.createTime,a.updateTime,b.sname,b.saddress,b.sprice,b.sdesp,b.surl,b.sstate,b.sdate,b.uid from reserve a left join scenery b on a.sid=b.sid where b.uid=#{id}")
+    @Select("select a.rid,a.sid,a.uid cid,a.gid,a.dnum,a.dtotal,a.create_time,a.update_time,b.sname,b.saddress,b.sprice,b.sdesp,b.surl,b.sstate,b.sdate,b.uid from reserve a left join scenery b on a.sid=b.sid where b.uid=#{id}")
     IPage<ReserveSceneryVo> getReserveSceneryPageVoByUid(Page<ReserveSceneryVo> iPage, Integer id);
 
     @Select("SELECT rid, reserve.sid,reserve.gid,reserve.uid,dnum,dtotal,reserve.create_time,reserve.update_time,uaccount,uname,upwd, utype,usex,uemail,utel, uaddress,uimg,udesp,state,sname,saddress,sprice,sdesp, surl,sstate,sdate from reserve join scenery on reserve.sid=scenery.sid join user on user.uid=reserve.uid")

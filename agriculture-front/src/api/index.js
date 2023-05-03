@@ -359,3 +359,45 @@ export const sceneryUidLikeNameAPI = (json) => {
     data:json
   })
 }
+
+// 修改信息
+export const modifyUserAPI = (json) => {
+  return request({
+    url:'/user/modify',
+    method:'POST',
+    data:json
+  })
+}
+
+// 购物车商品
+export const trolleyGoodsAPI = (json) => {
+  return request({
+    url:'/trolleyGoods/findAll',
+    method:'POST',
+    data:json
+  })
+}
+
+// 预约景点
+export const reserveSceneryByCidAPI = (json) => {
+  return request({
+    url:'/reserveScenery/findByCid',
+    method:'POST',
+    data:json
+  })
+}
+export const reserveSceneryByUidAPI = (json) => {
+  return request({
+    url:'/reserveScenery/findByUid',
+    method:'POST',
+    data:json
+  })
+}
+
+export const reserveSceneryfindAllAPI = (json) => {
+  return request({
+    url:'/reserveScenery/findAll',
+    method:'POST',
+    data:json
+  })
+}
