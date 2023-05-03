@@ -3,7 +3,9 @@ package com.agriculture.controller;
 
 import com.agriculture.common.HttpCode;
 import com.agriculture.common.Result;
+import com.agriculture.config.mybatis.GoodsPage;
 import com.agriculture.config.mybatis.OrdersPage;
+import com.agriculture.entity.Goods;
 import com.agriculture.entity.Orders;
 import com.agriculture.service.IOrdersService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -97,7 +99,7 @@ public class OrdersController {
     }
 
     //查询所有
-    @GetMapping("/findAll")
+    @PostMapping("/findAll")
     public Result listall(@RequestBody OrdersPage ordersPage){
         QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
         int page=ordersPage.getPage();

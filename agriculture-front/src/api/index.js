@@ -169,9 +169,73 @@ export const saveArticleAPI = (json) => {
 // 预定创建
 export const reserveSaveAPI = (json) => {
   return request({
-    url:'/reserve/save',
-    method:'POST',
+      url:'/reserve/save',
+  method:'POST',
     data:json,
+})
+}
+
+// 查询所有订单
+export const orderAllAPI = (json) => {
+  return request({
+    url:'/orders/findAll',
+    method:'POST',
+    data:json
+  })
+}
+
+// 查询所有订单用户
+export const orderUserAllAPI = (json) => {
+  return request({
+    url:'/orderuservo/allorders',
+    method:'POST',
+    data:json
+  })
+}
+
+// 订单用户查询所有消费小于等于
+export const orderUserLeAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserLe',
+    method:'POST',
+    data:json
+  })
+}
+
+// 订单用户查询所有消费大于等于
+export const orderUserGeAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserGe',
+    method:'POST',
+    data:json
+  })
+}
+
+// 状态查询订单用户
+export const orderUserOsateAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserOsate',
+    method:'POST',
+    data:json
+  })
+}
+
+
+// 订单编号查询订单用户
+export const orderUserOidAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserOid',
+    method:'POST',
+    data:json
+  })
+}
+
+// 用户姓名查询订单用户
+export const orderUserUameAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserUame',
+    method: 'POST',
+    data: json,
   })
 }
 

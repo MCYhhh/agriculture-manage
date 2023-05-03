@@ -6,11 +6,12 @@
         <el-input v-model="LoginForm.uaccount" placeholder="账号" prefix-icon="el-icon-user-solid" auto-complete="off" type="text"></el-input>
       </el-form-item>
       <el-form-item label="">
-        <el-input v-model="LoginForm.upwd" placeholder="密码" prefix-icon="el-icon-lock" auto-complete="off" type="password"></el-input>
+        <el-input v-model="LoginForm.upwd" placeholder="密码" prefix-icon="el-icon-lock" auto-complete="off" type="password" @keyup.enter.native="onSubmit"></el-input>
       </el-form-item>
       <el-form-item size="large" >
         <el-button  @click="onSubmit" style="width: 30%;background-color: #cee3c1;border: none">登录</el-button>
         <el-button style="width: 30%;background-color: #cee3c1;border: none" v-on:click="reset()">重置</el-button>
+
         <p style="color: #c0d2b6" @click="toRegister">无账号？去注册</p>
       </el-form-item>
     </el-form>

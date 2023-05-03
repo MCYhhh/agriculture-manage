@@ -4,7 +4,7 @@
       <Logo></Logo>
     </div>
     <div class="admin-content">
-      <el-container style="height: 1000px; border: 1px solid #eee">
+      <el-container style="border: 1px solid #eee">
         <el-aside width="200px"  style="background-color: rgb(221, 241, 209)">
         <AdminNav></AdminNav>
         </el-aside>

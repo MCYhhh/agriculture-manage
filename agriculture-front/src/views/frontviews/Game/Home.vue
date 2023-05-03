@@ -85,7 +85,7 @@ export default {
        console.log(this.news);
        this.articlePage.total=res.data.total;
      }else {
-       this.$message.error(res.msg)
+       this.$message.warning("查询失败，未找到相应结果")
      }
      console.log("结束")
    }

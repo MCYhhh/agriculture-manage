@@ -1,6 +1,7 @@
 package com.agriculture.service;
 
 import com.agriculture.entity.Orders;
+import com.agriculture.entity.vo.OrderUserVO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -29,4 +30,15 @@ public interface IOrdersService extends IService<Orders> {
     List<Orders>findototal(BigDecimal ototal);
 
     IPage<Orders> selectPage(Page<Orders> spage, QueryWrapper<Orders> queryWrapper);
+
+
+    IPage<OrderUserVO> orderUserLePage(Page<OrderUserVO> spage, BigDecimal ototal);
+
+    IPage<OrderUserVO> orderUserGePage(Page<OrderUserVO> spage, BigDecimal ototal);
+
+    IPage<OrderUserVO> orderUserUamePage(Page<OrderUserVO> spage, String uname);
+
+    IPage<OrderUserVO> orderUserOsatePage(Page<OrderUserVO> spage, Integer osate);
+
+    IPage<OrderUserVO> orderUserOidPage(Page<OrderUserVO> spage, Integer oid);
 }
