@@ -40,10 +40,10 @@ export default {
         const utype=JSON.parse(localStorage.getItem('user')).utype;
         console.log("用户类型")
         console.log(utype)
-        // if(utype===2)
-        //   this.$router.push('/admin')
-        // else if(utype===1)
-        //   this.$router.push('/shopper')
+        if(utype===2)
+          this.$router.push('/admin/home')
+        else
+          this.$router.push('/shopper/home')
       }
       else{
         console.log("注销")

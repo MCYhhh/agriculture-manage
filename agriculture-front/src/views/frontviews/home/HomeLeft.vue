@@ -56,7 +56,7 @@
             <el-link type="success">@{{item.uname}}</el-link>
           </p>
 <!--          <span>@{{item.uname}}</span>-->
-          <el-button type="primary" class="browse" @click="detail(item.id)">查看详情</el-button>
+          <el-button type="primary" class="browse"  @click="detail(item.id)">查看详情</el-button>
         </div>
         <el-divider class="divide"></el-divider>
       </div>
@@ -441,17 +441,22 @@ span{
   position: relative;
   top:-25px
 }
-.el-form-item el-form-item-- small
-.itemrate .browse{
-  position: relative;
-  top:-105px;
-  left:380px
+.el-form-item el-form-item-- small{
+
 }
+
 .creat-btn{
   position: absolute;
   left:700px;
   top:530px;
   font-size: 18px;
 }
-
+/*.button1{*/
+/*  margin-left: 200px;*/
+/*}*/
+.browse{
+  position: relative;
+  top:-100px;
+  left:700px
+}
 </style>

@@ -16,11 +16,6 @@ const routes=[
     component:()=>import ('@/views/Register'),
   },
   {
-    path: '/front/home/createArticle',
-    name: 'CreateArticle',
-    component: () => import ('@/views/frontviews/home/CreateArticle'),
-  },
-  {
     path:'/front',
     name:'Front',
     component:()=>import ('@/views/frontviews/Front'),
@@ -62,17 +57,22 @@ const routes=[
             name: 'Trolley',
             component: () => import ('@/views/frontviews/self/Trolley'),
           },
-          {
-            path: 'orderdetail',
-            name: 'Orderdetail',
-            component: () => import ('@/views/frontviews/self/Orderdetail'),
-          },
         ]
       },
       {
         path: 'travel',
         name: 'Travel',
         component: () => import ('@/views/frontviews/travel/Home'),
+      },
+      {
+        path: 'mustgo',
+        name: 'mustgo',
+        component: () => import ('@/views/frontviews/travel/Mustgo'),
+      },
+      {
+        path: 'hot',
+        name: 'Hot',
+        component: () => import ('@/views/frontviews/travel/Hot'),
       },
       {
         path: 'community',
@@ -95,100 +95,155 @@ const routes=[
     ]
   },
   {
+    path: '/front/transport',
+    name: 'Transport',
+    component: () => import ('@/views/frontviews/travel/Transport'),
+  },
+  {
+    path: '/front/accomodation',
+    name: 'Accommodation',
+    component: () => import ('@/views/frontviews/travel/Accommodation'),
+  },
+  {
+    path: '/front/ethnic',
+    name: 'Ethnic',
+    component: () => import ('@/views/frontviews/travel/Ethnic'),
+  },
+  {
+    path: '/front/mustgo',
+    name: 'mustgo',
+    component: () => import ('@/views/frontviews/travel/Mustgo'),
+  },
+  {
+    path: '/front/hot',
+    name: 'Hot',
+    component: () => import ('@/views/frontviews/travel/Hot'),
+  },
+  {
+    path: '/front/transport',
+    name: 'Transport',
+    component: () => import ('@/views/frontviews/travel/Transport'),
+  },
+  {
+    path: '/front/accomodation',
+    name: 'Accommodation',
+    component: () => import ('@/views/frontviews/travel/Accommodation'),
+  },
+  {
+    path: '/front/ethnic',
+    name: 'Ethnic',
+    component: () => import ('@/views/frontviews/travel/Ethnic'),
+  },
+  {
+    path: '/front/mustgo',
+    name: 'mustgo',
+    component: () => import ('@/views/frontviews/travel/Mustgo'),
+  },
+  {
+    path: '/front/hot',
+    name: 'Hot',
+    component: () => import ('@/views/frontviews/travel/Hot'),
+  },
+  {
+    path: '/front/detail',
+    name: 'Detail',
+    component: () => import ('@/views/frontviews/travel/Detail'),
+  },
+  {
     path: '/front/game/detail',
     name: 'Detail',
     component: () => import ('@/views/frontviews/Game/ArticleDetail'),
   },
-  // {
-  //   path: '/admin',
-  //   name: 'Admin',
-  //   component:()=>import ('@/views/devviews/admin/Admin'),
-  //   redirect: '/admin/home',
-  //   children: [
-  //     {
-  //       path: 'home',
-  //       name: 'Home',
-  //       component:()=>import ('@/views/devviews/admin/Home'),
-  //     },
-  //     {
-  //       path: 'order',
-  //       name: 'OrderManage',
-  //       component:()=>import ('@/views/devviews/admin/OrderManage'),
-  //     },
-  //     {
-  //       path: 'user',
-  //       name: 'UserManage',
-  //       component:()=>import ('@/views/devviews/admin/UserManage'),
-  //     },
-  //     {
-  //       path: 'system',
-  //       name: 'SystemManage',
-  //       component:()=>import ('@/views/devviews/admin/SystemManage'),
-  //     },
-  //     {
-  //       path: 'goods',
-  //       name: 'GoodsManage',
-  //       component:()=>import ('@/views/devviews/admin/GoodsManage'),
-  //     },
-  //     {
-  //       path: 'scenery',
-  //       name: 'SceneryManage',
-  //       component:()=>import ('@/views/devviews/admin/SceneryManage'),
-  //     },
-  //     {
-  //       path: 'auth',
-  //       name: 'AuthManage',
-  //       component:()=>import ('@/views/devviews/admin/AuthManage'),
-  //     },
-  //     {
-  //       path: 'role',
-  //       name: 'RoleManage',
-  //       component:()=>import ('@/views/devviews/admin/RoleManage'),
-  //     },
-  //   ]
-  // },
-  // {
-  //   path: '/shopper',
-  //   name: 'Shopper',
-  //   component:()=>import ('@/views/devviews/shopper/Shopper'),
-  //   redirect: '/shopper/home',
-  //   children:[
-  //     {
-  //       path:'home',
-  //       name:'Home',
-  //       component:()=>import ('@/views/devviews/shopper/Home'),
-  //     },
-  //     {
-  //       path:'order',
-  //       name:'OrderManage',
-  //       component:()=>import ('@/views/devviews/shopper/OrderManage'),
-  //     },
-  //     {
-  //       path:'user',
-  //       name:'UserManage',
-  //       component:()=>import ('@/views/devviews/shopper/UserManage'),
-  //     },
-  //     {
-  //       path:'goods',
-  //       name:'GoodsManage',
-  //       component:()=>import ('@/views/devviews/shopper/GoodsManage'),
-  //     },
-  //     {
-  //       path: 'scenery',
-  //       name: 'SceneryManage',
-  //       component: () => import ('@/views/devviews/shopper/SceneryManage'),
-  //     }
-  //   ]
-  // },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component:()=>import ('@/views/devviews/admin/Admin'),
+    redirect: '/admin/home',
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component:()=>import ('@/views/devviews/admin/Home'),
+      },
+      {
+        path: 'order',
+        name: 'OrderManage',
+        component:()=>import ('@/views/devviews/admin/OrderManage'),
+      },
+      {
+        path: 'user',
+        name: 'UserManage',
+        component:()=>import ('@/views/devviews/admin/UserManage'),
+      },
+      {
+        path: 'system',
+        name: 'SystemManage',
+        component:()=>import ('@/views/devviews/admin/SystemManage'),
+      },
+      {
+        path: 'goods',
+        name: 'GoodsManage',
+        component:()=>import ('@/views/devviews/admin/GoodsManage'),
+      },
+      {
+        path: 'scenery',
+        name: 'SceneryManage',
+        component:()=>import ('@/views/devviews/admin/SceneryManage'),
+      },
+      {
+        path: 'auth',
+        name: 'AuthManage',
+        component:()=>import ('@/views/devviews/admin/AuthManage'),
+      },
+      {
+        path: 'role',
+        name: 'RoleManage',
+        component:()=>import ('@/views/devviews/admin/RoleManage'),
+      },
+    ]
+  },
+  {
+    path: '/shopper',
+    name: 'Shopper',
+    component:()=>import ('@/views/devviews/shopper/Shopper'),
+    redirect: '/shopper/home',
+    children:[
+      {
+        path:'home',
+        name:'Home',
+        component:()=>import ('@/views/devviews/shopper/Home'),
+      },
+      {
+        path:'order',
+        name:'OrderManage',
+        component:()=>import ('@/views/devviews/shopper/OrderManage'),
+      },
+      {
+        path:'user',
+        name:'UserManage',
+        component:()=>import ('@/views/devviews/shopper/UserManage'),
+      },
+      {
+        path:'goods',
+        name:'GoodsManage',
+        component:()=>import ('@/views/devviews/shopper/GoodsManage'),
+      },
+      {
+        path: 'scenery',
+        name: 'SceneryManage',
+        component: () => import ('@/views/devviews/shopper/SceneryManage'),
+      }
+    ]
+  },
   {
     path:'/404',
     name:'NotFound',
     component:()=>import ('@/views/404'),
   },
   {
-    path:'/file',
-    name:'file',
-    component:()=>import ('@/views/file'),
+    path: '/file',
+    name: 'file',
+    component: () => import ('@/views/file'),
   },
 ]
 
@@ -205,17 +260,18 @@ Router.prototype.push = function push(location, onResolve, onReject) {
 }
 
 
+//
 const router = new Router({
   mode: 'history',
   base: './',
   routes
 })
 
-// 提供一个重置路由的方法
+// // 提供一个重置路由的方法
 export const resetRouter = () => {
   router.matcher = new Router({
     mode: 'history',
-    base: './',
+    base:'./',
     routes
   })
 }
@@ -229,19 +285,28 @@ export const setRoutes = () => {
     const currentRouteNames = router.getRoutes().map(v => v.mtitle)
     if (currentRouteNames.includes('admin')) {
       // 拼装动态路由
-      const adminRoute={path: '/admin', name: 'Admin', component:()=>import ('@/views/devviews/admin/Admin'),meta:{
-          title:'管理员后台'
-        },redirect: '/admin/home'
+      const adminRoute = {
+        path: '/admin', name: 'Admin', component: () => import ('@/views/devviews/admin/Admin'), meta: {
+          title: '管理员后台'
+        }, redirect: '/admin/home'
       }
       const menus = JSON.parse(storeMenus)
       menus.forEach(item => {
         if (item.mpath) {  // 当且仅当path不为空的时候才去设置路由
-          let itemMenu = { path: item.mpath.replace("/", ""), name: item.mtitle, component: () => import('@/views/devviews/admin/' + item.mrouter + '.vue')}
+          let itemMenu = {
+            path: item.mpath.replace("/", ""),
+            name: item.mtitle,
+            component: () => import('@/views/devviews/admin/' + item.mrouter + '.vue')
+          }
           adminRoute.children.push(itemMenu)
-        } else if(item.children.length) {
+        } else if (item.children.length) {
           item.children.forEach(item => {
             if (item.mpath) {
-              let itemMenu = { path: item.mpath.replace("/", ""), name:item.mtitle, component: () => import('@/views/devviews/admin/' + item.mrouter + '.vue')}
+              let itemMenu = {
+                path: item.mpath.replace("/", ""),
+                name: item.mtitle,
+                component: () => import('@/views/devviews/admin/' + item.mrouter + '.vue')
+              }
               adminRoute.children.push(itemMenu)
             }
           })
@@ -252,19 +317,28 @@ export const setRoutes = () => {
     }
     if (currentRouteNames.includes('shopper')) {
       // 拼装动态路由
-      const adminRoute={path: '/shopper', name: 'Shopper', component:()=>import ('@/views/devviews/shopper/Shopper'),meta:{
-          title:'商家后台'
-        },redirect: '/shopper/home'
+      const adminRoute = {
+        path: '/shopper', name: 'Shopper', component: () => import ('@/views/devviews/shopper/Shopper'), meta: {
+          title: '商家后台'
+        }, redirect: '/shopper/home'
       }
       const menus1 = JSON.parse(storeMenus)
       menus1.forEach(item => {
         if (item.mpath) {  // 当且仅当path不为空的时候才去设置路由
-          let itemMenu = { path: item.mpath.replace("/", ""), name: item.mtitle, component: () => import('@/views/devviews/shopper/' + item.mrouter + '.vue')}
+          let itemMenu = {
+            path: item.mpath.replace("/", ""),
+            name: item.mtitle,
+            component: () => import('@/views/devviews/shopper/' + item.mrouter + '.vue')
+          }
           adminRoute.children.push(itemMenu)
-        } else if(item.children.length) {
+        } else if (item.children.length) {
           item.children.forEach(item => {
             if (item.mpath) {
-              let itemMenu = { path: item.mpath.replace("/", ""), name:item.mtitle, component: () => import('@/views/devviews/shopper/' + item.mrouter + '.vue')}
+              let itemMenu = {
+                path: item.mpath.replace("/", ""),
+                name: item.mtitle,
+                component: () => import('@/views/devviews/shopper/' + item.mrouter + '.vue')
+              }
               adminRoute.children.push(itemMenu)
             }
           })
@@ -274,30 +348,50 @@ export const setRoutes = () => {
       router.addRoute(adminRoute)
     }
 
+//   }
+// }
+//
+// // 重置我就再set一次路由
+// setRoutes()
+
+
+// router.beforeEach((to, from, next) => {
+//   localStorage.setItem("currentPathName", to.name)  // 设置当前的路由名称
+//   store.commit("setPath")
+//
+//   // 未找到路由的情况
+//   if (!to.matched.length) {
+//     const storeMenus = localStorage.getItem("menus")
+//     if (storeMenus) {
+//       next("/404")
+//     } else {
+//       // 跳回登录页面
+//       next("/login")
+//     }
+//   }
+//   // 其他的情况都放行
+//   next()
+//
+// })
+
+    router.beforeEach((to, from, next) => {
+      localStorage.setItem("currentPathName", to.name)  // 设置当前的路由名称
+      store.commit("setPath")
+
+      // 未找到路由的情况
+      if (!to.matched.length) {
+        const storeMenus = localStorage.getItem("menus")
+        if (storeMenus) {
+          next("/404")
+        } else {
+          // 跳回登录页面
+          next("/")
+        }
+      }
+      // 其他的情况都放行
+      next()
+
+    })
   }
 }
-
-// 重置就再set一次路由
-setRoutes()
-
-
-router.beforeEach((to, from, next) => {
-  localStorage.setItem("currentPathName", to.name)  // 设置当前的路由名称
-  store.commit("setPath")
-
-  // 未找到路由的情况
-  if (!to.matched.length) {
-    const storeMenus = localStorage.getItem("menus")
-    if (storeMenus) {
-      next("/404")
-    } else {
-      // 跳回登录页面
-      next("/")
-    }
-  }
-  // 其他的情况都放行
-  next()
-
-})
-
 export default router

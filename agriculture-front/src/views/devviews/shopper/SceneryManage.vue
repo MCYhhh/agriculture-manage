@@ -160,7 +160,8 @@ export default {
       this.dialogFormVisible = true
     },
     reset(){
-      this.sname = ""
+      this.sname = "";
+      this.$router.go(0);
     },
     async query(){
       this.articlePage.sname=this.sname

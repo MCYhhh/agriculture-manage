@@ -239,69 +239,6 @@ export const orderUserUameAPI = (json) => {
   })
 }
 
-// 查询所有订单
-export const orderAllAPI = (json) => {
-  return request({
-    url:'/orders/findAll',
-    method:'POST',
-    data:json
-  })
-}
-
-// 查询所有订单用户
-export const orderUserAllAPI = (json) => {
-  return request({
-    url:'/orderuservo/allorders',
-    method:'POST',
-    data:json
-  })
-}
-
-// 订单用户查询所有消费小于等于
-export const orderUserLeAPI = (json) => {
-  return request({
-    url:'/orderuservo/orderUserLe',
-    method:'POST',
-    data:json
-  })
-}
-
-// 订单用户查询所有消费大于等于
-export const orderUserGeAPI = (json) => {
-  return request({
-    url:'/orderuservo/orderUserGe',
-    method:'POST',
-    data:json
-  })
-}
-
-// 状态查询订单用户
-export const orderUserOsateAPI = (json) => {
-  return request({
-    url:'/orderuservo/orderUserOsate',
-    method:'POST',
-    data:json
-  })
-}
-
-
-// 订单编号查询订单用户
-export const orderUserOidAPI = (json) => {
-  return request({
-    url:'/orderuservo/orderUserOid',
-    method:'POST',
-    data:json
-  })
-}
-
-// 用户姓名查询订单用户
-export const orderUserUameAPI = (json) => {
-  return request({
-    url:'/orderuservo/orderUserUame',
-    method: 'POST',
-    data: json,
-  })
-}
 
 
 // 文件上传
@@ -371,3 +308,76 @@ export const sceneryUidLikeNameAPI = (json) => {
     data:json
   })
 }
+//根据uid查商品
+export const goodsUidAPI = (json) => {
+  return request({
+    url:'/chargegoodsvo/mygoods',
+    method:'POST',
+    data:json
+  })
+}
+
+//根据uid模糊查名字查商品
+export const goodsUidLikenameAPI = (json) => {
+  return request({
+    url:'/chargegoodsvo/finduidgname',
+    method:'POST',
+    data:json
+  })
+}
+
+//根据uid模糊查名字查商品
+export const goodsSaveorModifyAPI = (json) => {
+  return request({
+    url:'/goods/saveOrmodify',
+    method:'POST',
+    data:json
+  })
+}
+// 添加管理商品
+export const chargeGoodsAPI = (json) => {
+  return request({
+    url:'/chargegoods/saveOrmodify',
+    method:'POST',
+    data:json
+  })
+}
+
+//删除商品
+
+export const deleteGoodsAPI = (id) => {
+  return request({
+    url:'/goods/delete/'+id,
+    method:'DELETE',
+  })
+}
+
+//选最新的商品
+
+export const goodsgetOneAPI = (json) => {
+  return request({
+    url:'/goods/getOne',
+    method:'POST',
+    data:json
+  })
+}
+export const goodsAll = (json) => {
+  return request({
+    url:'/chargegoodsvo/all',
+    method:'POST',
+    data:json
+  })
+}
+
+export const goodsbyUname = (json) => {
+  return request({
+    url:'/chargegoodsvo/findgname',
+    method:'POST',
+    data:json
+  })
+}
+
+
+
+
+
