@@ -110,9 +110,11 @@ export default {
           const {data: res} = await registerAPI(json);
           console.log(res)
           if (res.code === '00000') {
+            console.log("成功乘车")
             this.$message.success("注册成功")
             // this.$router.push("/")
           } else {
+            console.log("shdcjsjio")
             this.$message.error(res.msg)
           }
         }

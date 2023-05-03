@@ -13,4 +13,6 @@ public interface IArticleService extends IService<Article> {
     IPage<ArticleUserVo> getByUid(Page<ArticleUserVo> iPage, Integer uid);
 
     IPage<ArticleUserVo> getAll(Page<ArticleUserVo> iPage);
+
+    IPage<ArticleUserVo> getByAid(Page<ArticleUserVo> iPage, Integer id);
 }

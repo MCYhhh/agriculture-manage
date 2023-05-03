@@ -22,7 +22,7 @@
           </p>
           <p class="createTime" >
             <el-tag>创建时间</el-tag>
-            {{item.create_time}}
+            {{item.create_time|dateFormat}}
           </p>
         </div>
         <div class="summary" >
@@ -45,6 +45,7 @@
 
 <script>
 import {articleAPI} from "../../../api";
+import dayjs from 'dayjs'
 export default {
   name: "ArticleLIst",
   data(){
@@ -88,6 +89,17 @@ export default {
      }
      console.log("结束")
    }
+  },
+  filters: {
+    dateFormat(time) {
+      //对time进行格式化处理 ，得到YYYY-MM-DD HH:mm:ss
+      //  把格式化的结果，return出去
+      //  直接调用dayjs()得到的是当前的时间
+      //  dayjs（给定的日期时间）得到指定的时间
+      //  只要导入了dayjs 的库文件，在window全局，就可以使用dayjs()方法
+      const dstr = dayjs(time).format("YYYY-MM-DD HH:mm:ss")
+      return dstr
+    }
   },
   created() {
     this.getarticleList()

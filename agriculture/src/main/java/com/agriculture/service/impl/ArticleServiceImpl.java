@@ -29,5 +29,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     public IPage<ArticleUserVo> getAll(Page<ArticleUserVo> iPage) {
         return articleMapper.getAll(iPage);
     }
+    @Override
+    public IPage<ArticleUserVo> getByAid(Page<ArticleUserVo> iPage, Integer id){
+        return articleMapper.getByAid(iPage,id);
+}
 }
 
