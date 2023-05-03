@@ -9,4 +9,8 @@ public interface IChargeGoodsVOService {
     Page<ChargeGoodsVO> findGid(Page<ChargeGoodsVO> iPage, Integer gid);
 
     Page<ChargeGoodsVO> findgname(Page<ChargeGoodsVO> iPage, String gname);
+
+    Page<ChargeGoodsVO> finduidgname(Page<ChargeGoodsVO> iPage, String gname,Integer uid);
+
+    Page<ChargeGoodsVO> all(Page<ChargeGoodsVO> iPage);
 }

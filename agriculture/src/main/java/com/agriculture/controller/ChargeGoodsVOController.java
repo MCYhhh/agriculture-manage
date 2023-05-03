@@ -17,6 +17,12 @@ import javax.annotation.Resource;
 public class ChargeGoodsVOController {
     @Resource
     IChargeGoodsVOService service;
+    @PostMapping("/all")
+    public Result  all(@RequestBody ChargeGoodsVOPage ChargeGoodsVOPage){
+        Page<ChargeGoodsVO> iPage = new Page<ChargeGoodsVO>(ChargeGoodsVOPage.getPage(),ChargeGoodsVOPage.getSize());
+        return Result.success(service.all(iPage));
+    }
+
     @PostMapping("/mygoods")
     public Result mygoods(@RequestBody ChargeGoodsVOPage ChargeGoodsVOPage){
         Page<ChargeGoodsVO> iPage = new Page<ChargeGoodsVO>(ChargeGoodsVOPage.getPage(),ChargeGoodsVOPage.getSize());
@@ -35,7 +41,13 @@ public class ChargeGoodsVOController {
         String gname=ChargeGoodsVOPage.getGname();
         return Result.success(service.findgname(iPage,gname));
     }
-
+    @PostMapping("/finduidgname")
+    public Result finduidgname(@RequestBody ChargeGoodsVOPage ChargeGoodsVOPage){
+        Page<ChargeGoodsVO> iPage = new Page<ChargeGoodsVO>(ChargeGoodsVOPage.getPage(),ChargeGoodsVOPage.getSize());
+        String gname=ChargeGoodsVOPage.getGname();
+        Integer uid=ChargeGoodsVOPage.getUid();
+        return Result.success(service.finduidgname(iPage,gname,uid));
+    }
 
 
 
