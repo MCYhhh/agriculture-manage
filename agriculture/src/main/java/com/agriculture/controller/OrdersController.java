@@ -97,7 +97,7 @@ public class OrdersController {
     }
 
     //查询所有
-    @GetMapping("/findAll")
+    @PostMapping("/findAll")
     public Result listall(@RequestBody OrdersPage ordersPage){
         QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
         int page=ordersPage.getPage();

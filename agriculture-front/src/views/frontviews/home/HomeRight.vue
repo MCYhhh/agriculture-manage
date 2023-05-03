@@ -1,6 +1,6 @@
 <template>
   <div class="homeright-container">
-    <div class="notify" style="width: 500px">
+    <div class="notify" style="width: 400px">
       <van-notice-bar left-icon="volume-o" :scrollable="true"  v-for="(item,index) in topics" :key="item.id">
         <van-swipe
           vertical
@@ -12,26 +12,28 @@
         </van-swipe>
       </van-notice-bar>
     </div>
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white" vertical v-for="(items,index) in goods" :key="index">
-      <van-swipe-item v-for="(item,index) in items" :key="item.id" style="height: 125px">
-        <van-card
-          :num="item.num"
-          :price="item.price"
-          :desc="item.desc"
-          :title="item.title"
-          :thumb="item.thumb"
-        >
-          <template #tags>
-            <van-tag plain type="danger">标签</van-tag>
-            <van-tag plain type="danger">标签</van-tag>
-          </template>
-<!--          <template #footer>-->
-<!--            <van-button size="mini">按钮</van-button>-->
-<!--            <van-button size="mini">按钮</van-button>-->
-<!--          </template>-->
-        </van-card>
-      </van-swipe-item>
-    </van-swipe>
+    <div class="goodsrec">
+      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white" vertical v-for="(items,index) in goods" :key="index">
+        <van-swipe-item v-for="(item,index) in items" :key="item.id" style="height: 125px">
+          <van-card
+            :num="item.num"
+            :price="item.price"
+            :desc="item.desc"
+            :title="item.title"
+            :thumb="item.thumb"
+          >
+            <template #tags>
+              <van-tag plain type="danger">标签</van-tag>
+              <van-tag plain type="danger">标签</van-tag>
+            </template>
+            <!--          <template #footer>-->
+            <!--            <van-button size="mini">按钮</van-button>-->
+            <!--            <van-button size="mini">按钮</van-button>-->
+            <!--          </template>-->
+          </van-card>
+        </van-swipe-item>
+      </van-swipe>
+    </div>
   </div>
 </template>
 
@@ -69,10 +71,10 @@ export default {
         {id: 4, content: "花香城一天导航游玩~~~"},
         {id: 5, content: "限时领取，3折优惠购买~~~"},
         {id: 6, content: "小李家桃子熟啦，快来采摘！！"},
-        {id: 7, content: "小惠助农，点击详情！！"},
-        {id: 8, content: "顾客有福利啦！！"},
-        {id: 9, content: "花香城一天导航游玩~~~"},
-        {id: 10, content: "限时领取，3折优惠购买~~~"},
+        // {id: 7, content: "小惠助农，点击详情！！"},
+        // {id: 8, content: "顾客有福利啦！！"},
+        // {id: 9, content: "花香城一天导航游玩~~~"},
+        // {id: 10, content: "限时领取，3折优惠购买~~~"},
       ]
     }
   }
@@ -82,7 +84,7 @@ export default {
 <style scoped>
   .my-swipe{
     height: 125px;
-    margin-top: 50px;
+    margin-top: 10px;
   }
   .my-swipe .van-swipe-item {
     color: #fff;
@@ -90,13 +92,16 @@ export default {
     /*line-height: 150px;*/
     text-align: center;
   }
+  .goodsrec{
+    margin-top: 100px;
+  }
   .homeright-container{
     position: absolute;
-    top: 500px;
+    top: 600px;
     right: 25px;
-    width: 500px;
-    height: 1170px;
-    box-shadow: -5px 5px 5px rgba(0,0,0,0.2);
+    width: 400px;
+    height: 1000px;
+    /*box-shadow: -5px 1px 1px  rgba(0,0,0,0.2);*/
   }
   /deep/ .van-swipe-item{
     height: 150px;
@@ -107,9 +112,10 @@ export default {
   }
   .van-notice-bar{
     margin: 5px;
+    background-color:#faf7f5;
   }
   .notify{
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
 
   }
 </style>

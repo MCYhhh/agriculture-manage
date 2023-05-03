@@ -18,10 +18,13 @@ export default{
   data(){
     return{
       banners: [
-        require('../../../assets/images/b11.jpg'),
-        require('../../../assets/images/b10.jpg'),
-        require('../../../assets/images/b2.jpg'),
-        require('../../../assets/images/b16.jpg')
+        require('../../../assets/images/首页1.jpg'),
+        require('../../../assets/images/首页2.jpg'),
+        require('../../../assets/images/首页3.jpg'),
+        require('../../../assets/images/首页6.jpg'),
+        require('../../../assets/images/首页7.jpg'),
+        require('../../../assets/images/首页8.jpg'),
+        require('../../../assets/images/首页10.jpg'),
       ]
     }
   }
@@ -31,6 +34,7 @@ export default{
   .homemainover-container{
     margin: 0 auto;
     width: 1600px;
+    /*width: 100%;*/
     height:500px ;
   }
 </style>

@@ -44,6 +44,52 @@ public class ArticleController {
         }
         return Result.success(articleIPage);
     }
+
+    //通过type查找
+    @PostMapping("/orderBytime")
+    public Result oderBytime(@RequestBody ArticlePage articlePage){
+        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("create_time");
+        int page=articlePage.getPage();
+        int size=articlePage.getSize();
+        Page<Article> spage = new Page<>(page,size);
+        IPage<Article> articleIPage = iArticleService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+articleIPage.getTotal());
+        System.out.print("pages---"+articleIPage.getPages());
+        System.out.print("record---"+articleIPage.getRecords());
+        articleIPage.getRecords().forEach(System.out::println);
+        List row = articleIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            return Result.error(HttpCode.USER_System.code(),"暂无此类型的文章");
+        }
+        return Result.success(articleIPage);
+    }
+    //通过type查找
+    @PostMapping("/orderByscore")
+    public Result oderByscore(@RequestBody ArticlePage articlePage){
+        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("score");
+        int page=articlePage.getPage();
+        int size=articlePage.getSize();
+        Page<Article> spage = new Page<>(page,size);
+        IPage<Article> articleIPage = iArticleService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+articleIPage.getTotal());
+        System.out.print("pages---"+articleIPage.getPages());
+        System.out.print("record---"+articleIPage.getRecords());
+        articleIPage.getRecords().forEach(System.out::println);
+        List row = articleIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            return Result.error(HttpCode.USER_System.code(),"暂无此类型的文章");
+        }
+        return Result.success(articleIPage);
+    }
+
+
+
+
+
   //通过文章名查找
     @GetMapping("/findTitle")
     public Result findTitle(@RequestBody ArticlePage articlePage){
@@ -66,7 +112,7 @@ public class ArticleController {
         return Result.success(articleIPage);
     }
     //通过作者id查找
-    @GetMapping("/findUid")
+    @PostMapping("/findUid")
     public Result findUid(@RequestBody ArticlePage articlePage){
         //iUserService.list();
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
@@ -86,6 +132,33 @@ public class ArticleController {
         }
         return Result.success(articleIPage);
     }
+
+
+    //通过type查找
+    @PostMapping("/findType")
+    public Result findType(@RequestBody ArticlePage articlePage){
+        //iUserService.list();
+        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("type",articlePage.getType());
+        int page=articlePage.getPage();
+        int size=articlePage.getSize();
+        Page<Article> spage = new Page<>(page,size);
+        IPage<Article> articleIPage = iArticleService.selectPage(spage, queryWrapper);
+        System.out.print("total---"+articleIPage.getTotal());
+        System.out.print("pages---"+articleIPage.getPages());
+        System.out.print("record---"+articleIPage.getRecords());
+        articleIPage.getRecords().forEach(System.out::println);
+        List row = articleIPage.getRecords();
+        //判断查询结果是否为空
+        if(row== null || row.size() ==0){
+            return Result.error(HttpCode.USER_System.code(),"暂无此类型的文章");
+        }
+        return Result.success(articleIPage);
+    }
+
+
+
+
     //新增
     @PostMapping("/save")
     public Result save(@RequestBody Article article){

@@ -1,13 +1,10 @@
 <template>
   <div class="home-container">
-    <h1>欢迎来到小惠旅游乡</h1>
-    <Nav></Nav>
     <HomeMainOver></HomeMainOver>
-    <HomeLeft></HomeLeft>
+    <HomeLeft ></HomeLeft>
     <HomeRight></HomeRight>
     <HomeMiddle></HomeMiddle>
     <HomeMiddle2></HomeMiddle2>
-    <Footer></Footer>
   </div>
 </template>
 
@@ -18,7 +15,6 @@ import HomeLeft from "./HomeLeft";
 import HomeRight from "./HomeRight";
 import HomeMiddle from "./HomeMiddle";
 import HomeMiddle2 from "./HomeMiddle2";
-import Footer from "./Footer";
 export default {
   name: "Home",
   components: {
@@ -28,7 +24,6 @@ export default {
     HomeRight,
     HomeMiddle,
     HomeMiddle2,
-    Footer
   }
 }
 </script>

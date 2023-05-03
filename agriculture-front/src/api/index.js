@@ -19,3 +19,234 @@ export const loginAPI = (json) => {     //,usrl,uinfo
     data: json,
   })
 }
+export const articleAPI = (json) => {
+  return request({
+    url:'/article/findAll',
+    method:'POST',
+    data:json,
+  })
+}
+export const articleDetailAPI = (id) => {
+  return request({
+    url:'/article/'+id,
+    method:'GET',
+  })
+}
+//查找某个类型的文章
+export const articleTypeAPI = (json) => {
+  return request({
+    url:'/article/findType',
+    method:'POST',
+    data:json,
+  })
+}
+//根据时间排序
+export const articleOrderbytime = (json) => {
+  return request({
+    url:'/article/orderBytime',
+    method:'POST',
+    data:json,
+  })
+}
+//根据分数排序
+export const articleOrderbyscore = (json) => {
+  return request({
+    url:'/article/orderByscore',
+    method:'POST',
+    data:json,
+  })
+}
+
+export const ArticleUserAPI = (json) => {
+  return request({
+    url:'/articleUser/findAll',
+    method:'POST',
+    data:json,
+  })
+}
+
+export const articleUserDetailAPI = (json) => {
+  return request({
+    url:'/articleUser/findByAid',
+    method:'POST',
+    data:json,
+  })
+}
+
+
+
+
+
+
+
+
+
+
+export const ordersFindCidAPI = (json) => {
+  return request({
+    url:'/orders/findCid',
+    method:'POST',
+    data:json,
+  })
+}
+
+export const detailOrdersSaveAPI = (json) => {
+  return request({
+    url:'/detailorder/save',
+    method:'POST',
+    data:json,
+  })
+}
+
+
+export const goodsAllAPI = (json) => {
+  return request({
+    url:'/goods/findAll',
+    method:'POST',
+    data:json,
+  })
+}
+export const goodsByNameAPI = (json) => {
+  return request({
+    url:'/goods/findByGname',
+    method:'POST',
+    data:json,
+  })
+}
+export const goodsByLeAPI = (json) => {
+  return request({
+    url:'/goods/selectLe',
+    method:'POST',
+    data:json,
+  })
+}
+export const goodsByGeAPI = (json) => {
+  return request({
+    url:'/goods/selectGe',
+    method:'POST',
+    data:json,
+  })
+}
+export const saveArticleAPI = (json) => {
+  return request({
+    url:'/article/save',
+    method:'POST',
+    data:json,
+  })
+}
+export const logoutAPI = () => {
+  return request({
+    url:'/user/logout',
+    method:'GET',
+  })
+}
+
+export const sceneryAllAPI = (json) => {
+  return request({
+    url:'/scenery/findAll',
+    method:'POST',
+    data:json,
+  })
+}
+//删除景点
+export const deleteSceneryAPI = (id) => {
+  return request({
+    url:'/scenery/delete/'+id,
+    method:'DELETE',
+  })
+}
+
+
+
+export const trolleySaveAPI = (json) => {
+  return request({
+    url:'/trolley/save',
+    method:'POST',
+    data:json,
+  })
+}
+export const ordersSaveAPI = (json) => {
+  return request({
+    url:'/orders/save',
+    method:'POST',
+    data:json,
+  })
+}
+
+// 预定创建
+export const reserveSaveAPI = (json) => {
+  return request({
+    url:'/reserve/save',
+    method:'POST',
+    data:json,
+  })
+}
+
+
+// 文件上传
+export function uploadAPI (file) {
+  return request({
+    url: '/file/upload',
+    method: 'POST',
+    data: file,
+  })
+}
+
+//个人订单
+export const selfOrderAPI = (json) => {
+  return request({
+    url:'/orders/findCid',
+    method:'POST',
+    data:json
+  })
+}
+//根据订单编号修改订单
+export const updateOrderAPI = (json) => {
+  return request({
+    url:'/orders/modify',
+    method:'POST',
+    data:json
+  })
+}
+
+//新增景点
+export const articleSaveAPI = (json) => {
+  return request({
+    url:'/scenery/save',
+    method:'POST',
+    data:json
+  })
+}
+//新增或者更改景点
+export const articleSaveorModifyAPI = (json) => {
+  return request({
+    url:'/scenery/saveOrmodify',
+    method:'POST',
+    data:json
+  })
+}
+
+//根据景点名字模糊查询
+export const sceneryLikeNameAPI = (json) => {
+  return request({
+    url:'/scenery/findBySname',
+    method:'POST',
+    data:json
+  })
+}
+//根据uid选择景点
+export const sceneryByuIdAPI = (json) => {
+  return request({
+    url:'/scenery/selectUid',
+    method:'POST',
+    data:json
+  })
+}
+//根据uid以及景点名字模糊查询
+export const sceneryUidLikeNameAPI = (json) => {
+  return request({
+    url:'/scenery/findByUidSname',
+    method:'POST',
+    data:json
+  })
+}

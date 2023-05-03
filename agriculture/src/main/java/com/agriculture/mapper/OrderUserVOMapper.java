@@ -12,7 +12,7 @@ public interface OrderUserVOMapper extends BaseMapper<OrderUserVO> {
     Page<OrderUserVO> myorders(Page<OrderUserVO> iPage, Integer cid);
 
 
-    @Select("SELECT oid,cid,ototal,odate,osate,orders.create_time,orders.uid,uaccount,uname,upwd,utype,usex,uemail,utel,uaddress,uimg,udesp,state from platform.orders join platform.user on user.uid=orders.cid where orders.uid=#{uid}")
+    @Select("SELECT oid,cid,ototal,odate,osate,orders.create_time,orders.uid,uaccount,uname,upwd,utype,usex,uemail,utel,uaddress,uimg,udesp,state from platform.orders join platform.user on user.uid=orders.cid where orders.uid=#{uid} ")
     Page<OrderUserVO> bmyorders(Page<OrderUserVO> iPage, Integer uid);
 
     @Select("SELECT oid,cid,ototal,odate,osate,orders.create_time,orders.uid,uaccount,uname,upwd,utype,usex,uemail,utel,uaddress,uimg,udesp,state from platform.orders join platform.user on user.uid=orders.cid")
