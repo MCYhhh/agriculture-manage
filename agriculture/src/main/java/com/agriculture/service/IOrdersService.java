@@ -41,4 +41,12 @@ public interface IOrdersService extends IService<Orders> {
     IPage<OrderUserVO> orderUserOsatePage(Page<OrderUserVO> spage, Integer osate);
 
     IPage<OrderUserVO> orderUserOidPage(Page<OrderUserVO> spage, Integer oid);
+
+    IPage<OrderUserVO> orderUserShopOid(Page<OrderUserVO> iPage, Integer uid, Integer oid);
+
+    IPage<OrderUserVO> orderUserShopLe(Page<OrderUserVO> iPage, Integer uid, BigDecimal ototal);
+
+    IPage<OrderUserVO> orderUserShopGe(Page<OrderUserVO> iPage, Integer uid, BigDecimal ototal);
+
+    IPage<OrderUserVO> orderUserShopOstate(Page<OrderUserVO> iPage, Integer uid, Integer osate);
 }

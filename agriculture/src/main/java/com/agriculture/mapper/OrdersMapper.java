@@ -36,4 +36,13 @@ public interface OrdersMapper extends BaseMapper<Orders> {
     IPage<OrderUserVO> orderUserUamePage(Page<OrderUserVO> spage, String temp);
     @Select("select oid,cid,ototal,odate,a.uid,osate,a.create_Time,b.uid userid,uaccount,uname,upwd,utype,usex,uemail,utel,uaddress,uimg,udesp,state from user b join orders a on a.cid=b.uid where oid like '%${temp}%'")
     IPage<OrderUserVO> orderUserOidPage(Page<OrderUserVO> spage, Integer temp);
+
+    @Select("select oid,cid,ototal,odate,a.uid,osate,a.create_Time,b.uid userid,uaccount,uname,upwd,utype,usex,uemail,utel,uaddress,uimg,udesp,state from user b join orders a on a.cid=b.uid where oid like '%${oid}%' and b.uid = #{uid}")
+    IPage<OrderUserVO> orderUserShopOid(Page<OrderUserVO> iPage, Integer uid, Integer oid);
+    @Select("select oid,cid,ototal,odate,a.uid,osate,a.create_Time,b.uid userid,uaccount,uname,upwd,utype,usex,uemail,utel,uaddress,uimg,udesp,state from user b join orders a on a.cid=b.uid where ototal <= #{ototal} and b.uid = #{uid}")
+    IPage<OrderUserVO> orderUserShopLe(Page<OrderUserVO> iPage, Integer uid, BigDecimal ototal);
+    @Select("select oid,cid,ototal,odate,a.uid,osate,a.create_Time,b.uid userid,uaccount,uname,upwd,utype,usex,uemail,utel,uaddress,uimg,udesp,state from user b join orders a on a.cid=b.uid where ototal >= #{ototal} and b.uid = #{uid}")
+    IPage<OrderUserVO> orderUserShopGe(Page<OrderUserVO> iPage, Integer uid, BigDecimal ototal);
+    @Select("select oid,cid,ototal,odate,a.uid,osate,a.create_Time,b.uid userid,uaccount,uname,upwd,utype,usex,uemail,utel,uaddress,uimg,udesp,state from user b join orders a on a.cid=b.uid where osate like '%${osate}%' and a.uid = #{uid}")
+    IPage<OrderUserVO> orderUserShopOstate(Page<OrderUserVO> iPage, Integer uid, Integer osate);
 }

@@ -202,8 +202,26 @@ export const orderUserLeAPI = (json) => {
   })
 }
 
+// 订单用户查询所有消费小于等于  商家
+export const orderUserShopLeAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserLe',
+    method:'POST',
+    data:json
+  })
+}
+
 // 订单用户查询所有消费大于等于
 export const orderUserGeAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserGe',
+    method:'POST',
+    data:json
+  })
+}
+
+// 订单用户查询所有消费大于等于  商家
+export const orderUserShopGeAPI = (json) => {
   return request({
     url:'/orderuservo/orderUserGe',
     method:'POST',
@@ -220,9 +238,26 @@ export const orderUserOsateAPI = (json) => {
   })
 }
 
+// 状态查询订单用户 商家
+export const orderUserShopOsateAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserShopOsate',
+    method:'POST',
+    data:json
+  })
+}
+
 
 // 订单编号查询订单用户
 export const orderUserOidAPI = (json) => {
+  return request({
+    url:'/orderuservo/orderUserOid',
+    method:'POST',
+    data:json
+  })
+}
+// 订单编号查询订单用户 商家
+export const orderUserShopOidAPI = (json) => {
   return request({
     url:'/orderuservo/orderUserOid',
     method:'POST',
@@ -239,6 +274,23 @@ export const orderUserUameAPI = (json) => {
   })
 }
 
+// 用户编号查询订单用户 商家
+export const orderUserShopCidAPI = (json) => {
+  return request({
+    url:'/orderuservo/ciduidorders',
+    method: 'POST',
+    data: json,
+  })
+}
+
+// 商家查询所有订单用户
+export const orderUserShopAllAPI = (json) => {
+  return request({
+    url:'/orderuservo/bmyorders',
+    method: 'POST',
+    data: json,
+  })
+}
 
 // 文件上传
 export function uploadAPI (file) {

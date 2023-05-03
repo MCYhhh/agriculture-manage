@@ -91,4 +91,24 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
         return mapper.orderUserOidPage(spage, oid);
     }
 
+    @Override
+    public IPage<OrderUserVO> orderUserShopOid(Page<OrderUserVO> iPage, Integer uid, Integer oid) {
+        return mapper.orderUserShopOid(iPage,uid,oid);
+    }
+
+    @Override
+    public IPage<OrderUserVO> orderUserShopLe(Page<OrderUserVO> iPage, Integer uid, BigDecimal ototal) {
+        return mapper.orderUserShopLe(iPage, uid,ototal);
+    }
+
+    @Override
+    public IPage<OrderUserVO> orderUserShopGe(Page<OrderUserVO> iPage, Integer uid, BigDecimal ototal) {
+        return mapper.orderUserShopGe(iPage,uid,ototal);
+    }
+
+    @Override
+    public IPage<OrderUserVO> orderUserShopOstate(Page<OrderUserVO> iPage, Integer uid, Integer osate) {
+        return mapper.orderUserShopOstate(iPage,uid,osate);
+    }
+
 }
