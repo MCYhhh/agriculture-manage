@@ -4,8 +4,7 @@
       <el-button type="primary" class="button" @click="getArticleDetail(item.id)">点击了解</el-button>
       <el-image style="width:200px; height: 200px;" class="img" alt="图片"
                 :src="item.img"
-                :preview-src-list="item.srcList">
-        {{item.img}}
+                >
       </el-image>
       <div class="text">
         <div class="article">
@@ -78,12 +77,12 @@ export default {
    async getarticleList() {
      const json = JSON.stringify(this.articlePage);
      const {data: res} = await articleAPI(json);
-     console.log(res);
      console.log("开始");
+     console.log(res);
      if (res.code==='00000'){
        console.log("文章获取成功");
        this.news=res.data.records;
-       console.log(res.data.records[0].img);
+       console.log(this.news);
        this.articlePage.total=res.data.total;
      }else {
        this.$message.warning("查询失败，未找到相应结果")

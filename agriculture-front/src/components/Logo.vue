@@ -5,7 +5,7 @@
     <p style="float: right;margin-right: 120px;margin-top: 70px">
       <el-dropdown @command="chooseValue">
         <span class="el-dropdown-link">
-          <i class="el-icon-caret-bottom"  style="margin-right: 15px;padding-right: -18px;font-size: 18px" >王小虎</i>
+          <i class="el-icon-caret-bottom"  style="margin-right: 15px;padding-right: -18px;font-size: 18px" >{{ uname }}</i>
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item v-for="item in option1" :key="item.value" :command="item.label">
@@ -23,6 +23,7 @@ export default {
   name: "Logo",
   data(){
     return{
+      uname:"",
       option1:[
         {label:'返回首页',value:0},
         {label:'进入后台',value:1},
@@ -31,16 +32,18 @@ export default {
     }
   },
   methods:{
-    async chooseValue(label){
+   async chooseValue(label){
       if(label==="返回首页"){
         this.$router.push('/front/home')
       }
       else if (label==="进入后台"){
         const utype=JSON.parse(localStorage.getItem('user')).utype;
-        if(utype===2)
-          this.$router.push('/admin/home')
-        else
-          this.$router.push('/shopper/home')
+        console.log("用户类型")
+        console.log(utype)
+        // if(utype===2)
+        //   this.$router.push('/admin')
+        // else if(utype===1)
+        //   this.$router.push('/shopper')
       }
       else{
         console.log("注销")
@@ -52,6 +55,9 @@ export default {
         }
       }
     }
+  },
+  created() {
+    this.uname=JSON.parse(localStorage.getItem('user')).uname
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <!--  购物页面-->
-  <div class="cart">
+  <div class="cart" v-if="goodsList">
     <!--    导航栏-->
     <!--    <MainHeaderb></MainHeaderb>-->
     <!--    header头部区-->
@@ -12,25 +12,25 @@
            :count="totalCount"></Total>
     <!--    body商品区-->
     <!--    循环渲染每一个商品的信息-->
-    <CartBody v-for="item in goodsList" :key="item.id"
-              :name="item.goods_name"
-              :price="item.goods_price"
-              :image="item.goods_img"
-              :state="item.goods_state"
+    <CartBody v-for="item in goodsList" :key="item.gid"
+              :name="item.gname"
+              :price="item.gprice"
+              :image="item.gimg"
+              :gdesp="item.gdesp"
+              :state="item.state"
               @changeState="getState"
-              :id="item.id"
-              :num="item.goods_count"></CartBody>
-    <div class="block">
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage4"
-        :page-sizes="[100, 200, 300, 400]"
-        :page-size="100"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="400">
-      </el-pagination>
-    </div>
+              :id="item.gid"
+              :num="item.tnum"></CartBody>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="articlePage.page"
+      :page-sizes="[4,6,8]"
+      :page-size="articlePage.size"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="articlePage.total"
+      style="text-align: center;display: block;bottom: 200px;">
+    </el-pagination>
   </div>
 </template>
 
@@ -41,8 +41,9 @@ import CartBody from "./CartBody";
 import Total from "./Total";
 import axios from 'axios'
 import bus from "../../../eventBus";
+import { trolleyGoodsAPI} from "../../../api";
 export default {
-  name: "Trolley",
+  name: "Cart",
   components:{
     // MainHeaderb,
     CartHeader,
@@ -52,49 +53,68 @@ export default {
   data(){
     return{
       goodsList:[],
-      currentPage4: 4
+      articlePage:{
+        page: 1,
+        size:4,
+        total:0,
+        cid:JSON.parse(localStorage.getItem('user')).uid
+      }
     }
   },
   methods:{
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.articlePage.size=val;
+      this.getarticleList();
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.articlePage.page=val;
+      this.getarticleList();
+    },
+
     //  封装请求列表数据的方
     async initCartList(){
-      //调用axios的get方法，请求列表数据
-      const {data:res}=await axios.get("https://www.escook.cn/api/cart")
-      // console.log(res)
-      //如果数据请求成功
-      if(res.status===200)
-        this.goodsList=res.list
-      else
-        console.log("获取购物车数据失败！")
-      // console.log(this.goodsList)
+      //调用axios的post方法，请求列表数据
+      const json=JSON.stringify(this.articlePage)
+      const {data:res}=await trolleyGoodsAPI(json)
+      console.log(res)
+      if (res.code==='00000'){
+        console.log("购物车获取成功");
+        this.goodsList=res.data.records;
+        console.log(this.news);
+        this.goodsList.forEach(item=> {
+          if(item.state===0)
+            item.state = false
+          else
+            item.state = true
+        })
+        this.articlePage.total=res.data.total;
+        console.log(this.goodsList)
+        this.$message.success("获取购物车信息成功")
+      }else{
+        this.$message.error("获取购物车信息失败")
+      }
+
     },
     getState(val){
       console.log("触发Cart组件",val)
       this.goodsList.some(item=>{
-        if (item.id===val.id){
-          item.goods_state=val.value
+        if (item.gid===val.id){
+          item.state=val.value
         }
       })
     },
     getfullState(val){
-      this.goodsList.forEach(item=>item.goods_state=val)
-    },
-    onConfirm() {
-      this.$refs.item.toggle();
-    },
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-    },
+      this.goodsList.forEach(item=>item.state=val)
+    }
   },
   created() {
     this.initCartList()
     bus.$on('addNum',val=>{
       this.goodsList.some(item=>{
-        if(item.id===val.id ){
-          item.goods_count=val.value
+        if(item.gid===val.id ){
+          item.tnum=val.value
         }
       })
     })
@@ -105,12 +125,11 @@ export default {
           type: 'error'
         });
       this.goodsList.some(item=>{
-        if(item.id===val.id ){
-          item.goods_count=val.value
+        if(item.gid===val.id ){
+          item.tnum=val.value
         }
       })
     })
-
   },
   computed:{
     sumTotal(){
@@ -118,13 +137,13 @@ export default {
       // return  this.goodsList
       //   .filter(item=>item.goods_state)
       //   .reduce((total,item)=>( total+=item.goods_price*item.goods_count),0)
-      return this.goodsList.filter(item=>item.goods_state).reduce((sum,item)=> (sum+=item.goods_price*item.goods_count),0)
+      return this.goodsList.filter(item=>item.state).reduce((sum,item)=> (sum+=item.gprice*item.tnum),0)
     },
     fullState(){
-      return this.goodsList.every(item=>item.goods_state)
+      return this.goodsList.every(item=>item.state)
     },
     totalCount(){
-      return this.goodsList.filter(item=>item.goods_state).reduce((sum,item)=> (sum+=item.goods_count),0)
+      return this.goodsList.filter(item=>item.state).reduce((sum,item)=> (sum+=item.tnum),0)
     }
   }
 }

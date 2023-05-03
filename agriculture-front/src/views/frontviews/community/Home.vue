@@ -1,116 +1,90 @@
 <template>
-  <div>
-    <el-button type="warning" @click="dialogFormVisible = true;"
-               class="add">点击新增文章数据</el-button
-    >
+  <div class="file-container">
+    <el-button>
+      <el-dropdown @command="chooseValue">
+        <span class="el-dropdown-link">
+          <i class="el-icon-caret-bottom"  style="font-size: 18px" >{{ choose }}</i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item v-for="item in option1" :key="item.value" :command="item.label">
+            <span>{{item.label}}</span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </el-button>
+    <el-input v-model="value" prefix-icon="el-icon-search" @keyup.enter.native="search" ></el-input>
 
-    <el-dialog title="新增文章数据" :visible.sync="dialogFormVisible">
-      <el-form :model="form">
-        <el-form-item label="文章标题" :label-width="formLabelWidth">
-          <el-input v-model="form.title" autocomplete="off"></el-input>
-        </el-form-item>
-
-        <el-form-item label="文章类型" :label-width="formLabelWidth">
-          <el-input v-model="form.type" autocomplete="off"></el-input>
-        </el-form-item>
-
-        <el-form-item label="摘要" :label-width="formLabelWidth">
-          <el-input v-model="form.summary" autocomplete="off"></el-input>
-        </el-form-item>
-
-        <el-form-item label="正文" :label-width="formLabelWidth">
-          <el-input v-model="form.content" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="分数" :label-width="formLabelWidth">
-          <el-input v-model="form.score" autocomplete="off"></el-input>
-        </el-form-item>
-
-        <el-form-item label="上传封面" prop="imageUrl">
-          <el-upload
-            action="http://localhost:8084/file/upload"
-            list-type="picture-card"
-            :on-preview="handlePictureCardPreview"
-            :on-success="handleAvatarSuccess"
-            :on-remove="handleRemove"
-          >
-            <i class="el-icon-plus"></i>
-          </el-upload>
-          <el-dialog :visible.sync="dialogVisible">
-            <img width="100%" :src="dialogImageUrl" alt="" />
-          </el-dialog>
-        </el-form-item>
-        <el-dialog :visible.sync="dialogVisible">
-          <img width="100%" :src="dialogImageUrl" alt="" />
-        </el-dialog>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="submitCat(form)"
-        >确 定</el-button
-        >
-      </div>
-    </el-dialog>
   </div>
 </template>
-
-
 <script>
-import {uploadAPI} from "../../../api";
-import {saveArticleAPI} from "../../../api";
-export default {
-  data() {
-    return {
-      dialogImageUrl: "",
-      dialogVisible: false,
-      dialogTableVisible: false,
-      dialogFormVisible: false,
-      form: {
-        title: "",
-        type:0,
-        summary: "",
-        content: "",
-        img: "",
-        score:2.2,
-        uid:1,
-      },
-      formLabelWidth: "120px",
-      json :"",
-      isDisabled:false,
-    };
-  },
-  methods: {
-    handleAvatarSuccess(res, file) {
-      console.log("handleAvatarSuccess")
-      console.log(res)
-      this.form.img = res
-      // console.log(this.form.curl = res);
-      // this.form.curl = sessionStorage.setItem("curl",this.curl)
-    },
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-    handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url;
-      this.dialogVisible = true;
-      console.log(file.url);
-    },
 
-    submitCat: async function (){
-      // const {data:res}=await
-      console.log("上传")
-      console.log(this.form)
-      // this.form.curl='http://localhost:8082/myImg/65ba45786a8742a2b8a08d3ad396b25d..jpg'
-      this.json = JSON.stringify(this.form),
-        await saveArticleAPI(this.json);
-      // console.log(res.data);
-      this.$message.success("文章发布成功！！");
-      // this.isDisabled=true;
+export default {
+  name: "file",
+  data(){
+    return{
+      value:'',
+      choose:'选择类型',
+      option1:[
+        {label:'商品名称',value:0},
+        {label:'商品价格',value:1},
+      ]
     }
   },
-};
+  methods:{
+    chooseValue(label){
+      this.choose=label
+      if(label.includes('价格')){
+        alert('请输入低于xx元（只填写数字）')
+      }
+      else
+        alert('请输入商品名称')
+      // this.value='请输入'+label
+    },
+    search(){
+      console.log(typeof this.value)
+      const numReg = /^[0-9]+$/
+      const numRe = new RegExp(numReg)
+      if (numRe.test(this.value)) {
+        // this.$message({<!-- -->
+        //   type: 'error',
+        //   message: '请输入数字 ',
+        //   duration: 10000,
+        //   showClose: true,
+        // })
+        // return false
+        console.log("搜索搜索,拿到输入值",this.value)
+        this.value=Number(this.value)
+        console.log(typeof this.value)
+      }
+
+    }
+  }
+}
+
 </script>
-<style>
-.add{
-  margin: 50px;
+<style scoped>
+.file-container{
+  margin:0 auto;
+  padding-bottom: 50px;
+  width: 700px;
+  position: static;
+}
+
+/deep/ .el-input__inner{
+  border-radius: 100px;
+  border-color: rgba(0,0,0,0);
+  width: 600px;
+  height: 40px;
+}
+.el-input{
+  border-radius: 100px;
+  position: absolute;
+  width: 600px;
+  height: 40px;
+}
+
+.el-input:hover{
+  box-shadow: 3px 3px 3px rgba(1,1,1,0.2);
 }
 </style>
+

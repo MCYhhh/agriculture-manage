@@ -6,6 +6,15 @@
     <el-descriptions class="margin-top" :column="1"  border>
       <el-descriptions-item>
         <template slot="label">
+          <i class="el-icon-user"></i>
+          <span>用户头像</span>
+        </template>
+        <span>
+          <img :src="user.uimg" style="width: 150px">
+        </span>
+      </el-descriptions-item>
+      <el-descriptions-item>
+        <template slot="label">
           <i class="el-icon-view"></i>
           <span>用户账号</span>
         </template>
@@ -48,13 +57,6 @@
       </el-descriptions-item>
       <el-descriptions-item>
         <template slot="label">
-          <i class="el-icon-picture-outline-round"></i>
-          <span>照片</span>
-        </template>
-        <span>{{ user.uimg }}</span>
-      </el-descriptions-item>
-      <el-descriptions-item>
-        <template slot="label">
           <i class="el-icon-office-building"></i>
           <span>联系地址</span>
         </template>
@@ -64,9 +66,10 @@
         <template slot="label">
           <i class="el-icon-office-building"></i>
           <span>状态</span>
-        </template>
-        <span v-if="user.state===0">正常</span>
-        <span v-else>已注销</span>
+        </template >
+        <el-tag type="success" v-if="user.utype===0">普通用户</el-tag>
+        <el-tag type="info" v-else-if="user.utype===1">商家</el-tag>
+        <el-tag type="danger" v-else-if="user.utype===2">管理员</el-tag>
       </el-descriptions-item>
       <el-descriptions-item>
         <template slot="label">
@@ -86,6 +89,21 @@
     <div class="modifyinfo" >
       <el-dialog title="信息修改" :visible.sync="dialogFormVisible" width="30%">
         <el-form>
+          <el-form-item label="用户账号" label-width="100px">
+            <el-upload
+              action="http://localhost:8084/file/upload"
+              list-type="picture-card"
+              :on-preview="handlePictureCardPreview"
+              :on-success="handleAvatarSuccess"
+              :on-remove="handleRemove"
+              enctype="multipart/form-data"
+              :http-request="onUpload"
+            >
+<!--              <img v-if="avatarUrl" :src="user1.uimg" class="avatar">-->
+              <el-image :src="user1.uimg"  fit="contain" v-if="avatarUrl"></el-image>
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+          </el-form-item>
           <el-form-item label="用户账号" label-width="100px">
             <el-input  v-model="user1.uaccount" disabled></el-input>
           </el-form-item>
@@ -130,46 +148,77 @@
 </template>
 <script>
 
+import {uploadAPI,modifyUserAPI} from "../../../api";
+
 export default {
   name: "Home",
   data() {
     return{
       dialogFormVisible: false,
-      user:{
-        uid:1,
-        uaccount:'account',
-        uname:'uname',
-        upwd:'upwd',
-        utype:0,
-        usex:"女",
-        uemail:"tianyong@126.com",
-        utel:"15349585890",
-        uaddress:"江苏省苏州市吴中区吴中大道 1188 号",
-        uimg:"yfuwn",
-        udesp:"",
-        state:0,
-        create_time:"2012-1-12 21：21：12",
-        update_time:""
-      },
+      dialogImageUrl: "",
+      dialogVisible: false,
+      dialogTableVisible: false,
+      user:{},
+      avatarUrl:true,
       user1:{}
     }
   },
   methods:{
+    async onUpload(file){
+      console.log(file)
+      localStorage.setItem('isFile',"isFile")
+      const formData=new FormData()
+      formData.append('file',file.file)
+      const{data:res}=await uploadAPI(formData)
+      this.user1.uimg=res
+    },
+    handleAvatarSuccess(res) {
+      console.log("上传")
+      console.log(res)
+      this.avatarUrl=false
+
+      // this.user1.uimg=this.avatarUrl
+      // this.form.img=res.data
+      // console.log("filefile",file)
+
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      console.log("预览预览")
+      console.log("预览预览")
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+      console.log(file.url);
+    },
+
     cancelinfo(){
       this.dialogFormVisible = false;
       console.log(this.user)
       console.log(this.user1)
     },
-    confirminfo(){
-      console.log(this.user.uname)
+   async confirminfo(){
+      localStorage.removeItem('isFile')
+     this.user=JSON.parse(JSON.stringify(this.user1));
+      // const {data:res}=await
+      console.log("上传提交提交")
+      console.log(this.form)
+      this.json = JSON.stringify(this.user)
+      const{data:res}=await modifyUserAPI(this.json);
+      console.log(res.data);
+      this.$message.success("用户信息修改成功！！");
       this.dialogFormVisible = false;
-      this.user=JSON.parse(JSON.stringify(this.user1));
     },
     modifyinfo(){
       this.user1=JSON.parse(JSON.stringify(this.user));
       this.dialogFormVisible = true
     }
   },
+  created() {
+    this.user=JSON.parse(localStorage.getItem('user'))
+    console.log(this.user)
+  }
 }
 </script>
 <style scoped>
@@ -189,5 +238,10 @@ export default {
  .info-container{
    margin-top: -18px;
    margin-left: -18px;
+ }
+ .avatar {
+   width: 150px;
+   height: 150px;
+   display: block;
  }
 </style>

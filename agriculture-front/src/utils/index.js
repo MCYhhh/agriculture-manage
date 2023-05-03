@@ -9,7 +9,7 @@ import axios from 'axios'
 axios.defaults.headers["Content-Type"] = "application/json ; charset=utf-8"
 
 const myAxios = axios.create({
-  baseURL: 'http://localhost:8083'
+  baseURL: 'http://localhost:8084'
 })
 
 // request 拦截器
