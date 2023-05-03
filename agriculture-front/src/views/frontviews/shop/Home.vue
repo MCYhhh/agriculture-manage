@@ -289,7 +289,7 @@ export default {
           type: "success"
         })
       } else {
-        this.$message.error(res.msg)
+        this.$message.warning("查询失败，未找到相应结果")
       }
       console.log("结束")
     },
@@ -309,7 +309,7 @@ export default {
           type: "success"
         })
       } else {
-        this.$message.error(res.msg)
+        this.$message.warning("查询失败，未找到相应结果")
       }
       console.log("结束")
     },
@@ -329,7 +329,7 @@ export default {
           type: "success"
         })
       } else {
-        this.$message.error(res.msg)
+        this.$message.warning("查询失败，未找到相应结果")
       }
       console.log("结束")
     },
@@ -410,7 +410,7 @@ export default {
           type: "success"
         })
       } else {
-        this.$message.error(res.msg)
+        this.$message.warning("查询失败，未找到相应结果")
       }
       console.log("结束")
     },
@@ -472,15 +472,8 @@ export default {
         console.log(res);
         console.log(res.data.records.length);
         this.detail.oid = JSON.parse(res.data.records[res.data.records.length - 1].oid)
-        console.log("wdecwec" + this.detail.oid);
-
-        this.detail.dnum = this.num;
-        this.detail.dtotal = this.total;
-        console.log("gid==" + this.detail.gid);
-        console.log("num==" + this.num);
-        console.log("total==" + this.total);
       } else {
-        this.$message.error(res.msg);
+        this.$message.warning("查询失败，未找到相应结果");
       }
       console.log("订单获取结束");
       await this.detailOrdersSave();

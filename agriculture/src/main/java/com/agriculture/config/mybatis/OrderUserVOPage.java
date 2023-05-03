@@ -29,5 +29,4 @@ public class OrderUserVOPage {
     private String uimg;
     private String udesp;
     private Integer state;
-
 }

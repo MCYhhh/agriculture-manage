@@ -1,6 +1,7 @@
 package com.agriculture.service.impl;
 
 import com.agriculture.entity.Orders;
+import com.agriculture.entity.vo.OrderUserVO;
 import com.agriculture.mapper.OrdersMapper;
 import com.agriculture.service.IOrdersService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -63,6 +64,31 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
     @Override
     public IPage<Orders> selectPage(Page<Orders> page, QueryWrapper<Orders> queryWrapper) {
         return mapper.selectPage(page,queryWrapper);
+    }
+
+    @Override
+    public IPage<OrderUserVO> orderUserLePage(Page<OrderUserVO> spage, BigDecimal ototal) {
+        return mapper.orderUserLePage(spage, ototal);
+    }
+
+    @Override
+    public IPage<OrderUserVO> orderUserGePage(Page<OrderUserVO> spage, BigDecimal ototal) {
+        return mapper.orderUserGePage(spage, ototal);
+    }
+
+    @Override
+    public IPage<OrderUserVO> orderUserUamePage(Page<OrderUserVO> spage, String uname) {
+        return mapper.orderUserUamePage(spage, uname);
+    }
+
+    @Override
+    public IPage<OrderUserVO> orderUserOsatePage(Page<OrderUserVO> spage, Integer osate) {
+        return mapper.orderUserOsatePage(spage, osate);
+    }
+
+    @Override
+    public IPage<OrderUserVO> orderUserOidPage(Page<OrderUserVO> spage, Integer oid) {
+        return mapper.orderUserOidPage(spage, oid);
     }
 
 }

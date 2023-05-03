@@ -2,8 +2,8 @@
   <div class="homemiddle-container">
     <h2 class="neon">=====好物推荐====</h2>
     <div class="recgoods">
-      <van-grid :border="false" :column-num="4" v-for="(items,index) in goodsList" :key="index">
-        <van-grid-item v-for="(item,index) in items" :key=item.gid class="goods-grid" style="padding-top: 150px;margin-top: -50px">
+      <van-grid :border="false" :column-num="4" v-for="items in goodsList">
+        <van-grid-item v-for="(item,index) in items" :key="item.gid" class="goods-grid" style="padding-top: 150px;margin-top: -50px">
           <van-image :src="item.gimg"/>
           <div class="goods" style="padding-top: 40px">
             <el-tag type="warning" style="position: relative;top: 15px;left: -150px;margin-bottom: 20px;font-size: 13px">{{ item.uname }}</el-tag>
